@@ -8,6 +8,7 @@
         "server": "nodemon server.js --ignore public/",
         "browser": "browser-sync start --proxy \"localhost:3001\" --files \"public/**/*\"",
         "dev": "concurrently \"npm run server\" \"npm run browser\"",
+        "build": "echo 'No build step required for this Node.js project. Ready for production.'",
         "pm2": "pm2 start ecosystem.config.js"
     },
     "dependencies": {
