@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KRX 시장경보 분석기 — 투자경고/주의 조건 확인</title>
+    <meta name="description" content="한국거래소(KRX) 실시간 데이터 기반 투자경고·투자주의·단기과열 종목 지정 조건 판별기. 종목코드 입력 한 번으로 즉시 분석.">
+    <meta name="keywords" content="KRX, 투자경고, 투자주의, 단기과열, 시장경보, 주식, 종목분석">
+    <meta property="og:title" content="KRX 시장경보 분석기">
+    <meta property="og:description" content="종목코드 입력 한 번으로 투자경고·주의 지정 조건을 즉시 확인하세요.">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="/">
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div class="background-aurora"></div>
+
+    <!-- ★ 인터스티셜 광고 오버레이 (2번째 검색부터) -->
+    <div id="adOverlay" class="ad-overlay hidden">
+        <div class="ad-content">
+            <span class="badge warning" style="margin-bottom:16px;">ADVERTISEMENT</span>
+            <h2>광고 시청 중...</h2>
+            <p>서비스 유지를 위해 30초 광고 시청이 필요합니다.</p>
+            <div class="adsense-placeholder">
+                <!-- Google AdSense 인터스티셜 코드 삽입 위치 -->
+                <div class="ad-inner-box">
+                    <p style="color:#484f58;">[ Google AdSense 광고 영역 ]</p>
+                    <p style="font-size:0.85rem;margin-top:8px;">실제 운영 시 애드센스 코드가 삽입됩니다</p>
+                </div>
+            </div>
+            <div class="timer-container">
+                <div class="timer-circle">
+                    <svg>
+                        <circle cx="50" cy="50" r="45"></circle>
+                        <circle id="timerProgress" cx="50" cy="50" r="45"></circle>
+                    </svg>
+                    <span id="countdownText">30</span>
+                </div>
+            </div>
+            <button id="seeResultsBtn" class="primary-btn hidden" disabled>결과 확인하기</button>
+        </div>
+    </div>
+
+    <!-- ★ 상단 배너 광고 (728×90 Leaderboard) -->
+    <div class="ad-banner-top">
+        <div class="ad-slot ad-leaderboard">
+            <!-- Google AdSense 상단 배너 코드 삽입 -->
+            <span class="ad-label">Advertisement</span>
+        </div>
+    </div>
+
+    <div class="page-wrapper">
+        <!-- ★ 메인 컨텐츠 -->
+        <main class="main-content">
+            <header>
+                <div class="header-logo">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <h1>KRX 시장경보 분석기</h1>
+                </div>
+                <p class="header-sub">실제 주식 데이터 기반 투자경고 · 주의 · 단기과열 조건 즉시 분석</p>
+            </header>
+
+            <!-- 검색 섹션 -->
+            <section class="search-section">
+                <form id="tickerForm">
+                    <div class="input-group">
+                        <i class="fa-solid fa-magnifying-glass input-icon"></i>
+                        <input type="text" id="tickerInput" placeholder="종목코드 입력 (예: 005930)" pattern="[0-9]{6}"
+                            maxlength="6" required autocomplete="off">
+                        <button type="submit" id="searchBtn">
+                            <span id="searchBtnText">조회하기</span>
+                            <span id="searchBtnSpinner" class="hidden"><i
+                                    class="fa-solid fa-spinner fa-spin"></i></span>
+                        </button>
+                    </div>
+                    <p class="search-hint">※ 코스피/코스닥 6자리 종목코드를 입력하세요</p>
+                </form>
+            </section>
+
+            <!-- 로딩 -->
+            <div id="loadingIndicator" class="loading-bar hidden">
+                <div class="loading-bar-inner"></div>
+            </div>
+
+            <!-- 결과 섹션 -->
+            <section id="resultsSection" class="results-section hidden">
+                <!-- 종목 헤더 -->
+                <div class="ticker-header">
+                    <div class="ticker-info">
+                        <div class="ticker-name-row">
+                            <span id="displayStockName" class="stock-name"></span>
+                            <span id="displayTicker" class="ticker-code"></span>
+                            <span id="displayCachedBadge" class="cached-badge hidden"><i
+                                    class="fa-solid fa-database"></i> 캐시됨</span>
+                        </div>
+                        <div class="price-row">
+                            <span class="price-label">현재가</span>
+                            <span id="currentPriceDisplay" class="price-value">-</span>
+                            <span class="price-unit">원</span>
+                        </div>
+                        <p class="disclaimer">※ 계좌 집중도 등 비공개 데이터 제외, <strong>주가/거래량 기반</strong> 분석입니다.
+                            <a href="https://kind.krx.co.kr/marketdata/mktalert/mktalertinfo.do" target="_blank"
+                                rel="noopener" class="krx-link">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> KRX 공식 확인
+                            </a>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- ★ 콘텐츠 내 광고 (카드 사이, 728×90) -->
+                <div class="ad-in-content">
+                    <div class="ad-slot ad-in-content-slot">
+                        <!-- Google AdSense 인콘텐츠 광고 코드 삽입 -->
+                        <span class="ad-label">Advertisement</span>
+                    </div>
+                </div>
+
+                <!-- 분석 카드 그리드 -->
+                <div class="cards-grid">
+                    <!-- 카드 1: 시장감시 모니터링 -->
+                    <div class="card caution-card">
+                        <div class="card-header">
+                            <span class="badge caution"><i class="fa-solid fa-eye"></i> 모니터링</span>
+                            <h2>시장감시 대응 요건</h2>
+                        </div>
+                        <div class="card-body">
+                            <p class="summary">거래량 급증 및 단기 주가 과열 여부를 감시합니다.</p>
+                            <ul class="condition-list">
+                                <li>
+                                    <strong>종가 급변 (Volume/Price)</strong>
+                                    <span class="info-text">5%↑ 변동 & 거래량 3만주↑ & 종가거래 비중 5%↑ 시</span>
+                                    <div id="statusClosingSudden" class="status-row">-</div>
+                                </li>
+                                <li>
+                                    <strong>소수계좌 거래집중 (3일 15%↑)</strong>
+                                    <span class="info-text">3일 15%↑ & 상위 10계좌 관여도 40%↑ 시</span>
+                                    <div class="target-price-row">기준가: <span id="targetCaution"
+                                            class="target-val">-</span>원</div>
+                                </li>
+                                <li>
+                                    <strong>소수지점/특정계좌 (15일 75%↑)</strong>
+                                    <span class="info-text">15일 75%↑ & 상위 20계좌 관여도 30%↑ 시</span>
+                                    <div class="target-price-row">집중 감시가: <span id="targetCaution15d"
+                                            class="target-val">-</span>원</div>
+                                    <div id="statusCaution15d" class="status-row"></div>
+                                </li>
+                                <li>
+                                    <strong>상승 지속성 (15일)</strong>
+                                    <span class="info-text">15거래일 중 12일 이상 상승 여부</span>
+                                    <div class="status-row">현재 상승일수: <span id="countRising15"
+                                            class="highlight-val">0</span>일
+                                        <span id="statusRising15" class="condition-tag"></span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-footer">* 계좌/지점 데이터는 거래소 비공개 사항으로 주가/거래량 기준 수치만 제공합니다.</div>
+                    </div>
+
+                    <!-- 카드 2: 단기과열 -->
+                    <div class="card overheating-card">
+                        <div class="card-header">
+                            <span class="badge overheating"><i class="fa-solid fa-fire"></i> 단기과열</span>
+                            <h2>단기과열 (단일가) 요건</h2>
+                        </div>
+                        <div class="card-body">
+                            <p class="summary">3가지 요건을 <strong>모두</strong> 충족하면 단기과열 예고 → 단일가 매매 전환.</p>
+                            <ul class="condition-list">
+                                <li>
+                                    <strong>주가 상승률 (40일 평균 비)</strong>
+                                    <span class="info-text">당일 종가 ÷ 직전 40일 평균 ≥ 130%</span>
+                                    <div class="target-price-row">목표가: <span id="targetOverheating"
+                                            class="target-val">-</span>원</div>
+                                    <div id="statusOverheatPrice" class="status-row"></div>
+                                </li>
+                                <li>
+                                    <strong>거래회전율 (40일 평균 비 ≥ 600%)</strong>
+                                    <span class="info-text">최근 2일 평균 거래량 ÷ 직전 40일 평균 거래량</span>
+                                    <div class="status-row">현재 비율: <span id="valOverheatTurnover"
+                                            class="highlight-val">-</span>%
+                                        <span id="statusOverheatTurnover" class="condition-tag"></span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <strong>주가 변동성 (40일 평균 비 ≥ 150%)</strong>
+                                    <span class="info-text">최근 2일 평균 변동성 ÷ 직전 40일 평균 변동성</span>
+                                    <div class="status-row">현재 비율: <span id="valOverheatVolatility"
+                                            class="highlight-val">-</span>%
+                                        <span id="statusOverheatVolatility" class="condition-tag"></span>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="overheat-summary-box">
+                                <strong>종합 판정:</strong>
+                                <span id="overheatSummary" class="condition-tag">-</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 카드 3: 투자경고 -->
+                    <div class="card warning-card">
+                        <div class="card-header">
+                            <span class="badge warning"><i class="fa-solid fa-triangle-exclamation"></i> 투자경고</span>
+                            <h2>투자경고 지정 모니터링</h2>
+                        </div>
+                        <div class="card-body">
+                            <p class="summary">비정상 급등 시 지정. 아래 요건 + <strong>'15일 최고가'</strong> 충족 시 예고/지정됩니다.</p>
+                            <div class="high-status-box">
+                                <span class="high-status-label"><i class="fa-solid fa-flag"></i> 15거래일 최고가 여부:</span>
+                                <span id="val15DayHigh" class="high-status-val">-</span>
+                            </div>
+                            <ul class="condition-list">
+                                <li>
+                                    <strong>초단기 급등 (3일 100%↑)</strong>
+                                    <span class="info-text">3일 전 대비 100% 이상 상승</span>
+                                    <div class="target-price-row warning">경고 목표가: <span id="targetUltraShort"
+                                            class="target-val">-</span>원</div>
+                                    <div id="statusUltraShort" class="status-row"></div>
+                                </li>
+                                <li>
+                                    <strong>단기 급등 (5일 60%↑)</strong>
+                                    <span class="info-text">5일 전 대비 60% 이상 상승</span>
+                                    <div class="target-price-row warning">경고 목표가: <span id="targetShort"
+                                            class="target-val">-</span>원</div>
+                                    <div id="statusShort" class="status-row"></div>
+                                </li>
+                                <li>
+                                    <strong>중장기 급등 (15일 100%↑)</strong>
+                                    <span class="info-text">15일 전 대비 100% 이상 상승</span>
+                                    <div class="target-price-row warning">경고 목표가: <span id="targetMidLong"
+                                            class="target-val">-</span>원</div>
+                                    <div id="statusMidLong" class="status-row"></div>
+                                </li>
+                                <li>
+                                    <strong>투자주의 반복 (15일 75%↑)</strong>
+                                    <span class="info-text">15일 중 5회↑ 주의 지정 & 75% 상승</span>
+                                    <div class="target-price-row warning">경고 목표가: <span id="targetCautionRep"
+                                            class="target-val">-</span>원</div>
+                                    <div id="statusCautionRep" class="status-row"></div>
+                                </li>
+                            </ul>
+                            <p class="card-footnote">※ 지수 상승률 대비 초과 상승(3~5배) 요건이 복합 적용됩니다.</p>
+                        </div>
+                    </div>
+                </div><!-- /cards-grid -->
+
+                <!-- ★ 하단 배너 광고 (728×90) -->
+                <div class="ad-footer-banner">
+                    <div class="ad-slot ad-leaderboard">
+                        <!-- Google AdSense 하단 배너 코드 삽입 -->
+                        <span class="ad-label">Advertisement</span>
+                    </div>
+                </div>
+            </section><!-- /resultsSection -->
+        </main><!-- /main-content -->
+
+        <!-- ★ 사이드바 광고 -->
+        <aside class="sidebar">
+            <div class="sidebar-sticky">
+                <!-- 사이드바 광고 1: 300×250 -->
+                <div class="ad-slot ad-medium-rect">
+                    <!-- Google AdSense 사이드바 광고 1 코드 삽입 -->
+                    <span class="ad-label">Advertisement</span>
+                </div>
+
+                <!-- 사이드바 광고 2: 300×600 -->
+                <div class="ad-slot ad-half-page">
+                    <!-- Google AdSense 사이드바 광고 2 코드 삽입 -->
+                    <span class="ad-label">Advertisement</span>
+                </div>
+
+                <!-- 사이드바: 관련 링크 -->
+                <div class="sidebar-info">
+                    <h3><i class="fa-solid fa-link"></i> 관련 링크</h3>
+                    <ul>
+                        <li><a href="https://kind.krx.co.kr/marketdata/mktalert/mktalertinfo.do" target="_blank"
+                                rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> KRX 시장경보 공보</a>
+                        </li>
+                        <li><a href="https://moc.krx.co.kr/contents/SVL/M/03020100/MOC03020100.jsp" target="_blank"
+                                rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> 투자경고종목이란?</a></li>
+                        <li><a href="/about"><i class="fa-solid fa-circle-info"></i> 서비스 소개</a></li>
+                        <li><a href="/privacy"><i class="fa-solid fa-shield-halved"></i> 개인정보처리방침</a></li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+    </div><!-- /page-wrapper -->
+
+    <footer class="site-footer">
+        <p>© 2024 KRX 시장경보 분석기. 본 서비스는 투자 참고용이며 실제 지정 여부는 KRX 공식 채널을 확인하세요.</p>
+        <nav><a href="/about">About</a> · <a href="/privacy">개인정보처리방침</a> · <a href="/terms">이용약관</a></nav>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
