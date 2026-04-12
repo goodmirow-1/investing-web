@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        if (searchCount > 0) {
+        if (searchCount > 1000) {
             showAdGate(() => performSearch(ticker));
         } else {
             await performSearch(ticker);
@@ -45,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const response = await fetch(`/api/stock/${ticker}`);
             const data = await response.json();
+            console.log(data);
 
             loadingBar.classList.add('hidden');
             setSearchLoading(false);
@@ -71,6 +72,22 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('displayStockName').textContent = data.stockName;
         const currentPrice = data.currentPrice;
         document.getElementById('currentPriceDisplay').textContent = currentPrice.toLocaleString();
+
+        // 경고 상태 배지
+        const alertBadge = document.getElementById('displayMarketAlert');
+        if (data.marketAlert) {
+            alertBadge.textContent = data.marketAlert;
+            alertBadge.classList.remove('hidden');
+            // 상태별 색상 적용 (투자경고, 투자위험은 더 강조)
+            alertBadge.className = 'market-alert-badge';
+            if (data.marketAlert.includes('경고') || data.marketAlert.includes('위험')) {
+                alertBadge.classList.add('danger');
+            } else {
+                alertBadge.classList.add('caution');
+            }
+        } else {
+            alertBadge.classList.add('hidden');
+        }
 
         // 캐시 배지
         const cachedBadge = document.getElementById('displayCachedBadge');

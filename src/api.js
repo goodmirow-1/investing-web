@@ -17,6 +17,7 @@ async function fetchStockData(ticker) {
     // --- Naver API 호출 ---
     const basicUrl = `https://m.stock.naver.com/api/stock/${ticker}/basic`;
     const basicRes = await axios.get(basicUrl, { timeout: 8000 });
+    console.log(basicRes);
     const currentData = basicRes.data;
 
     if (!currentData || !currentData.closePrice) {
@@ -134,6 +135,7 @@ async function fetchStockData(ticker) {
             max15Price: prevMax15
         },
         warningTargets,
+        marketAlert: currentData.marketAlertType ? currentData.marketAlertType.text : null,
         cachedAt: new Date().toISOString()
     };
 
