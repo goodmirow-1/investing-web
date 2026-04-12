@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이용약관 - KRX 시장경보 분석기</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        .subpage-container {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 0 16px;
+        }
+
+        .content-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+        }
+
+        .content-card h1 {
+            font-size: 1.8rem;
+            margin-bottom: 24px;
+            color: var(--info-color);
+        }
+
+        .content-card h2 {
+            font-size: 1.2rem;
+            margin-top: 30px;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .content-card p,
+        .content-card li {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+
+        .back-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 24px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background-aurora"></div>
+
+    <div class="subpage-container">
+        <a href="/" class="back-home"><i class="fa-solid fa-arrow-left"></i> 홈으로 돌아가기</a>
+
+        <article class="content-card">
+            <h1>이용약관</h1>
+            <p>본 약관은 'KRX 시장경보 분석기'(이하 '서비스')의 이용 조건 및 절차에 관한 내용을 규정합니다.</p>
+
+            <h2>1. 서비스의 목적</h2>
+            <p>본 서비스는 한국거래소(KRX)의 시장경보 제도(투자주의, 투자경고, 단기과열 등)와 관련된 공시 정보를 사용자가 이해하기 쉽게 분석하여 제공하는 것을 목적으로 합니다.</p>
+
+            <h2>2. 데이터의 출처 및 한계</h2>
+            <p>본 서비스에서 제공하는 모든 데이터는 외부 API(네이버 금융 등)를 통해 수집된 공개 데이터를 기반으로 자체 알고리즘에 의해 계산됩니다. 실제 KRX의 공식 지정 여부와는 시간차나 데이터
+                누락으로 인해 차이가 발생할 수 있습니다.</p>
+
+            <h2>3. 책임의 제한 (면책 조항)</h2>
+            <p>본 서비스에서 제공하는 정보는 사용자의 투자 판단을 돕기 위한 <strong>단순 참고용</strong>입니다. 본 서비스는 제공된 정보의 정확성이나 완결성을 보장하지 않으며, 해당 정보를
+                바탕으로 행해진 사용자의 어떠한 투자 결과에 대해서도 법적 책임을 지지 않습니다.</p>
+
+            <h2>4. 저작권</h2>
+            <p>사이트 내의 레이아웃, 디자인, 분석 로직 등에 대한 저작권은 서비스 개발자에게 있습니다. 무단 크롤링이나 영리 목적의 데이터 재배포를 금합니다.</p>
+
+            <p style="margin-top: 40px; font-size: 0.85rem; color: var(--text-secondary);">
+                최종 수정일: 2024년 4월 12일
+            </p>
+        </article>
+    </div>
+
+    <footer class="site-footer">
+        <p>© 2024 KRX 시장경보 분석기. 모든 투자의 책임은 본인에게 있습니다.</p>
+    </footer>
+</body>
+
+</html>

@@ -800,3 +800,88 @@ header {
         height: 60px;
     }
 }
+
+/* ─── 정보 가이드 섹션 ───────────────────────────────────── */
+.info-guide-section {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.guide-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 32px;
+    box-shadow: var(--shadow);
+}
+
+.guide-card h2 {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--info-color);
+}
+
+.guide-intro {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 24px;
+    line-height: 1.7;
+}
+
+.guide-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+.guide-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    padding: 20px;
+    border-radius: 12px;
+    transition: background 0.2s;
+}
+
+.guide-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.guide-item h3 {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.guide-item p {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot.caution {
+    background-color: var(--caution-color);
+}
+
+.dot.warning {
+    background-color: var(--warning-color);
+}
+
+.dot.overheating {
+    background-color: var(--overheating-color);
+}
+
+.dot.danger {
+    background-color: #ff0000;
+}
