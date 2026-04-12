@@ -5,7 +5,9 @@
     "main": "server.js",
     "scripts": {
         "start": "node server.js",
-        "dev": "node server.js",
+        "server": "nodemon server.js --ignore public/",
+        "browser": "browser-sync start --proxy 'localhost:3001' --files 'public/**/*'",
+        "dev": "concurrently \"npm run server\" \"npm run browser\"",
         "pm2": "pm2 start ecosystem.config.js"
     },
     "dependencies": {
@@ -15,5 +17,10 @@
         "express-rate-limit": "^7.1.5",
         "helmet": "^7.1.0",
         "node-cache": "^5.1.2"
+    },
+    "devDependencies": {
+        "browser-sync": "^3.0.4",
+        "concurrently": "^9.2.1",
+        "nodemon": "^3.1.14"
     }
 }
