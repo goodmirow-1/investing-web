@@ -10,14 +10,12 @@ async function fetchStockData(ticker) {
     const cacheKey = `stock_${ticker}`;
     const cached = cache.get(cacheKey);
     if (cached) {
-        console.log(`[Cache HIT] ${ticker}`);
         return cached;
     }
 
     // --- Naver API 호출 ---
     const basicUrl = `https://m.stock.naver.com/api/stock/${ticker}/basic`;
     const basicRes = await axios.get(basicUrl, { timeout: 8000 });
-    console.log(basicRes);
     const currentData = basicRes.data;
 
     if (!currentData || !currentData.closePrice) {

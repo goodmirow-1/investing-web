@@ -25,6 +25,11 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        const newUrl = `/stock/${ticker}`;
+        if (window.location.pathname !== newUrl) {
+            window.history.pushState(null, '', newUrl);
+        }
+
         if (searchCount > 1000) {
             showAdGate(() => performSearch(ticker));
         } else {
@@ -240,5 +245,33 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         document.body.appendChild(toast);
         setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 300); }, 3500);
+    }
+
+    // ─── URL 초기 라우팅 및 뒤로가기 처리 ───────────────
+    window.addEventListener('popstate', () => {
+        const pParts = window.location.pathname.split('/');
+        if (pParts.length === 3 && pParts[1] === 'stock') {
+            const t = pParts[2];
+            input.value = t;
+            performSearch(t);
+        } else if (window.location.pathname === '/') {
+            input.value = '';
+            resultsSection.classList.add('hidden');
+        }
+    });
+
+    const initPathParts = window.location.pathname.split('/');
+    if (initPathParts.length === 3 && initPathParts[1] === 'stock') {
+        const initTicker = initPathParts[2];
+        if (/^\d{6}$/.test(initTicker)) {
+            input.value = initTicker;
+            if (searchCount > 1000) {
+                showAdGate(() => performSearch(initTicker));
+            } else {
+                performSearch(initTicker);
+                searchCount++;
+                sessionStorage.setItem('searchCount', searchCount);
+            }
+        }
     }
 });

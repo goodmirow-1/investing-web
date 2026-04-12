@@ -4,16 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KRX 시장경보 분석기 — 투자경고/주의 조건 확인</title>
-    <meta name="description" content="한국거래소(KRX) 실시간 데이터 기반 투자경고·투자주의·단기과열 종목 지정 조건 판별기. 종목코드 입력 한 번으로 즉시 분석.">
-    <meta name="keywords" content="KRX, 투자경고, 투자주의, 단기과열, 시장경보, 주식, 종목분석">
-    <meta property="og:title" content="KRX 시장경보 분석기">
-    <meta property="og:description" content="종목코드 입력 한 번으로 투자경고·주의 지정 조건을 즉시 확인하세요.">
+    <title>KRX 시장경보 분석기 (투자경고, 투자주의, 단기과열 단일가 목표가 얼마?)</title>
+    <meta name="description" content="특정 주식 종목의 투자주의, 투자경고, 단기과열(단일가) 지정 요건 충족 여부와 경고 지정 목표가(얼마)를 실시간 데이터로 분석합니다.">
+    <meta name="keywords" content="KRX, 투자경고, 투자주의, 단기과열, 시장경보, 단일가, 목표가, 주식, 종목분석">
+    <meta property="og:title" content="KRX 시장경보 분석기 (투자경고, 주의, 단기과열 요건/목표가 확인)">
+    <meta property="og:description" content="종목코드 하나로 특정 주식의 투자경고, 투자주의, 단기과열 단일가 지정 조건과 목표가를 실시간으로 계산하세요.">
     <meta property="og:type" content="website">
     <link rel="canonical" href="/">
     <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="/index.css">
 </head>
 
 <body>
@@ -278,8 +278,41 @@
                         </div>
                         <div class="guide-item">
                             <h3><span class="dot danger"></span> 투자위험종목</h3>
-                            <p>투자경고 후에도 주가가 지속 급등 시 지정됩니다. 지정과 동시에 1일간 매매거래가 정지될 수 있습니다.</p>
+                            <p>투자경고 후에도 주가가 지속 급등 시 지정됩니다. 지정과 동시에 1일간 매매거래가 정지될 수 있습니다. 1회 지정 이후에도 주가가 계속 오를 경우 추가 정지가
+                                가능합니다.</p>
                         </div>
+                    </div>
+                </div>
+
+                <!-- ★ AdSense 승인을 위한 상세 FAQ 영역 추가 -->
+                <div class="faq-container"
+                    style="margin-top: 40px; border-top: 1px solid var(--border); padding-top: 40px;">
+                    <h2 style="font-size: 1.5rem; margin-bottom: 20px; color: var(--text-primary);"><i
+                            class="fa-solid fa-circle-question"
+                            style="color: var(--info-color); margin-right: 10px;"></i> 자주 묻는 질문 (FAQ)</h2>
+
+                    <div class="faq-item" style="margin-bottom: 25px;">
+                        <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 8px;">Q1. 투자경고종목으로 지정되면
+                            어떤 제약이 있나요?</h3>
+                        <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">지정된 당일에 해당 종목을
+                            매수할 때 위탁증거금을 100% 납부해야 하며, 신용융자를 이용한 매수가 원천 금지됩니다. 또한 대용증권으로 활용할 수도 없게 됩니다. 이는 시장의 과열을 식히기
+                            위한 거래소의 예방적 조치입니다.</p>
+                    </div>
+
+                    <div class="faq-item" style="margin-bottom: 25px;">
+                        <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 8px;">Q2. 단기과열종목 예고와
+                            지정의 차이는 무엇인가요?</h3>
+                        <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">'예고' 단계는 지정 요건을
+                            모두 충족하여 다음 거래일에 지정될 수 있음을 미리 알리는 단계입니다 (1일간). 예고 기간 중에 주가가 진정되지 않으면 실질적인 '지정'으로 이어지며, 3일 동안
+                            단일가 매매가 적용됩니다. 만약 지정 후에도 주가가 계속 상승하면 기간이 3일 더 연장될 수 있습니다.</p>
+                    </div>
+
+                    <div class="faq-item" style="margin-bottom: 25px;">
+                        <h3 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 8px;">Q3. 이 사이트의 분석 결과가
+                            실시간 거래소 공시와 왜 다른가요?</h3>
+                        <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">한국거래소는 투자주의종목 판단
+                            시 장중 '계좌 집중도'나 '지점 관여도' 같은 비공개 데이터를 함께 사용합니다. 본 분석기는 외부에서 접근 가능한 '주가'와 '거래량' 데이터를 기반으로
+                            시뮬레이션하므로, 계좌 데이터가 핵심인 경우 실제 공시와 차이가 발생할 수 있습니다. 항상 KRX 공식 공시를 최종적으로 확인하시기 바랍니다.</p>
                     </div>
                 </div>
             </section>
@@ -318,13 +351,14 @@
     </div><!-- /page-wrapper -->
 
     <footer class="site-footer">
-        <p>© 2024 KRX 시장경보 분석기. 본 서비스는 투자 참고용이며 실제 지정 여부는 KRX 공식 채널을 확인하세요.</p>
+        <p>© 2026 KRX 시장경보 분석기. 본 서비스는 투자 참고용이며 실제 지정 여부는 KRX 공식 채널을 확인하세요.</p>
         <p style="font-size: 0.75rem; margin-top: 4px; color: var(--text-secondary);">본 사이트는 실시간 공시 데이터와 주가 알고리즘을 활용하여
             정보를 제공합니다.</p>
-        <nav><a href="about.html">About</a> · <a href="privacy.html">개인정보처리방침</a> · <a href="terms.html">이용약관</a></nav>
+        <nav><a href="/about.html">About</a> · <a href="/privacy.html">개인정보처리방침</a> · <a href="/terms.html">이용약관</a>
+        </nav>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="/script.js"></script>
 </body>
 
 </html>

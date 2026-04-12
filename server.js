@@ -3,9 +3,18 @@ const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const path = require('path');
+const fs = require('fs');
 const { fetchStockData } = require('./src/api');
 
 const app = express();
+const indexHtmlPath = path.join(__dirname, 'public', 'index.html');
+let indexHtmlTemplate = '';
+
+try {
+    indexHtmlTemplate = fs.readFileSync(indexHtmlPath, 'utf8');
+} catch (e) {
+    console.error('Failed to read index.html', e);
+}
 
 // ── 보안 미들웨어 ──────────────────────────────────────────
 app.use(helmet({
@@ -56,9 +65,52 @@ app.get('/api/stock/:ticker', apiLimiter, async (req, res) => {
 // ── Health Check ──────────────────────────────────────────
 app.get('/health', (req, res) => res.json({ status: 'ok', uptime: process.uptime() }));
 
+// ── 동적 SEO 주입 라우트 (SSR) ──────────────────────────
+app.get('/stock/:ticker', async (req, res) => {
+    const { ticker } = req.params;
+
+    // 잘못된 종목코드 형식이면 기본 페이지를 줌
+    if (!/^\d{6}$/.test(ticker)) {
+        return res.sendFile(indexHtmlPath);
+    }
+
+    try {
+        const data = await fetchStockData(ticker);
+
+        let modifiedHtml = indexHtmlTemplate;
+
+        const dynamicTitle = `[${data.stockName}] 투자경고 / 단기과열 단일가 조건 및 목표가 얼마? - KRX 시장경보 분석기`;
+        const dynamicDesc = `${data.stockName}(${ticker}) 주식의 투자주의, 투자경고, 단기과열(단일가) 지정 요건 충족 여부와 지정 목표가(얼마)를 실시간 공시와 데이터 기반으로 분석합니다.`;
+
+        // 메타 태그 동적 치환
+        modifiedHtml = modifiedHtml.replace(
+            /<title>.*?<\/title>/,
+            `<title>${dynamicTitle}</title>`
+        );
+        modifiedHtml = modifiedHtml.replace(
+            /<meta name="description" content=".*?">/,
+            `<meta name="description" content="${dynamicDesc}">`
+        );
+        modifiedHtml = modifiedHtml.replace(
+            /<meta property="og:title" content=".*?">/,
+            `<meta property="og:title" content="${dynamicTitle}">`
+        );
+        modifiedHtml = modifiedHtml.replace(
+            /<meta property="og:description" content=".*?">/,
+            `<meta property="og:description" content="${dynamicDesc}">`
+        );
+
+        res.send(modifiedHtml);
+    } catch (error) {
+        console.error(`[SEO SSR Error] ${ticker}:`, error.message);
+        // 에러나 상장폐지된 종목 등의 경우 원본 메인 페이지를 제공
+        res.sendFile(indexHtmlPath);
+    }
+});
+
 // ── SPA Fallback ──────────────────────────────────────────
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    res.sendFile(indexHtmlPath);
 });
 
 const PORT = process.env.PORT || 3001;

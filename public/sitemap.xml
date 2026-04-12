@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://port-0-investing-web-mnvfubis6a487699.sel3.cloudtype.app/</loc>
+    <loc>https://investalertalarm.kr/</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://port-0-investing-web-mnvfubis6a487699.sel3.cloudtype.app/about.html</loc>
+    <loc>https://investalertalarm.kr/about.html</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://port-0-investing-web-mnvfubis6a487699.sel3.cloudtype.app/privacy.html</loc>
+    <loc>https://investalertalarm.kr/privacy.html</loc>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://port-0-investing-web-mnvfubis6a487699.sel3.cloudtype.app/terms.html</loc>
+    <loc>https://investalertalarm.kr/terms.html</loc>
     <priority>0.5</priority>
   </url>
 </urlset>
