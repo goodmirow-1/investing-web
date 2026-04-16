@@ -65,6 +65,18 @@
                     <h1>KRX 시장경보 분석기</h1>
                 </div>
                 <p class="header-sub">실제 주식 데이터 기반 투자경고 · 주의 · 단기과열 조건 즉시 분석</p>
+
+                <div class="download-btn-wrap" style="margin-top: 12px;">
+                    <button id="krxDownloadBtn" style="display:inline-flex; align-items:center; gap:8px;
+               padding: 8px 18px; border-radius: 8px; border: none; cursor: pointer;
+               background: #1d6f42; color: #fff; font-size: 0.9rem; font-weight: 600;
+               transition: background 0.2s;">
+                        <i class="fa-solid fa-file-excel"></i> KRX 시장경보 다운로드
+                    </button>
+                    <span style="font-size: 0.78rem; color: var(--text-secondary); margin-left: 8px;">
+                        오늘자 시장경보 전체 목록 (KRX 공식)
+                    </span>
+                </div>
             </header>
 
             <!-- 검색 섹션 -->
@@ -112,7 +124,10 @@
                                 <i class="fa-solid fa-arrow-up-right-from-square"></i> KRX 공식 확인
                             </a>
                         </p>
+
                     </div>
+
+
                 </div>
 
                 <!-- ★ 콘텐츠 내 광고 (카드 사이, 728×90) -->
@@ -158,6 +173,14 @@
                                     <div class="status-row">현재 상승일수: <span id="countRising15"
                                             class="highlight-val">0</span>일
                                         <span id="statusRising15" class="condition-tag"></span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <strong>장기 급등 (1년 200%↑)</strong>
+                                    <span class="info-text">1년 전(약 252영업일) 종가 대비 200% 초과 상승</span>
+                                    <div class="status-row">1년 주가등락률: <span id="val1YearIncrease"
+                                            class="highlight-val">-</span>%
+                                        <span id="status1YearIncrease" class="condition-tag"></span>
                                     </div>
                                 </li>
                             </ul>
@@ -245,6 +268,27 @@
                                     <div class="target-price-row warning">경고 목표가: <span id="targetCautionRep"
                                             class="target-val">-</span>원</div>
                                     <div id="statusCautionRep" class="status-row"></div>
+                                </li>
+                                <li>
+                                    <strong>단기상승 & 불건전 (5일 45%↑)</strong>
+                                    <span class="info-text">5일 전 대비 45%↑ & 소수계좌 매수 관여</span>
+                                    <div class="target-price-row warning">경고 목표가: <span id="targetShortUnsound"
+                                            class="target-val">-</span>원</div>
+                                    <div id="statusShortUnsound" class="status-row"></div>
+                                </li>
+                                <li>
+                                    <strong>중장기상승 & 불건전 (15일 75%↑)</strong>
+                                    <span class="info-text">15일 전 대비 75%↑ & 소수계좌 매수 관여</span>
+                                    <div class="target-price-row warning">경고 목표가: <span id="targetMidLongUnsound"
+                                            class="target-val">-</span>원</div>
+                                    <div id="statusMidLongUnsound" class="status-row"></div>
+                                </li>
+                                <li>
+                                    <strong>초장기상승 & 불건전 (1년 200%↑)</strong>
+                                    <span class="info-text">1년 전 대비 200% 초과 & 소수계좌 매수 관여</span>
+                                    <div class="target-price-row warning">경고 목표가: <span id="targetLongUnsound"
+                                            class="target-val">-</span>원</div>
+                                    <div id="statusLongUnsound" class="status-row"></div>
                                 </li>
                             </ul>
                             <p class="card-footnote">※ 지수 상승률 대비 초과 상승(3~5배) 요건이 복합 적용됩니다.</p>

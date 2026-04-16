@@ -7,13 +7,7 @@ const cache = new NodeCache({ stdTTL: 300 });
 const parsePrice = (val) => parseInt(String(val).replace(/,/g, ''), 10);
 
 async function fetchStockData(ticker) {
-    const cacheKey = `stock_${ticker}`;
-    const cached = cache.get(cacheKey);
-    if (cached) {
-        return cached;
-    }
-
-    // --- Naver API 호출 ---
+    // --- 실시간 Naver 기본 정보 호출 ---
     const basicUrl = `https://m.stock.naver.com/api/stock/${ticker}/basic`;
     const basicRes = await axios.get(basicUrl, { timeout: 8000 });
     const currentData = basicRes.data;
@@ -27,15 +21,44 @@ async function fetchStockData(ticker) {
     const currentPrice = parsePrice(currentData.closePrice);
     const stockName = currentData.stockName || ticker;
 
-    const priceUrl = `https://m.stock.naver.com/api/stock/${ticker}/price?pageSize=60&page=1`;
-    const priceRes = await axios.get(priceUrl, { timeout: 8000 });
-    const historicalData = priceRes.data;
+    // --- 과거 주가 데이터 캐시 처리 (history만 캐싱) ---
+    const historyCacheKey = `history_${ticker}`;
+    let historicalData = cache.get(historyCacheKey);
 
-    if (!Array.isArray(historicalData) || historicalData.length < 42) {
-        const err = new Error('Failed to fetch sufficient historical data (need 42+ days)');
-        err.status = 500;
-        throw err;
+    if (!historicalData) {
+        // 5페이지 x 60개 = 최대 300영업일 (약 1년치 역사적 주가 데이터 수집)
+        const pages = [1, 2, 3, 4, 5];
+        const priceResponses = await Promise.all(
+            pages.map(page => axios.get(`https://m.stock.naver.com/api/stock/${ticker}/price?pageSize=60&page=${page}`, { timeout: 8000 }).catch(e => ({ data: [] })))
+        );
+        historicalData = [];
+        for (const res of priceResponses) {
+            if (res.data && Array.isArray(res.data)) {
+                historicalData = historicalData.concat(res.data);
+            }
+        }
+
+        if (!Array.isArray(historicalData) || historicalData.length < 42) {
+            const err = new Error('Failed to fetch sufficient historical data (need 42+ days)');
+            err.status = 500;
+            throw err;
+        }
+        cache.set(historyCacheKey, historicalData);
     }
+
+    // ── 실시간 가격으로 데이터 교체 ──
+    // 캐시된 데이터라도 [0](오늘) 데이터를 실시간 가격/거래량으로 덮어씌워서 계산
+    historicalData = [...historicalData];
+    historicalData[0] = {
+        ...historicalData[0],
+        closePrice: currentData.closePrice,
+        openPrice: currentData.openPrice || historicalData[0].openPrice,
+        highPrice: currentData.highPrice || historicalData[0].highPrice,
+        lowPrice: currentData.lowPrice || historicalData[0].lowPrice,
+        accumulatedTradingVolume: typeof currentData.accumulatedTradingVolume !== 'undefined'
+            ? parsePrice(currentData.accumulatedTradingVolume)
+            : historicalData[0].accumulatedTradingVolume
+    };
 
     // --- 가격 데이터 계산 ---
     const getPriceAtAgo = (days) => {
@@ -47,6 +70,7 @@ async function fetchStockData(ticker) {
     const price3DaysAgo = getPriceAtAgo(3);
     const price5DaysAgo = getPriceAtAgo(5);
     const price15DaysAgo = getPriceAtAgo(15);
+    const price1YearAgo = getPriceAtAgo(252); // 약 1년치 영업일 기준
 
     // 40일 평균 종가 (어제~40일전)
     const prices40 = historicalData.slice(1, 41).map(d => parsePrice(d.closePrice));
@@ -98,6 +122,9 @@ async function fetchStockData(ticker) {
         short: Math.max(price5DaysAgo * 1.6, prevMax15),
         midLong: Math.max(price15DaysAgo * 2.0, prevMax15),
         cautionRep: Math.max(price15DaysAgo * 1.75, prevMax15),
+        shortUnsound: Math.max(price5DaysAgo * 1.45, prevMax15),
+        midLongUnsound: Math.max(price15DaysAgo * 1.75, prevMax15),
+        longUnsound: Math.max(price1YearAgo * 3.0, prevMax15),
         cautionPrice3d: price3DaysAgo * 1.15,
         cautionPrice15d: price15DaysAgo * 1.75,
         overheating40d: avgClose40 * 1.3
@@ -130,14 +157,16 @@ async function fetchStockData(ticker) {
             risingDays15,
             isClosingSudden,
             is15DayHigh: currentPrice >= prevMax15,
-            max15Price: prevMax15
+            max15Price: prevMax15,
+            price1YearAgo,
+            increaseRate1Year: (((currentPrice - price1YearAgo) / price1YearAgo) * 100).toFixed(2),
+            is200Pct1Year: (((currentPrice - price1YearAgo) / price1YearAgo) * 100) > 200
         },
         warningTargets,
         marketAlert: currentData.marketAlertType ? currentData.marketAlertType.text : null,
         cachedAt: new Date().toISOString()
     };
 
-    cache.set(cacheKey, result);
     return result;
 }
 

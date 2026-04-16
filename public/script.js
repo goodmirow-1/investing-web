@@ -13,6 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const countdownText = document.getElementById('countdownText');
     const timerProgress = document.getElementById('timerProgress');
     const seeResultsBtn = document.getElementById('seeResultsBtn');
+    document.getElementById('krxDownloadBtn')
+        .addEventListener('click', downloadKRXFile);
 
     let searchCount = parseInt(sessionStorage.getItem('searchCount') || '0', 10);
 
@@ -123,6 +125,12 @@ document.addEventListener('DOMContentLoaded', () => {
         updateWarning('targetShort', 'statusShort', data.warningTargets.short);
         updateWarning('targetMidLong', 'statusMidLong', data.warningTargets.midLong);
         updateWarning('targetCautionRep', 'statusCautionRep', data.warningTargets.cautionRep);
+
+        // 새로 추가된 불건전요건 목표가 연동
+        updateWarning('targetShortUnsound', 'statusShortUnsound', data.warningTargets.shortUnsound);
+        updateWarning('targetMidLongUnsound', 'statusMidLongUnsound', data.warningTargets.midLongUnsound);
+        updateWarning('targetLongUnsound', 'statusLongUnsound', data.warningTargets.longUnsound);
+
         updateWarning('targetCaution', null, data.warningTargets.cautionPrice3d);
         updateWarning('targetCaution15d', 'statusCaution15d', data.warningTargets.cautionPrice15d);
 
@@ -184,6 +192,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (risingStatus) {
             risingStatus.textContent = rising >= 12 ? '충족' : '미달';
             risingStatus.className = 'condition-tag ' + (rising >= 12 ? 'met' : 'notmet');
+        }
+
+        // 1년 200% 초과 상승 (투자주의)
+        const val1YearIncEl = document.getElementById('val1YearIncrease');
+        const status1YearIncEl = document.getElementById('status1YearIncrease');
+        if (val1YearIncEl && status1YearIncEl) {
+            val1YearIncEl.textContent = data.stats.increaseRate1Year;
+            status1YearIncEl.textContent = data.stats.is200Pct1Year ? '⚠️ 충족' : '미달';
+            status1YearIncEl.className = 'condition-tag ' + (data.stats.is200Pct1Year ? 'met' : 'notmet');
         }
 
         // ── UI 표시 ──────────────────────────────────────────
@@ -275,3 +292,55 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
+// ── KRX 다운로드 버튼 ─────────────────────────────────────
+function getToday() {
+    const d = new Date();
+    const yyyy = d.getFullYear();
+    const mm = String(d.getMonth() + 1).padStart(2, '0');
+    const dd = String(d.getDate()).padStart(2, '0');
+    return `${yyyy}${mm}${dd}`;
+}
+
+async function downloadKRXFile() {
+    const btn = document.getElementById('krxDownloadBtn');
+    const today = getToday();
+
+    console.log(today);
+
+    btn.disabled = true;
+    btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> 다운로드 중...`;
+
+    try {
+        const res = await fetch(`/api/krx/download?fromDate=${today}&toDate=${today}`);
+
+        if (!res.ok) {
+            const err = await res.json();
+            throw new Error(err.error || '다운로드 실패');
+        }
+
+        const blob = await res.blob();
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `KRX_시장경보_${today}.xls`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+
+        btn.innerHTML = `<i class="fa-solid fa-check"></i> 다운로드 완료`;
+        setTimeout(() => {
+            btn.disabled = false;
+            btn.innerHTML = `<i class="fa-solid fa-file-excel"></i> KRX 시장경보 다운로드`;
+        }, 3000);
+
+    } catch (err) {
+        console.error(err);
+        btn.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> 실패: ${err.message}`;
+        setTimeout(() => {
+            btn.disabled = false;
+            btn.innerHTML = `<i class="fa-solid fa-file-excel"></i> KRX 시장경보 다운로드`;
+        }, 3000);
+    }
+}
