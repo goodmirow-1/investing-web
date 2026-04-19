@@ -885,3 +885,681 @@ header {
 .dot.danger {
     background-color: #ff0000;
 }
+
+/* ─── 탭 네비게이션 ─────────────────────────────────────── */
+.tab-nav {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 0;
+}
+
+.tab-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 10px 20px;
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    color: var(--text-secondary);
+    font-family: var(--font);
+    font-size: .93rem;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 6px 6px 0 0;
+    transition: color .2s, border-color .2s, background .2s;
+}
+
+.tab-btn:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, .04);
+}
+
+.tab-btn.active {
+    color: var(--info-color);
+    border-bottom-color: var(--info-color);
+    font-weight: 700;
+}
+
+.tab-panel {
+    display: none;
+}
+
+.tab-panel.active {
+    display: block;
+    animation: panelFadeIn .25s ease;
+}
+
+@keyframes panelFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ─── 투자경고해제 탭 ───────────────────────────────────── */
+.warnings-section {
+    padding: 4px 0;
+}
+
+.warnings-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.warnings-header h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.warnings-header h2 i {
+    color: var(--warning-color);
+}
+
+.warnings-desc {
+    color: var(--text-secondary);
+    font-size: .87rem;
+    line-height: 1.5;
+}
+
+.refresh-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 18px;
+    background: rgba(88, 166, 255, .1);
+    border: 1px solid rgba(88, 166, 255, .3);
+    color: var(--info-color);
+    font-size: .88rem;
+    font-weight: 600;
+    font-family: var(--font);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background .2s, transform .1s;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.refresh-btn:hover {
+    background: rgba(88, 166, 255, .2);
+}
+
+.refresh-btn:active {
+    transform: scale(.96);
+}
+
+.warnings-meta {
+    font-size: .82rem;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+}
+
+.warnings-empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-secondary);
+}
+
+.warnings-empty i {
+    font-size: 2.5rem;
+    margin-bottom: 14px;
+    display: block;
+    opacity: .4;
+}
+
+.warnings-empty p {
+    font-size: .95rem;
+    line-height: 1.7;
+}
+
+.warnings-table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 16px;
+}
+
+.warnings-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: .9rem;
+    min-width: 680px;
+}
+
+.warnings-table thead {
+    background: rgba(22, 27, 34, .95);
+    border-bottom: 1px solid var(--border);
+}
+
+.warnings-table th {
+    padding: 12px 16px;
+    text-align: left;
+    font-size: .8rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+.th-hint {
+    font-weight: 400;
+    font-size: .73rem;
+    color: var(--border);
+}
+
+.warnings-table tbody tr {
+    border-bottom: 1px solid rgba(48, 54, 61, .6);
+    transition: background .15s;
+}
+
+.warnings-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.warnings-table tbody tr:hover {
+    background: rgba(255, 255, 255, .025);
+}
+
+.warnings-table td {
+    padding: 12px 16px;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.wt-name {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.wt-code {
+    font-size: .82rem;
+    color: var(--text-secondary);
+    font-family: monospace;
+    background: rgba(255, 255, 255, .05);
+    padding: 2px 7px;
+    border-radius: 4px;
+}
+
+.wt-market {
+    font-size: .75rem;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+.wt-market.kosdaq {
+    background: rgba(240, 136, 62, .12);
+    color: var(--overheating-color);
+    border: 1px solid rgba(240, 136, 62, .25);
+}
+
+.wt-market.kospi {
+    background: rgba(88, 166, 255, .12);
+    color: var(--info-color);
+    border: 1px solid rgba(88, 166, 255, .25);
+}
+
+.wt-date {
+    color: var(--text-secondary);
+    font-size: .87rem;
+}
+
+.wt-price {
+    font-weight: 700;
+    color: var(--caution-color);
+}
+
+.wt-release-price {
+    font-weight: 700;
+    color: var(--warning-color);
+}
+
+.wt-badge {
+    display: inline-block;
+    font-size: .75rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+}
+
+.wt-badge.released {
+    background: rgba(63, 185, 80, .12);
+    color: var(--success-color);
+    border: 1px solid rgba(63, 185, 80, .25);
+}
+
+.wt-badge.active {
+    background: rgba(248, 81, 73, .12);
+    color: var(--warning-color);
+    border: 1px solid rgba(248, 81, 73, .25);
+}
+
+.wt-badge.unknown {
+    background: rgba(139, 148, 158, .1);
+    color: var(--text-secondary);
+    border: 1px solid rgba(139, 148, 158, .2);
+}
+
+.warnings-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    background: rgba(88, 166, 255, .06);
+    border: 1px solid rgba(88, 166, 255, .15);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: .83rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.warnings-note i {
+    color: var(--info-color);
+    margin-top: 2px;
+    flex-shrink: 0;
+}
+
+.warnings-note strong {
+    color: var(--text-primary);
+}
+
+@media (max-width: 640px) {
+    .tab-btn {
+        padding: 9px 12px;
+        font-size: .82rem;
+    }
+
+    .warnings-table {
+        font-size: .82rem;
+    }
+
+    .warnings-table th,
+    .warnings-table td {
+        padding: 10px 10px;
+    }
+}
+
+/* ─── 콤팩트 종목 리스트 ─────────────────────────────────── */
+.warnings-stock-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+}
+
+.warnings-stock-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    border-bottom: 1px solid rgba(48, 54, 61, .6);
+    cursor: pointer;
+    transition: background .15s;
+    background: var(--bg-card);
+}
+
+.warnings-stock-item:last-child {
+    border-bottom: none;
+}
+
+.warnings-stock-item:hover {
+    background: var(--bg-card-hover);
+}
+
+.wsi-rank {
+    font-size: .78rem;
+    color: var(--text-secondary);
+    min-width: 24px;
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.wsi-main {
+    flex: 1;
+    min-width: 0;
+}
+
+.wsi-name {
+    font-weight: 600;
+    font-size: .97rem;
+    color: var(--text-primary);
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.wsi-sub {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 3px;
+    font-size: .78rem;
+    color: var(--text-secondary);
+}
+
+.wsi-prices {
+    text-align: right;
+    flex-shrink: 0;
+}
+
+.wsi-designated {
+    font-size: .82rem;
+    color: var(--caution-color);
+    font-weight: 600;
+    display: block;
+}
+
+.wsi-release {
+    font-size: .75rem;
+    color: var(--text-secondary);
+    display: block;
+    margin-top: 2px;
+}
+
+.wsi-arrow {
+    color: var(--border);
+    font-size: .85rem;
+    flex-shrink: 0;
+}
+
+/* ─── 상세 패널 ─────────────────────────────────────────── */
+.warning-detail-panel {
+    animation: panelFadeIn .25s ease;
+}
+
+.detail-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.detail-back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    background: rgba(139, 148, 158, .1);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: .85rem;
+    font-family: var(--font);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background .15s, color .15s;
+    white-space: nowrap;
+}
+
+.detail-back-btn:hover {
+    background: rgba(139, 148, 158, .2);
+    color: var(--text-primary);
+}
+
+.detail-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    min-width: 0;
+}
+
+.detail-stock-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.detail-stock-code {
+    font-size: .82rem;
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, .05);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: monospace;
+}
+
+/* ─── 지정 정보 그리드 ──────────────────────────────────── */
+.detail-info-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.detail-info-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.detail-info-card.highlight {
+    border-color: rgba(210, 153, 34, .4);
+    background: rgba(210, 153, 34, .05);
+}
+
+.detail-info-card.release {
+    border-color: rgba(248, 81, 73, .35);
+    background: rgba(248, 81, 73, .05);
+}
+
+.detail-info-label {
+    font-size: .75rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.detail-info-label small {
+    font-size: .68rem;
+}
+
+.detail-info-val {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.detail-info-card.highlight .detail-info-val {
+    color: var(--caution-color);
+}
+
+.detail-info-card.release .detail-info-val {
+    color: var(--warning-color);
+}
+
+/* ─── 차트 카드 ─────────────────────────────────────────── */
+.detail-chart-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    margin-bottom: 14px;
+}
+
+.detail-chart-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.detail-chart-header h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.detail-chart-header h3 i {
+    color: var(--info-color);
+}
+
+.detail-chart-range {
+    font-size: .78rem;
+    color: var(--text-secondary);
+}
+
+.chart-loading {
+    text-align: center;
+    padding: 30px;
+    color: var(--text-secondary);
+    font-size: .9rem;
+}
+
+.warning-chart-canvas {
+    width: 100% !important;
+    max-height: 260px;
+}
+
+/* ─── 해제 조건 카드 ─────────────────────────────────────── */
+.detail-release-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    margin-bottom: 14px;
+}
+
+.detail-release-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.detail-release-card h3 i {
+    color: var(--success-color);
+}
+
+.detail-release-conditions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.release-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    background: rgba(255, 255, 255, .03);
+    border: 1px solid rgba(255, 255, 255, .06);
+    border-radius: 8px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.release-row-label {
+    font-size: .88rem;
+    color: var(--text-secondary);
+}
+
+.release-row-val {
+    font-size: .95rem;
+    font-weight: 700;
+    color: var(--warning-color);
+}
+
+.release-row-desc {
+    font-size: .75rem;
+    color: var(--text-secondary);
+    flex-basis: 100%;
+}
+
+@media (max-width: 900px) {
+    .detail-info-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 540px) {
+    .detail-info-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .warnings-stock-item {
+        padding: 12px 14px;
+    }
+}
+
+/* ─── 해제 여부 확인 탭 스타일 ─────────────────────────── */
+.wsi-status {
+    flex-shrink: 0;
+    margin-left: auto;
+}
+
+.status-badge {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.status-badge.released {
+    background: rgba(63, 185, 80, 0.15);
+    color: #3fb950;
+    border: 1px solid rgba(63, 185, 80, 0.3);
+}
+
+.status-badge.extended {
+    background: rgba(248, 81, 73, 0.12);
+    color: #f85149;
+    border: 1px solid rgba(248, 81, 73, 0.25);
+}
+
+/* ─── 투자경고 연장 알림 스타일 ───────────────────────── */
+.extended-alert {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: rgba(210, 153, 34, 0.1);
+    border: 1px solid rgba(210, 153, 34, 0.3);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 24px;
+    color: #d29922;
+}
+
+.extended-alert i {
+    font-size: 24px;
+}
+
+.extended-alert strong {
+    display: block;
+    font-size: 15px;
+    margin-bottom: 4px;
+    color: #e3b341;
+}
+
+.extended-alert p {
+    font-size: 13px;
+    margin: 0;
+    color: #8b949e;
+}

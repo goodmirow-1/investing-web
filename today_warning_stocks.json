@@ -1,0 +1,946 @@
+{
+  "date": "2026-04-18",
+  "count": 20,
+  "stocks": [
+    {
+      "ticker": "038060",
+      "stockName": "루멘스",
+      "currentPrice": 1531,
+      "totalVolume": 46600618,
+      "priceChangePct": "7.04",
+      "historicalPrices": {
+        "ago1": 1647,
+        "ago3": 975,
+        "ago5": 752,
+        "ago15": 730,
+        "avg40": 760
+      },
+      "overheat": {
+        "priceIncreaseRate": "201.44",
+        "turnoverRatio": "2703.81",
+        "volatilityRatio": "495.16",
+        "criteriaMet": {
+          "price": true,
+          "turnover": true,
+          "volatility": true
+        }
+      },
+      "stats": {
+        "risingDays15": 6,
+        "isClosingSudden": true,
+        "is15DayHigh": false,
+        "max15Price": 1647,
+        "price1YearAgo": 858,
+        "increaseRate1Year": "78.44",
+        "is200Pct1Year": false
+      },
+      "warningTargets": {
+        "ultraShort": 1950,
+        "short": 1647,
+        "midLong": 1647,
+        "cautionRep": 1647,
+        "shortUnsound": 1647,
+        "midLongUnsound": 1647,
+        "longUnsound": 2574,
+        "cautionPrice3d": 1121.25,
+        "cautionPrice15d": 1277.5,
+        "overheating40d": 988.0325
+      },
+      "marketAlert": "투자경고",
+      "cachedAt": "2026-04-18T02:28:48.119Z"
+    },
+    {
+      "ticker": "203650",
+      "stockName": "드림시큐리티",
+      "currentPrice": 2985,
+      "totalVolume": 49969692,
+      "priceChangePct": "15.80",
+      "historicalPrices": {
+        "ago1": 3545,
+        "ago3": 2100,
+        "ago5": 1846,
+        "ago15": 1680,
+        "avg40": 1695
+      },
+      "overheat": {
+        "priceIncreaseRate": "176.05",
+        "turnoverRatio": "1581.32",
+        "volatilityRatio": "332.09",
+        "criteriaMet": {
+          "price": true,
+          "turnover": true,
+          "volatility": true
+        }
+      },
+      "stats": {
+        "risingDays15": 6,
+        "isClosingSudden": true,
+        "is15DayHigh": false,
+        "max15Price": 3545,
+        "price1YearAgo": 3165,
+        "increaseRate1Year": "-5.69",
+        "is200Pct1Year": false
+      },
+      "warningTargets": {
+        "ultraShort": 4200,
+        "short": 3545,
+        "midLong": 3545,
+        "cautionRep": 3545,
+        "shortUnsound": 3545,
+        "midLongUnsound": 3545,
+        "longUnsound": 9495,
+        "cautionPrice3d": 2415,
+        "cautionPrice15d": 2940,
+        "overheating40d": 2204.2475
+      },
+      "marketAlert": "투자경고",
+      "cachedAt": "2026-04-18T02:28:48.657Z"
+    },
+    {
+      "ticker": "319660",
+      "stockName": "피에스케이",
+      "currentPrice": 84700,
+      "totalVolume": 321606,
+      "priceChangePct": "5.04",
+      "historicalPrices": {
+        "ago1": 89200,
+        "ago3": 81500,
+        "ago5": 81600,
+        "ago15": 82100,
+        "avg40": 73612
+      },
+      "overheat": {
+        "priceIncreaseRate": "115.06",
+        "turnoverRatio": "74.71",
+        "volatilityRatio": "66.19",
+        "criteriaMet": {
+          "price": false,
+          "turnover": false,
+          "volatility": false
+        }
+      },
+      "stats": {
+        "risingDays15": 7,
+        "isClosingSudden": true,
+        "is15DayHigh": false,
+        "max15Price": 89200,
+        "price1YearAgo": 17960,
+        "increaseRate1Year": "371.60",
+        "is200Pct1Year": true
+      },
+      "warningTargets": {
+        "ultraShort": 163000,
+        "short": 130560,
+        "midLong": 164200,
+        "cautionRep": 143675,
+        "shortUnsound": 118320,
+        "midLongUnsound": 143675,
+        "longUnsound": 89200,
+        "cautionPrice3d": 93725,
+        "cautionPrice15d": 143675,
+        "overheating40d": 95696.25
+      },
+      "marketAlert": "투자경고",
+      "cachedAt": "2026-04-18T02:28:49.186Z"
+    },
+    {
+      "ticker": "356680",
+      "stockName": "엑스게이트",
+      "currentPrice": 14990,
+      "totalVolume": 19482789,
+      "priceChangePct": "11.14",
+      "historicalPrices": {
+        "ago1": 16870,
+        "ago3": 9990,
+        "ago5": 7430,
+        "ago15": 7180,
+        "avg40": 7571
+      },
+      "overheat": {
+        "priceIncreaseRate": "197.99",
+        "turnoverRatio": "2318.02",
+        "volatilityRatio": "258.56",
+        "criteriaMet": {
+          "price": true,
+          "turnover": true,
+          "volatility": true
+        }
+      },
+      "stats": {
+        "risingDays15": 6,
+        "isClosingSudden": true,
+        "is15DayHigh": false,
+        "max15Price": 16870,
+        "price1YearAgo": 6780,
+        "increaseRate1Year": "121.09",
+        "is200Pct1Year": false
+      },
+      "warningTargets": {
+        "ultraShort": 19980,
+        "short": 16870,
+        "midLong": 16870,
+        "cautionRep": 16870,
+        "shortUnsound": 16870,
+        "midLongUnsound": 16870,
+        "longUnsound": 20340,
+        "cautionPrice3d": 11488.5,
+        "cautionPrice15d": 12565,
+        "overheating40d": 9842.300000000001
+      },
+      "marketAlert": "투자경고",
+      "cachedAt": "2026-04-18T02:28:49.713Z"
+    },
+    {
+      "ticker": "356860",
+      "stockName": "티엘비",
+      "currentPrice": 81500,
+      "totalVolume": 334093,
+      "priceChangePct": "3.89",
+      "historicalPrices": {
+        "ago1": 84800,
+        "ago3": 79800,
+        "ago5": 74500,
+        "ago15": 73100,
+        "avg40": 67231
+      },
+      "overheat": {
+        "priceIncreaseRate": "121.22",
+        "turnoverRatio": "113.56",
+        "volatilityRatio": "121.10",
+        "criteriaMet": {
+          "price": false,
+          "turnover": false,
+          "volatility": false
+        }
+      },
+      "stats": {
+        "risingDays15": 6,
+        "isClosingSudden": false,
+        "is15DayHigh": false,
+        "max15Price": 84800,
+        "price1YearAgo": 18530,
+        "increaseRate1Year": "339.83",
+        "is200Pct1Year": true
+      },
+      "warningTargets": {
+        "ultraShort": 159600,
+        "short": 119200,
+        "midLong": 146200,
+        "cautionRep": 127925,
+        "shortUnsound": 108025,
+        "midLongUnsound": 127925,
+        "longUnsound": 84800,
+        "cautionPrice3d": 91770,
+        "cautionPrice15d": 127925,
+        "overheating40d": 87400.625
+      },
+      "marketAlert": "투자경고",
+      "cachedAt": "2026-04-18T02:28:50.242Z"
+    },
+    {
+      "ticker": "095270",
+      "stockName": "웨이브일렉트로",
+      "currentPrice": 9070,
+      "totalVolume": 952382,
+      "priceChangePct": "8.10",
+      "historicalPrices": {
+        "ago1": 8390,
+        "ago3": 9840,
+        "ago5": 7810,
+        "ago15": 4990,
+        "avg40": 5637
+      },
+      "overheat": {
+        "priceIncreaseRate": "160.89",
+        "turnoverRatio": "175.12",
+        "volatilityRatio": "210.82",
+        "criteriaMet": {
+          "price": true,
+          "turnover": false,
+          "volatility": true
+        }
+      },
+      "stats": {
+        "risingDays15": 8,
+        "isClosingSudden": true,
+        "is15DayHigh": false,
+        "max15Price": 10600,
+        "price1YearAgo": 4445,
+        "increaseRate1Year": "104.05",
+        "is200Pct1Year": false
+      },
+      "warningTargets": {
+        "ultraShort": 19680,
+        "short": 12496,
+        "midLong": 10600,
+        "cautionRep": 10600,
+        "shortUnsound": 11324.5,
+        "midLongUnsound": 10600,
+        "longUnsound": 13335,
+        "cautionPrice3d": 11316,
+        "cautionPrice15d": 8732.5,
+        "overheating40d": 7328.425
+      },
+      "marketAlert": "투자경고",
+      "cachedAt": "2026-04-18T02:28:50.780Z"
+    },
+    {
+      "ticker": "109070",
+      "stockName": "주성코퍼레이션",
+      "currentPrice": 1930,
+      "totalVolume": 1864388,
+      "priceChangePct": "3.37",
+      "historicalPrices": {
+        "ago1": 1867,
+        "ago3": 2310,
+        "ago5": 1368,
+        "ago15": 1319,
+        "avg40": 1137
+      },
+      "overheat": {
+        "priceIncreaseRate": "169.60",
+        "turnoverRatio": "170.22",
+        "volatilityRatio": "192.43",
+        "criteriaMet": {
+          "price": true,
+          "turnover": false,
+          "volatility": true
+        }
+      },
+      "stats": {
+        "risingDays15": 7,
+        "isClosingSudden": false,
+        "is15DayHigh": false,
+        "max15Price": 2330,
+        "price1YearAgo": 918,
+        "increaseRate1Year": "110.24",
+        "is200Pct1Year": false
+      },
+      "warningTargets": {
+        "ultraShort": 4620,
+        "short": 2330,
+        "midLong": 2638,
+        "cautionRep": 2330,
+        "shortUnsound": 2330,
+        "midLongUnsound": 2330,
+        "longUnsound": 2754,
+        "cautionPrice3d": 2656.5,
+        "cautionPrice15d": 2308.25,
+        "overheating40d": 1479.335
+      },
+      "marketAlert": "투자경고",
+      "cachedAt": "2026-04-18T02:28:51.310Z"
+    },
+    {
+      "ticker": "123010",
+      "stockName": "알엔티엑스",
+      "currentPrice": 1709,
+      "totalVolume": 5614690,
+      "priceChangePct": "14.08",
+      "historicalPrices": {
+        "ago1": 1989,
+        "ago3": 1335,
+        "ago5": 1141,
+        "ago15": 1144,
+        "avg40": 1154
+      },
+      "overheat": {
+        "priceIncreaseRate": "148.05",
+        "turnoverRatio": "872.02",
+        "volatilityRatio": "166.06",
+        "criteriaMet": {
+          "price": true,
+          "turnover": true,
+          "volatility": true
+        }
+      },
+      "stats": {
+        "risingDays15": 7,
+        "isClosingSudden": true,
+        "is15DayHigh": false,
+        "max15Price": 1989,
+        "price1YearAgo": 1138,
+        "increaseRate1Year": "50.18",
+        "is200Pct1Year": false
+      },
+      "warningTargets": {
+        "ultraShort": 2670,
+        "short": 1989,
+        "midLong": 2288,
+        "cautionRep": 2002,
+        "shortUnsound": 1989,
+        "midLongUnsound": 2002,
+        "longUnsound": 3414,
+        "cautionPrice3d": 1535.2499999999998,
+        "cautionPrice15d": 2002,
+        "overheating40d": 1500.655
+      },
+      "marketAlert": "투자경고",
+      "cachedAt": "2026-04-18T02:28:51.837Z"
+    },
+    {
+      "ticker": "140430",
+      "stockName": "카티스",
+      "currentPrice": 990,
+      "totalVolume": 2660833,
+      "priceChangePct": "8.42",
+      "historicalPrices": {
+        "ago1": 1081,
+        "ago3": 1101,
+        "ago5": 828,
+        "ago15": 633,
+        "avg40": 714
+      },
+      "overheat": {
+        "priceIncreaseRate": "138.50",
+        "turnoverRatio": "180.24",
+        "volatilityRatio": "189.47",
+        "criteriaMet": {
+          "price": true,
+          "turnover": false,
+          "volatility": true
+        }
+      },
+      "stats": {
+        "risingDays15": 6,
+        "isClosingSudden": true,
+        "is15DayHigh": false,
+        "max15Price": 1300,
+        "price1YearAgo": 1860,
+        "increaseRate1Year": "-46.77",
+        "is200Pct1Year": false
+      },
+      "warningTargets": {
+        "ultraShort": 2202,
+        "short": 1324.8000000000002,
+        "midLong": 1300,
+        "cautionRep": 1300,
+        "shortUnsound": 1300,
+        "midLongUnsound": 1300,
+        "longUnsound": 5580,
+        "cautionPrice3d": 1266.1499999999999,
+        "cautionPrice15d": 1107.75,
+        "overheating40d": 929.2725
+      },
+      "marketAlert": "투자경고",
+      "cachedAt": "2026-04-18T02:28:52.374Z"
+    },
+    {
+      "ticker": "228670",
+      "stockName": "레이",
+      "currentPrice": 10890,
+      "totalVolume": 898922,
+      "priceChangePct": "2.16",
+      "historicalPrices": {
+        "ago1": 10660,
+        "ago3": 8840,
+        "ago5": 7250,
+        "ago15": 5500,
+        "avg40": 5810
+      },
+      "overheat": {
+        "priceIncreaseRate": "187.41",
+        "turnoverRatio": "203.80",
+        "volatilityRatio": "182.22",
+        "criteriaMet": {
+          "price": true,
+          "turnover": false,
+          "volatility": true
+        }
+      },
+      "stats": {
+        "risingDays15": 7,
+        "isClosingSudden": false,
+        "is15DayHigh": true,
+        "max15Price": 10720,
+        "price1YearAgo": 7930,
+        "increaseRate1Year": "37.33",
+        "is200Pct1Year": false
+      },
+      "warningTargets": {
+        "ultraShort": 17680,
+        "short": 11600,
+        "midLong": 11000,
+        "cautionRep": 10720,
+        "shortUnsound": 10720,
+        "midLongUnsound": 10720,
+        "longUnsound": 23790,
+        "cautionPrice3d": 10166,
+        "cautionPrice15d": 9625,
+        "overheating40d": 7553.975
+      },
+      "marketAlert": "투자경고",
+      "cachedAt": "2026-04-18T02:28:52.897Z"
+    },
+    {
+      "ticker": "440110",
+      "stockName": "파두",
+      "currentPrice": 59000,
+      "totalVolume": 979296,
+      "priceChangePct": "2.43",
+      "historicalPrices": {
+        "ago1": 57600,
+        "ago3": 56800,
+        "ago5": 55700,
+        "ago15": 52400,
+        "avg40": 56972
+      },
+      "overheat": {
+        "priceIncreaseRate": "103.56",
+        "turnoverRatio": "62.67",
+        "volatilityRatio": "82.01",
+        "criteriaMet": {
+          "price": false,
+          "turnover": false,
+          "volatility": false
+        }
+      },
+      "stats": {
+        "risingDays15": 6,
+        "isClosingSudden": false,
+        "is15DayHigh": false,
+        "max15Price": 60900,
+        "price1YearAgo": 10540,
+        "increaseRate1Year": "459.77",
+        "is200Pct1Year": true
+      },
+      "warningTargets": {
+        "ultraShort": 113600,
+        "short": 89120,
+        "midLong": 104800,
+        "cautionRep": 91700,
+        "shortUnsound": 80765,
+        "midLongUnsound": 91700,
+        "longUnsound": 60900,
+        "cautionPrice3d": 65319.99999999999,
+        "cautionPrice15d": 91700,
+        "overheating40d": 74064.25
+      },
+      "marketAlert": "투자경고",
+      "cachedAt": "2026-04-18T02:28:53.428Z"
+    },
+    {
+      "ticker": "008350",
+      "stockName": "남선알미늄",
+      "currentPrice": 2460,
+      "totalVolume": 14783628,
+      "priceChangePct": "2.77",
+      "historicalPrices": {
+        "ago1": 2530,
+        "ago3": 3080,
+        "ago5": 2205,
+        "ago15": 1340,
+        "avg40": 1646
+      },
+      "overheat": {
+        "priceIncreaseRate": "149.37",
+        "turnoverRatio": "37.15",
+        "volatilityRatio": "89.04",
+        "criteriaMet": {
+          "price": true,
+          "turnover": false,
+          "volatility": false
+        }
+      },
+      "stats": {
+        "risingDays15": 8,
+        "isClosingSudden": false,
+        "is15DayHigh": false,
+        "max15Price": 3080,
+        "price1YearAgo": 1329,
+        "increaseRate1Year": "85.10",
+        "is200Pct1Year": false
+      },
+      "warningTargets": {
+        "ultraShort": 6160,
+        "short": 3528,
+        "midLong": 3080,
+        "cautionRep": 3080,
+        "shortUnsound": 3197.25,
+        "midLongUnsound": 3080,
+        "longUnsound": 3987,
+        "cautionPrice3d": 3541.9999999999995,
+        "cautionPrice15d": 2345,
+        "overheating40d": 2140.9700000000003
+      },
+      "marketAlert": "투자경고",
+      "cachedAt": "2026-04-18T02:28:53.960Z"
+    },
+    {
+      "ticker": "027040",
+      "stockName": "서울전자통신",
+      "currentPrice": 737,
+      "totalVolume": 42016675,
+      "priceChangePct": "6.66",
+      "historicalPrices": {
+        "ago1": 691,
+        "ago3": 755,
+        "ago5": 447,
+        "ago15": 410,
+        "avg40": 390
+      },
+      "overheat": {
+        "priceIncreaseRate": "188.50",
+        "turnoverRatio": "2479.75",
+        "volatilityRatio": "554.00",
+        "criteriaMet": {
+          "price": true,
+          "turnover": true,
+          "volatility": true
+        }
+      },
+      "stats": {
+        "risingDays15": 8,
+        "isClosingSudden": true,
+        "is15DayHigh": false,
+        "max15Price": 981,
+        "price1YearAgo": 218,
+        "increaseRate1Year": "238.07",
+        "is200Pct1Year": true
+      },
+      "warningTargets": {
+        "ultraShort": 1510,
+        "short": 981,
+        "midLong": 981,
+        "cautionRep": 981,
+        "shortUnsound": 981,
+        "midLongUnsound": 981,
+        "longUnsound": 981,
+        "cautionPrice3d": 868.2499999999999,
+        "cautionPrice15d": 717.5,
+        "overheating40d": 508.26750000000004
+      },
+      "marketAlert": "투자경고",
+      "cachedAt": "2026-04-18T02:28:54.490Z"
+    },
+    {
+      "ticker": "056360",
+      "stockName": "코위버",
+      "currentPrice": 10700,
+      "totalVolume": 900206,
+      "priceChangePct": "1.38",
+      "historicalPrices": {
+        "ago1": 10850,
+        "ago3": 12460,
+        "ago5": 10280,
+        "ago15": 7000,
+        "avg40": 6874
+      },
+      "overheat": {
+        "priceIncreaseRate": "155.65",
+        "turnoverRatio": "180.79",
+        "volatilityRatio": "246.15",
+        "criteriaMet": {
+          "price": true,
+          "turnover": false,
+          "volatility": true
+        }
+      },
+      "stats": {
+        "risingDays15": 4,
+        "isClosingSudden": false,
+        "is15DayHigh": false,
+        "max15Price": 12460,
+        "price1YearAgo": 5160,
+        "increaseRate1Year": "107.36",
+        "is200Pct1Year": false
+      },
+      "warningTargets": {
+        "ultraShort": 24920,
+        "short": 16448,
+        "midLong": 14000,
+        "cautionRep": 12460,
+        "shortUnsound": 14906,
+        "midLongUnsound": 12460,
+        "longUnsound": 15480,
+        "cautionPrice3d": 14328.999999999998,
+        "cautionPrice15d": 12250,
+        "overheating40d": 8936.85
+      },
+      "marketAlert": "투자경고",
+      "cachedAt": "2026-04-18T02:28:55.027Z"
+    },
+    {
+      "ticker": "072950",
+      "stockName": "빛샘전자",
+      "currentPrice": 15610,
+      "totalVolume": 6311251,
+      "priceChangePct": "5.96",
+      "historicalPrices": {
+        "ago1": 16600,
+        "ago3": 18220,
+        "ago5": 10790,
+        "ago15": 7390,
+        "avg40": 8330
+      },
+      "overheat": {
+        "priceIncreaseRate": "187.39",
+        "turnoverRatio": "987.36",
+        "volatilityRatio": "370.78",
+        "criteriaMet": {
+          "price": true,
+          "turnover": true,
+          "volatility": true
+        }
+      },
+      "stats": {
+        "risingDays15": 6,
+        "isClosingSudden": true,
+        "is15DayHigh": false,
+        "max15Price": 23650,
+        "price1YearAgo": 4255,
+        "increaseRate1Year": "266.86",
+        "is200Pct1Year": true
+      },
+      "warningTargets": {
+        "ultraShort": 36440,
+        "short": 23650,
+        "midLong": 23650,
+        "cautionRep": 23650,
+        "shortUnsound": 23650,
+        "midLongUnsound": 23650,
+        "longUnsound": 23650,
+        "cautionPrice3d": 20953,
+        "cautionPrice15d": 12932.5,
+        "overheating40d": 10829.325
+      },
+      "marketAlert": "투자경고",
+      "cachedAt": "2026-04-18T02:28:55.559Z"
+    },
+    {
+      "ticker": "073540",
+      "stockName": "에프알텍",
+      "currentPrice": 4985,
+      "totalVolume": 633141,
+      "priceChangePct": "7.09",
+      "historicalPrices": {
+        "ago1": 4655,
+        "ago3": 6440,
+        "ago5": 3815,
+        "ago15": 2660,
+        "avg40": 2756
+      },
+      "overheat": {
+        "priceIncreaseRate": "180.83",
+        "turnoverRatio": "139.92",
+        "volatilityRatio": "203.97",
+        "criteriaMet": {
+          "price": true,
+          "turnover": false,
+          "volatility": true
+        }
+      },
+      "stats": {
+        "risingDays15": 8,
+        "isClosingSudden": true,
+        "is15DayHigh": false,
+        "max15Price": 6440,
+        "price1YearAgo": 1411,
+        "increaseRate1Year": "253.30",
+        "is200Pct1Year": true
+      },
+      "warningTargets": {
+        "ultraShort": 12880,
+        "short": 6440,
+        "midLong": 6440,
+        "cautionRep": 6440,
+        "shortUnsound": 6440,
+        "midLongUnsound": 6440,
+        "longUnsound": 6440,
+        "cautionPrice3d": 7405.999999999999,
+        "cautionPrice15d": 4655,
+        "overheating40d": 3583.7425
+      },
+      "marketAlert": "투자경고",
+      "cachedAt": "2026-04-18T02:28:56.091Z"
+    },
+    {
+      "ticker": "115440",
+      "stockName": "우리넷",
+      "currentPrice": 14910,
+      "totalVolume": 1873614,
+      "priceChangePct": "1.15",
+      "historicalPrices": {
+        "ago1": 14740,
+        "ago3": 18460,
+        "ago5": 13000,
+        "ago15": 13790,
+        "avg40": 9818
+      },
+      "overheat": {
+        "priceIncreaseRate": "151.85",
+        "turnoverRatio": "100.00",
+        "volatilityRatio": "216.16",
+        "criteriaMet": {
+          "price": true,
+          "turnover": false,
+          "volatility": true
+        }
+      },
+      "stats": {
+        "risingDays15": 4,
+        "isClosingSudden": false,
+        "is15DayHigh": false,
+        "max15Price": 18720,
+        "price1YearAgo": 6500,
+        "increaseRate1Year": "129.38",
+        "is200Pct1Year": false
+      },
+      "warningTargets": {
+        "ultraShort": 36920,
+        "short": 20800,
+        "midLong": 27580,
+        "cautionRep": 24132.5,
+        "shortUnsound": 18850,
+        "midLongUnsound": 24132.5,
+        "longUnsound": 19500,
+        "cautionPrice3d": 21229,
+        "cautionPrice15d": 24132.5,
+        "overheating40d": 12764.375
+      },
+      "marketAlert": "투자경고",
+      "cachedAt": "2026-04-18T02:28:56.620Z"
+    },
+    {
+      "ticker": "020400",
+      "stockName": "대동금속",
+      "currentPrice": 6540,
+      "totalVolume": 124707,
+      "priceChangePct": "2.03",
+      "historicalPrices": {
+        "ago1": 6410,
+        "ago3": 7360,
+        "ago5": 7020,
+        "ago15": 9380,
+        "avg40": 7804
+      },
+      "overheat": {
+        "priceIncreaseRate": "83.80",
+        "turnoverRatio": "35.81",
+        "volatilityRatio": "74.34",
+        "criteriaMet": {
+          "price": false,
+          "turnover": false,
+          "volatility": false
+        }
+      },
+      "stats": {
+        "risingDays15": 7,
+        "isClosingSudden": false,
+        "is15DayHigh": false,
+        "max15Price": 12190,
+        "price1YearAgo": 6450,
+        "increaseRate1Year": "1.40",
+        "is200Pct1Year": false
+      },
+      "warningTargets": {
+        "ultraShort": 14720,
+        "short": 12190,
+        "midLong": 18760,
+        "cautionRep": 16415,
+        "shortUnsound": 12190,
+        "midLongUnsound": 16415,
+        "longUnsound": 19350,
+        "cautionPrice3d": 8464,
+        "cautionPrice15d": 16415,
+        "overheating40d": 10145.85
+      },
+      "marketAlert": "투자경고",
+      "cachedAt": "2026-04-18T02:28:57.155Z"
+    },
+    {
+      "ticker": "035460",
+      "stockName": "기산텔레콤",
+      "currentPrice": 4560,
+      "totalVolume": 1359554,
+      "priceChangePct": "3.39",
+      "historicalPrices": {
+        "ago1": 4720,
+        "ago3": 6200,
+        "ago5": 4645,
+        "ago15": 2785,
+        "avg40": 2894
+      },
+      "overheat": {
+        "priceIncreaseRate": "157.54",
+        "turnoverRatio": "164.30",
+        "volatilityRatio": "217.21",
+        "criteriaMet": {
+          "price": true,
+          "turnover": false,
+          "volatility": true
+        }
+      },
+      "stats": {
+        "risingDays15": 5,
+        "isClosingSudden": false,
+        "is15DayHigh": false,
+        "max15Price": 6200,
+        "price1YearAgo": 1996,
+        "increaseRate1Year": "128.46",
+        "is200Pct1Year": false
+      },
+      "warningTargets": {
+        "ultraShort": 12400,
+        "short": 7432,
+        "midLong": 6200,
+        "cautionRep": 6200,
+        "shortUnsound": 6735.25,
+        "midLongUnsound": 6200,
+        "longUnsound": 6200,
+        "cautionPrice3d": 7129.999999999999,
+        "cautionPrice15d": 4873.75,
+        "overheating40d": 3762.9474999999998
+      },
+      "marketAlert": "투자경고",
+      "cachedAt": "2026-04-18T02:28:57.686Z"
+    },
+    {
+      "ticker": "065530",
+      "stockName": "와이어블",
+      "currentPrice": 2445,
+      "totalVolume": 1326122,
+      "priceChangePct": "0.61",
+      "historicalPrices": {
+        "ago1": 2460,
+        "ago3": 2915,
+        "ago5": 2910,
+        "ago15": 2085,
+        "avg40": 1784
+      },
+      "overheat": {
+        "priceIncreaseRate": "136.99",
+        "turnoverRatio": "82.68",
+        "volatilityRatio": "176.50",
+        "criteriaMet": {
+          "price": true,
+          "turnover": false,
+          "volatility": true
+        }
+      },
+      "stats": {
+        "risingDays15": 5,
+        "isClosingSudden": false,
+        "is15DayHigh": false,
+        "max15Price": 3075,
+        "price1YearAgo": 1253,
+        "increaseRate1Year": "95.13",
+        "is200Pct1Year": false
+      },
+      "warningTargets": {
+        "ultraShort": 5830,
+        "short": 4656,
+        "midLong": 4170,
+        "cautionRep": 3648.75,
+        "shortUnsound": 4219.5,
+        "midLongUnsound": 3648.75,
+        "longUnsound": 3759,
+        "cautionPrice3d": 3352.2499999999995,
+        "cautionPrice15d": 3648.75,
+        "overheating40d": 2320.305
+      },
+      "marketAlert": "투자경고",
+      "cachedAt": "2026-04-18T02:28:58.236Z"
+    }
+  ]
+}
