@@ -452,6 +452,7 @@ async function loadWarningList() {
                     </div>
                 </div>
                 <div class="wsi-prices">
+                    ${w.isReleased ? `<span class="wt-badge released" style="margin-bottom:4px;">해제됨</span>` : ''}
                     <span class="wsi-designated">${w.designatedPrice.toLocaleString()}원</span>
                     <span class="wsi-release">해제기준 ${w.releaseMinPrice.toLocaleString()}원</span>
                 </div>
@@ -573,6 +574,18 @@ async function openWarningDetail(stockBase) {
         }
 
         renderReleaseConditions(w);
+
+        // 해제됨 표시 (신규)
+        const releaseStatCard = document.getElementById('detailDaysElapsed').parentElement;
+        if (w.isReleased) {
+            document.getElementById('detailDaysElapsed').innerHTML = `<span style="color:var(--success-color)">해제됨 (${w.releasedCheckDate})</span>`;
+            releaseStatCard.classList.add('release'); // 녹색 배경 효과 재활용하거나 별도 스타일
+        } else {
+            const tradingDays = data.tradingDaysElapsed ?? Math.floor((new Date() - new Date(w.designatedDate)) / (1000 * 60 * 60 * 24));
+            document.getElementById('detailDaysElapsed').textContent = `D+${tradingDays}일 (영업일 기준 ${tradingDays}일 경과)`;
+            releaseStatCard.classList.remove('release');
+        }
+
         await loadPriceChart(w);
 
     } catch (err) {

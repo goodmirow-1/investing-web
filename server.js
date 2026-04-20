@@ -5,7 +5,7 @@ const rateLimit = require('express-rate-limit');
 const path = require('path');
 const fs = require('fs');
 const { fetchStockData } = require('./src/api');
-const { getAllWarnings, getWarningByCode, computeReleaseInfo } = require('./src/warning_tracker');
+const { getAllWarnings, getWarningByCode, computeReleaseInfo, getStatusHistory } = require('./src/warning_tracker');
 const { startScheduler } = require('./src/kokstock_scheduler');
 const { countTradingDays } = require('./src/trading_days');
 
@@ -149,7 +149,7 @@ app.get('/api/warnings/:code', apiLimiter, async (req, res) => {
         } catch { /* ignore */ }
 
         const latest = history[0];
-        const releaseInfo = tracker.computeReleaseInfo(latest.designatedPrice, latest.releaseType);
+        const releaseInfo = computeReleaseInfo(latest.designatedPrice, latest.releaseType);
 
         let canRelease = null;
         if (currentPrice !== null) {
@@ -185,7 +185,7 @@ app.get('/api/warnings/:code', apiLimiter, async (req, res) => {
 // 해제 확인 이력 전체 조회
 app.get('/api/warnings/status-check-history', apiLimiter, (req, res) => {
     try {
-        const history = tracker.getStatusHistory();
+        const history = getStatusHistory();
         res.json({ count: history.length, items: history });
     } catch (error) {
         console.error('[Status History Error]:', error.message);

@@ -55,11 +55,15 @@ async function runReleaseCheck() {
         // D+10(영업일) 이상 경과한 해제 확인 대상 추출
         const checkTargets = warnings.filter(w => {
             const tradingDaysElapsed = countTradingDays(w.designatedDate, today);
-            return tradingDaysElapsed >= 10 && !w.isReleased;
+            const isTarget = tradingDaysElapsed >= 10 && !w.isReleased;
+            if (!isTarget && !w.isReleased) {
+                console.log(`[Scheduler] Skipping ${w.name}: D+${tradingDaysElapsed} (Needs D+10)`);
+            }
+            return isTarget;
         });
 
         if (checkTargets.length === 0) {
-            console.log('[Scheduler] No stocks to check for release status today.');
+            console.log('[Scheduler] No stocks to check for release status today (D+10 not reached or already released).');
             return [];
         }
 
@@ -107,6 +111,9 @@ function startScheduler() {
     cron.schedule('01 00 * * *', runReleaseCheck, { timezone: 'Asia/Seoul' });
 
     console.log('[Scheduler] All tasks scheduled (20:30 Collection, 00:01 Release Check)');
+
+    console.log('[Scheduler] Running tasks once on startup as requested...');
+    runDailyCollection().then(() => runReleaseCheck()).catch(err => console.error('[Scheduler] Startup error:', err));
 }
 
 module.exports = {

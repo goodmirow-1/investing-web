@@ -349,7 +349,9 @@
     "releaseType": "normal",
     "releaseMinPrice": 89200,
     "releaseDetail": "지정가 × 200% (일반형: T-5 60%↑, T-15 100%↑ 동시 불충족 시 해제)",
-    "addedAt": "2026-04-19T09:18:37.886Z"
+    "addedAt": "2026-04-19T09:18:37.886Z",
+    "isExtended": true,
+    "extendedCheckDate": "2026-04-20"
   },
   {
     "code": "012205",
@@ -360,6 +362,52 @@
     "releaseType": "normal",
     "releaseMinPrice": 15380,
     "releaseDetail": "지정가 × 200% (일반형: T-5 60%↑, T-15 100%↑ 동시 불충족 시 해제)",
-    "addedAt": "2026-04-19T09:18:38.208Z"
+    "addedAt": "2026-04-19T09:18:38.208Z",
+    "isReleased": true,
+    "releasedCheckDate": "2026-04-20"
+  },
+  {
+    "code": "080580",
+    "name": "오킨스전자",
+    "market": "KOSDAQ",
+    "designatedDate": "2026-04-20",
+    "designatedPrice": 23900,
+    "releaseType": "normal",
+    "releaseMinPrice": 47800,
+    "releaseDetail": "지정가 × 200% (일반형: T-5 60%↑, T-15 100%↑ 동시 불충족 시 해제)",
+    "addedAt": "2026-04-20T15:13:40.253Z"
+  },
+  {
+    "code": "131760",
+    "name": "파인텍",
+    "market": "KOSDAQ",
+    "designatedDate": "2026-04-20",
+    "designatedPrice": 1573,
+    "releaseType": "normal",
+    "releaseMinPrice": 3146,
+    "releaseDetail": "지정가 × 200% (일반형: T-5 60%↑, T-15 100%↑ 동시 불충족 시 해제)",
+    "addedAt": "2026-04-20T15:13:40.254Z"
+  },
+  {
+    "code": "319400",
+    "name": "현대무벡스",
+    "market": "KOSDAQ",
+    "designatedDate": "2026-04-20",
+    "designatedPrice": 30950,
+    "releaseType": "normal",
+    "releaseMinPrice": 61900,
+    "releaseDetail": "지정가 × 200% (일반형: T-5 60%↑, T-15 100%↑ 동시 불충족 시 해제)",
+    "addedAt": "2026-04-20T15:13:40.254Z"
+  },
+  {
+    "code": "456010",
+    "name": "아이씨티케이",
+    "market": "KOSDAQ",
+    "designatedDate": "2026-04-20",
+    "designatedPrice": 26650,
+    "releaseType": "normal",
+    "releaseMinPrice": 53300,
+    "releaseDetail": "지정가 × 200% (일반형: T-5 60%↑, T-15 100%↑ 동시 불충족 시 해제)",
+    "addedAt": "2026-04-20T15:13:40.254Z"
   }
 ]
