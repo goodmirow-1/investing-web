@@ -327,7 +327,9 @@
     "releaseType": "normal",
     "releaseMinPrice": 34000,
     "releaseDetail": "지정가 × 200% (일반형: T-5 60%↑, T-15 100%↑ 동시 불충족 시 해제)",
-    "addedAt": "2026-04-19T09:18:37.245Z"
+    "addedAt": "2026-04-19T09:18:37.245Z",
+    "isReleased": true,
+    "releasedCheckDate": "2026-04-23"
   },
   {
     "code": "065770",
@@ -338,7 +340,9 @@
     "releaseType": "normal",
     "releaseMinPrice": 3720,
     "releaseDetail": "지정가 × 200% (일반형: T-5 60%↑, T-15 100%↑ 동시 불충족 시 해제)",
-    "addedAt": "2026-04-19T09:18:37.567Z"
+    "addedAt": "2026-04-19T09:18:37.567Z",
+    "isReleased": true,
+    "releasedCheckDate": "2026-04-23"
   },
   {
     "code": "138080",
@@ -351,7 +355,7 @@
     "releaseDetail": "지정가 × 200% (일반형: T-5 60%↑, T-15 100%↑ 동시 불충족 시 해제)",
     "addedAt": "2026-04-19T09:18:37.886Z",
     "isExtended": true,
-    "extendedCheckDate": "2026-04-20"
+    "extendedCheckDate": "2026-04-23"
   },
   {
     "code": "012205",
@@ -409,5 +413,137 @@
     "releaseMinPrice": 53300,
     "releaseDetail": "지정가 × 200% (일반형: T-5 60%↑, T-15 100%↑ 동시 불충족 시 해제)",
     "addedAt": "2026-04-20T15:13:40.254Z"
+  },
+  {
+    "code": "006110",
+    "name": "삼아알미늄",
+    "market": "KOSPI",
+    "designatedDate": "2026-04-23",
+    "designatedPrice": 66800,
+    "releaseType": "normal",
+    "releaseMinPrice": 133600,
+    "releaseDetail": "지정가 × 200% (일반형: T-5 60%↑, T-15 100%↑ 동시 불충족 시 해제)",
+    "addedAt": "2026-04-23T13:56:15.404Z"
+  },
+  {
+    "code": "010820",
+    "name": "퍼스텍",
+    "market": "KOSPI",
+    "designatedDate": "2026-04-23",
+    "designatedPrice": 15310,
+    "releaseType": "normal",
+    "releaseMinPrice": 30620,
+    "releaseDetail": "지정가 × 200% (일반형: T-5 60%↑, T-15 100%↑ 동시 불충족 시 해제)",
+    "addedAt": "2026-04-23T13:56:15.404Z"
+  },
+  {
+    "code": "036930",
+    "name": "주성엔지니어링",
+    "market": "KOSDAQ",
+    "designatedDate": "2026-04-23",
+    "designatedPrice": 116200,
+    "releaseType": "normal",
+    "releaseMinPrice": 232400,
+    "releaseDetail": "지정가 × 200% (일반형: T-5 60%↑, T-15 100%↑ 동시 불충족 시 해제)",
+    "addedAt": "2026-04-23T13:56:15.404Z"
+  },
+  {
+    "code": "095610",
+    "name": "테스",
+    "market": "KOSDAQ",
+    "designatedDate": "2026-04-23",
+    "designatedPrice": 89600,
+    "releaseType": "normal",
+    "releaseMinPrice": 179200,
+    "releaseDetail": "지정가 × 200% (일반형: T-5 60%↑, T-15 100%↑ 동시 불충족 시 해제)",
+    "addedAt": "2026-04-23T13:56:15.404Z"
+  },
+  {
+    "code": "417840",
+    "name": "저스템",
+    "market": "KOSDAQ",
+    "designatedDate": "2026-04-23",
+    "designatedPrice": 11790,
+    "releaseType": "normal",
+    "releaseMinPrice": 23580,
+    "releaseDetail": "지정가 × 200% (일반형: T-5 60%↑, T-15 100%↑ 동시 불충족 시 해제)",
+    "addedAt": "2026-04-23T13:56:15.404Z"
+  },
+  {
+    "code": "082920",
+    "name": "비츠로셀",
+    "market": "KOSDAQ",
+    "designatedDate": "2026-04-22",
+    "designatedPrice": 52100,
+    "releaseType": "normal",
+    "releaseMinPrice": 104200,
+    "releaseDetail": "지정가 × 200% (일반형: T-5 60%↑, T-15 100%↑ 동시 불충족 시 해제)",
+    "addedAt": "2026-04-23T13:56:15.404Z"
+  },
+  {
+    "code": "240810",
+    "name": "원익IPS",
+    "market": "KOSDAQ",
+    "designatedDate": "2026-04-22",
+    "designatedPrice": 113200,
+    "releaseType": "normal",
+    "releaseMinPrice": 226400,
+    "releaseDetail": "지정가 × 200% (일반형: T-5 60%↑, T-15 100%↑ 동시 불충족 시 해제)",
+    "addedAt": "2026-04-23T13:56:15.404Z"
+  },
+  {
+    "code": "036170",
+    "name": "에이치엠넥스",
+    "market": "KOSDAQ",
+    "designatedDate": "2026-04-21",
+    "designatedPrice": 6850,
+    "releaseType": "normal",
+    "releaseMinPrice": 13700,
+    "releaseDetail": "지정가 × 200% (일반형: T-5 60%↑, T-15 100%↑ 동시 불충족 시 해제)",
+    "addedAt": "2026-04-23T13:56:15.404Z"
+  },
+  {
+    "code": "094170",
+    "name": "동운아나텍",
+    "market": "KOSDAQ",
+    "designatedDate": "2026-04-21",
+    "designatedPrice": 43500,
+    "releaseType": "normal",
+    "releaseMinPrice": 87000,
+    "releaseDetail": "지정가 × 200% (일반형: T-5 60%↑, T-15 100%↑ 동시 불충족 시 해제)",
+    "addedAt": "2026-04-23T13:56:15.404Z"
+  },
+  {
+    "code": "115500",
+    "name": "케이씨에스",
+    "market": "KOSDAQ",
+    "designatedDate": "2026-04-21",
+    "designatedPrice": 17330,
+    "releaseType": "normal",
+    "releaseMinPrice": 34660,
+    "releaseDetail": "지정가 × 200% (일반형: T-5 60%↑, T-15 100%↑ 동시 불충족 시 해제)",
+    "addedAt": "2026-04-23T13:56:15.404Z"
+  },
+  {
+    "code": "184230",
+    "name": "SGA솔루션즈",
+    "market": "KOSDAQ",
+    "designatedDate": "2026-04-21",
+    "designatedPrice": 931,
+    "releaseType": "normal",
+    "releaseMinPrice": 1862,
+    "releaseDetail": "지정가 × 200% (일반형: T-5 60%↑, T-15 100%↑ 동시 불충족 시 해제)",
+    "addedAt": "2026-04-23T13:56:15.404Z"
+  },
+  {
+    "code": "430690",
+    "name": "한싹",
+    "market": "KOSDAQ",
+    "designatedDate": "2026-04-21",
+    "designatedPrice": 5370,
+    "releaseType": "normal",
+    "releaseMinPrice": 10740,
+    "releaseDetail": "지정가 × 200% (일반형: T-5 60%↑, T-15 100%↑ 동시 불충족 시 해제)",
+    "addedAt": "2026-04-23T13:56:15.404Z"
   }
 ]

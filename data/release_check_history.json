@@ -1,5 +1,29 @@
 [
   {
+    "checkDate": "2026-04-23",
+    "code": "138080",
+    "name": "오이솔루션",
+    "designatedDate": "2026-04-07",
+    "status": "extended",
+    "msg": "투자경고 연장됨"
+  },
+  {
+    "checkDate": "2026-04-23",
+    "code": "065770",
+    "name": "CS",
+    "designatedDate": "2026-04-08",
+    "status": "released",
+    "msg": "투자경고 해제됨"
+  },
+  {
+    "checkDate": "2026-04-23",
+    "code": "040160",
+    "name": "누리플렉스",
+    "designatedDate": "2026-04-08",
+    "status": "released",
+    "msg": "투자경고 해제됨"
+  },
+  {
     "checkDate": "2026-04-20",
     "code": "012205",
     "name": "계양전기우",

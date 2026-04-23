@@ -344,104 +344,100 @@
                         <ul id="warningsStockList" class="warnings-stock-list"></ul>
                     </div>
 
-                    <!-- ★ 상세 패널 (클릭 시 표시) -->
-                    <div id="warningDetailPanel" class="warning-detail-panel hidden">
-                        <!-- 광고 슬롯 (상세 패널 상단)
-                        <div class="ad-in-content" style="margin-bottom:16px;">
-                            <div class="ad-slot ad-in-content-slot">
-                                <span class="ad-label">Advertisement</span>
-                            </div>
-                        </div>
-                        -->
 
-                        <div class="detail-header">
-                            <button id="detailBackBtn" class="detail-back-btn">
-                                <i class="fa-solid fa-arrow-left"></i> 목록으로
-                            </button>
-                            <div class="detail-title-wrap">
-                                <span id="detailStockName" class="detail-stock-name"></span>
-                                <span id="detailStockCode" class="detail-stock-code"></span>
-                                <span id="detailMarketBadge" class="wt-market kosdaq"></span>
-                            </div>
-                        </div>
-
-                        <!-- 연장 알림 영역 (신규) -->
-                        <div id="extendedWarningNote" class="hidden"></div>
-
-                        <!-- 지정 정보 카드 -->
-                        <div class="detail-info-grid">
-                            <div class="detail-info-card">
-                                <span class="detail-info-label">지정일</span>
-                                <span id="detailDesignatedDate" class="detail-info-val"></span>
-                            </div>
-                            <div class="detail-info-card highlight">
-                                <span class="detail-info-label">지정가</span>
-                                <span id="detailDesignatedPrice" class="detail-info-val"></span>
-                            </div>
-                            <div class="detail-info-card release">
-                                <span class="detail-info-label">해제기준가 <small>(최솟값)</small></span>
-                                <span id="detailReleasePrice" class="detail-info-val"></span>
-                            </div>
-                            <div class="detail-info-card">
-                                <span class="detail-info-label">현재 D+일수</span>
-                                <span id="detailDaysElapsed" class="detail-info-val"></span>
-                            </div>
-                        </div>
-
-                        <!-- 주가 추이 차트 -->
-                        <div class="detail-chart-card">
-                            <div class="detail-chart-header">
-                                <h3><i class="fa-solid fa-chart-line"></i> 지정일부터의 주가 추이</h3>
-                                <span id="detailChartRange" class="detail-chart-range"></span>
-                            </div>
-                            <div id="detailChartLoading" class="chart-loading hidden">
-                                <i class="fa-solid fa-spinner fa-spin"></i> 차트 로딩 중...
-                            </div>
-                            <canvas id="warningPriceChart" class="warning-chart-canvas"></canvas>
-                        </div>
-
-                        <!-- 해제 조건 상세 -->
-                        <div class="detail-release-card">
-                            <h3><i class="fa-solid fa-unlock"></i> 해제 조건 분석</h3>
-                            <div id="detailReleaseConditions" class="detail-release-conditions"></div>
-                            <div class="warnings-note" style="margin-top:12px;">
-                                <i class="fa-solid fa-circle-info"></i>
-                                <span>해제 조건은 지정일부터 <strong>10 영업일 이후(T)</strong>에 평가됩니다. T-5, T-15 종가가 실제 기준이며, 위 수치는
-                                    지정가 기준 최소 하한선입니다.</span>
-                            </div>
-                        </div>
-                    </div>
 
                 </section>
             </div><!-- /tab-panel-warnings -->
 
-            <!-- ★ 탭 패널 3: 해제 여부 확인 (신규) -->
+            <!-- ★ 탭 패널 3: 해제된 종목 확인 -->
             <div id="tab-panel-status-check" class="tab-panel">
-                <div class="panel-header">
-                    <h2><i class="fa-solid fa-calendar-check"></i> 지정 10일 후 해제 여부 확인</h2>
-                    <div class="header-actions">
-                        <span id="statusCheckMeta" class="meta-tag">총 0건</span>
-                        <button id="refreshStatusCheckBtn" class="primary-btn sm"><i class="fa-solid fa-rotate"></i>
-                            새로고침</button>
+                <section class="warnings-section">
+                    <div class="warnings-header">
+                        <div>
+                            <h2><i class="fa-solid fa-calendar-check"></i> 해제된 종목 확인</h2>
+                            <p class="warnings-desc">투자경고 지정 이후 해제 요건을 충족하여 해제된 종목들의 명단입니다.</p>
+                        </div>
+                        <button id="refreshReleasedBtn" class="refresh-btn">
+                            <i class="fa-solid fa-rotate-right"></i> 새로고침
+                        </button>
+                    </div>
+
+                    <div id="releasedLoadingBar" class="loading-bar hidden">
+                        <div class="loading-bar-inner"></div>
+                    </div>
+
+                    <div id="releasedEmptyMsg" class="warnings-empty hidden">
+                        <i class="fa-solid fa-inbox"></i>
+                        <p>현재 해제된 종목이 없습니다.</p>
+                    </div>
+
+                    <!-- ★ 콤팩트 종목 리스트 (해제된 종목용) -->
+                    <div id="releasedListWrap" class="hidden">
+                        <div class="warnings-meta" id="releasedMeta"></div>
+                        <ul id="releasedStockList" class="warnings-stock-list"></ul>
+                    </div>
+                </section>
+            </div><!-- /tab-panel-status-check -->
+
+            <!-- ★ 상세 패널 (공통 - 클릭 시 표시) -->
+            <div id="warningDetailPanel" class="warning-detail-panel hidden">
+                <div class="detail-header">
+                    <button id="detailBackBtn" class="detail-back-btn">
+                        <i class="fa-solid fa-arrow-left"></i> 목록으로
+                    </button>
+                    <div class="detail-title-wrap">
+                        <span id="detailStockName" class="detail-stock-name"></span>
+                        <span id="detailStockCode" class="detail-stock-code"></span>
+                        <span id="detailMarketBadge" class="wt-market kosdaq"></span>
                     </div>
                 </div>
 
-                <div id="statusCheckLoadingBar" class="loading-bar hidden">
-                    <div class="loading-spinner"></div>
-                    <p>상태 확인 결과를 불러오는 중...</p>
+                <!-- 연장 알림 영역 (신규) -->
+                <div id="extendedWarningNote" class="hidden"></div>
+
+                <!-- 지정 정보 카드 -->
+                <div class="detail-info-grid">
+                    <div class="detail-info-card">
+                        <span class="detail-info-label">지정일</span>
+                        <span id="detailDesignatedDate" class="detail-info-val"></span>
+                    </div>
+                    <div class="detail-info-card highlight">
+                        <span class="detail-info-label">지정가</span>
+                        <span id="detailDesignatedPrice" class="detail-info-val"></span>
+                    </div>
+                    <div class="detail-info-card release">
+                        <span class="detail-info-label">해제기준가 <small>(최솟값)</small></span>
+                        <span id="detailReleasePrice" class="detail-info-val"></span>
+                    </div>
+                    <div class="detail-info-card">
+                        <span class="detail-info-label">현재 D+일수</span>
+                        <span id="detailDaysElapsed" class="detail-info-val"></span>
+                    </div>
                 </div>
 
-                <div id="statusCheckEmptyMsg" class="empty-msg hidden">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <p>해제 확인 데이터가 없습니다. (매일 00:01 자동 실행)</p>
+                <!-- 주가 추이 차트 -->
+                <div class="detail-chart-card">
+                    <div class="detail-chart-header">
+                        <h3><i class="fa-solid fa-chart-line"></i> 지정일부터의 주가 추이</h3>
+                        <span id="detailChartRange" class="detail-chart-range"></span>
+                    </div>
+                    <div id="detailChartLoading" class="chart-loading hidden">
+                        <i class="fa-solid fa-spinner fa-spin"></i> 차트 로딩 중...
+                    </div>
+                    <canvas id="warningPriceChart" class="warning-chart-canvas"></canvas>
                 </div>
 
-                <div id="statusCheckListWrap" class="list-wrapper">
-                    <ul id="statusCheckList" class="compact-list">
-                        <!-- JS 렌더링 -->
-                    </ul>
+                <!-- 해제 조건 상세 -->
+                <div class="detail-release-card">
+                    <h3><i class="fa-solid fa-unlock"></i> 해제 조건 분석</h3>
+                    <div id="detailReleaseConditions" class="detail-release-conditions"></div>
+                    <div class="warnings-note" style="margin-top:12px;">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <span>해제 조건은 지정일부터 <strong>10 영업일 이후(T)</strong>에 평가됩니다. T-5, T-15 종가가 실제 기준이며, 위 수치는
+                            지정가 기준 최소 하한선입니다.</span>
+                    </div>
                 </div>
-            </div><!-- /tab-panel-status-check -->
+            </div>
 
             <section class="info-guide-section">
                 <div class="guide-card">

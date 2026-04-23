@@ -347,7 +347,7 @@ function getToday() {
             tabStatus.setAttribute('aria-selected', 'true');
             if (panelStatus) panelStatus.classList.add('active');
             if (!statusLoaded) {
-                loadStatusCheckList();
+                loadReleasedStocksList();
                 statusLoaded = true;
             }
         }
@@ -365,10 +365,10 @@ function getToday() {
         });
     }
 
-    const refreshStatusBtn = document.getElementById('refreshStatusCheckBtn');
+    const refreshStatusBtn = document.getElementById('refreshReleasedBtn');
     if (refreshStatusBtn) {
         refreshStatusBtn.addEventListener('click', () => {
-            loadStatusCheckList();
+            loadReleasedStocksList();
         });
     }
 
@@ -387,7 +387,7 @@ function showWarningList() {
 
     // 분석 탭은 목록 개념이 다르므로 패널만 보임
     document.getElementById('warningsListWrap').classList.remove('hidden');
-    document.getElementById('statusCheckListWrap').classList.remove('hidden');
+    document.getElementById('releasedListWrap').classList.remove('hidden');
 
     document.getElementById('warningDetailPanel').classList.add('hidden');
 
@@ -397,7 +397,7 @@ function showWarningList() {
 function showWarningDetail() {
     // 모든 목록 영역 숨기기
     document.getElementById('warningsListWrap').classList.add('hidden');
-    document.getElementById('statusCheckListWrap').classList.add('hidden');
+    document.getElementById('releasedListWrap').classList.add('hidden');
 
     document.getElementById('warningDetailPanel').classList.remove('hidden');
     document.getElementById('warningDetailPanel').scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -470,49 +470,64 @@ async function loadWarningList() {
     }
 }
 
-// ── 해제 확인 이력 로딩 (3번째 탭) ────────────────────────
-async function loadStatusCheckList() {
-    const loadingBar = document.getElementById('statusCheckLoadingBar');
-    const emptyMsg = document.getElementById('statusCheckEmptyMsg');
-    const listWrap = document.getElementById('statusCheckListWrap');
-    const stockList = document.getElementById('statusCheckList');
-    const metaEl = document.getElementById('statusCheckMeta');
+// ── 해제된 종목 리스트 로딩 (3번째 탭) ──────────────────────────
+async function loadReleasedStocksList() {
+    const loadingBar = document.getElementById('releasedLoadingBar');
+    const emptyMsg = document.getElementById('releasedEmptyMsg');
+    const listWrap = document.getElementById('releasedListWrap');
+    const stockList = document.getElementById('releasedStockList');
+    const metaEl = document.getElementById('releasedMeta');
 
     loadingBar.classList.remove('hidden');
     listWrap.classList.add('hidden');
     emptyMsg.classList.add('hidden');
 
     try {
-        const res = await fetch('/api/warnings/status-check-history');
+        const res = await fetch('/api/warnings/list');
         const data = await res.json();
         loadingBar.classList.add('hidden');
 
-        if (!res.ok || !data.items || data.items.length === 0) {
+        if (!res.ok || !data.items) {
             emptyMsg.classList.remove('hidden');
             return;
         }
 
-        metaEl.textContent = `총 ${data.count}건`;
+        // 해제된 종목만 필터링
+        const releasedItems = data.items.filter(item => item.isReleased);
+
+        if (releasedItems.length === 0) {
+            emptyMsg.classList.remove('hidden');
+            return;
+        }
+
+        metaEl.textContent = `총 ${releasedItems.length}건 해제됨`;
+
         stockList.innerHTML = '';
-        data.items.forEach((h, idx) => {
-            const statusClz = h.status === 'released' ? 'released' : 'extended';
-            const statusLabel = h.status === 'released' ? '해제됨' : '연장됨';
+        releasedItems.forEach((w, idx) => {
+            const market = (w.market || '').toUpperCase();
+            const marketClz = market === 'KOSPI' ? 'kospi' : 'kosdaq';
+            const tradingDays = w.tradingDaysElapsed ?? 0;
 
             const li = document.createElement('li');
-            li.className = 'warnings-stock-item status-check-item';
+            li.className = 'warnings-stock-item';
             li.innerHTML = `
+                <span class="wsi-rank">${idx + 1}</span>
                 <div class="wsi-main">
-                    <span class="wsi-name">${escHtml(h.name)} <small>${escHtml(h.code)}</small></span>
+                    <span class="wsi-name">${escHtml(w.name)}</span>
                     <div class="wsi-sub">
-                         <span>지정 ${escHtml(h.designatedDate)} · 확인 ${escHtml(h.checkDate)}</span>
+                        <span class="wt-code">${escHtml(w.code)}</span>
+                        <span class="wt-market ${marketClz}">${market}</span>
+                        <span>지정일 ${escHtml(w.designatedDate)} · 해제일 ${escHtml(w.releasedCheckDate || '-')}</span>
                     </div>
                 </div>
-                <div class="wsi-status">
-                    <span class="status-badge ${statusClz}">${statusLabel}</span>
+                <div class="wsi-prices">
+                    <span class="wt-badge released" style="margin-bottom:4px;">해제완료</span>
+                    <span class="wsi-designated">${w.designatedPrice.toLocaleString()}원</span>
+                    <span class="wsi-release">해제기준 ${w.releaseMinPrice.toLocaleString()}원</span>
                 </div>
                 <i class="fa-solid fa-chevron-right wsi-arrow"></i>
             `;
-            li.addEventListener('click', () => openWarningDetail({ code: h.code, name: h.name }));
+            li.addEventListener('click', () => openWarningDetail(w));
             stockList.appendChild(li);
         });
 
@@ -520,7 +535,7 @@ async function loadStatusCheckList() {
     } catch (err) {
         loadingBar.classList.add('hidden');
         emptyMsg.classList.remove('hidden');
-        console.error('[Status Check Error]', err);
+        console.error('[Released List Error]', err);
     }
 }
 
