@@ -316,7 +316,9 @@
     "releaseType": "normal",
     "releaseMinPrice": 6880,
     "releaseDetail": "지정가 × 200% (일반형: T-5 60%↑, T-15 100%↑ 동시 불충족 시 해제)",
-    "addedAt": "2026-04-19T09:18:36.925Z"
+    "addedAt": "2026-04-19T09:18:36.925Z",
+    "isReleased": true,
+    "releasedCheckDate": "2026-04-25"
   },
   {
     "code": "040160",
@@ -355,7 +357,9 @@
     "releaseDetail": "지정가 × 200% (일반형: T-5 60%↑, T-15 100%↑ 동시 불충족 시 해제)",
     "addedAt": "2026-04-19T09:18:37.886Z",
     "isExtended": true,
-    "extendedCheckDate": "2026-04-23"
+    "extendedCheckDate": "2026-04-23",
+    "isReleased": true,
+    "releasedCheckDate": "2026-04-25"
   },
   {
     "code": "012205",
@@ -545,5 +549,38 @@
     "releaseMinPrice": 10740,
     "releaseDetail": "지정가 × 200% (일반형: T-5 60%↑, T-15 100%↑ 동시 불충족 시 해제)",
     "addedAt": "2026-04-23T13:56:15.404Z"
+  },
+  {
+    "code": "062970",
+    "name": "한국첨단소재",
+    "market": "KOSDAQ",
+    "designatedDate": "2026-04-24",
+    "designatedPrice": 2875,
+    "releaseType": "normal",
+    "releaseMinPrice": 5750,
+    "releaseDetail": "지정가 × 200% (일반형: T-5 60%↑, T-15 100%↑ 동시 불충족 시 해제)",
+    "addedAt": "2026-04-25T03:18:55.382Z"
+  },
+  {
+    "code": "100790",
+    "name": "미래에셋벤처투자",
+    "market": "KOSDAQ",
+    "designatedDate": "2026-04-24",
+    "designatedPrice": 62400,
+    "releaseType": "normal",
+    "releaseMinPrice": 124800,
+    "releaseDetail": "지정가 × 200% (일반형: T-5 60%↑, T-15 100%↑ 동시 불충족 시 해제)",
+    "addedAt": "2026-04-25T03:18:55.382Z"
+  },
+  {
+    "code": "131970",
+    "name": "두산테스나",
+    "market": "KOSDAQ",
+    "designatedDate": "2026-04-24",
+    "designatedPrice": 122400,
+    "releaseType": "normal",
+    "releaseMinPrice": 244800,
+    "releaseDetail": "지정가 × 200% (일반형: T-5 60%↑, T-15 100%↑ 동시 불충족 시 해제)",
+    "addedAt": "2026-04-25T03:18:55.382Z"
   }
 ]

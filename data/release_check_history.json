@@ -1,5 +1,21 @@
 [
   {
+    "checkDate": "2026-04-25",
+    "code": "138080",
+    "name": "오이솔루션",
+    "designatedDate": "2026-04-07",
+    "status": "released",
+    "msg": "투자경고 해제됨"
+  },
+  {
+    "checkDate": "2026-04-25",
+    "code": "065440",
+    "name": "이루온",
+    "designatedDate": "2026-04-10",
+    "status": "released",
+    "msg": "투자경고 해제됨"
+  },
+  {
     "checkDate": "2026-04-23",
     "code": "138080",
     "name": "오이솔루션",

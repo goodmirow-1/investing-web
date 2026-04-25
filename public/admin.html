@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Visitor Stats</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --bg: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+            background-image:
+                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%);
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        header {
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0;
+            background: linear-gradient(to right, #818cf8, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            transition: transform 0.2s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .data-section {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            overflow-x: auto;
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.875rem;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            background: rgba(99, 102, 241, 0.2);
+            color: #a5b4fc;
+        }
+
+        #last-updated {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 2rem;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>방문자 분석 대시보드</h1>
+            <p style="color: var(--text-muted);">실시간 웹사이트 트래픽 현황</p>
+        </header>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">총 페이지 조회수</div>
+                <div id="total-views" class="stat-value">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">고유 방문자 (IP)</div>
+                <div id="unique-visitors" class="stat-value">0</div>
+            </div>
+        </div>
+
+        <div class="data-section">
+            <h2>최근 방문자 로그</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>IP 주소</th>
+                        <th>방문 횟수</th>
+                        <th>최초 방문</th>
+                        <th>최근 방문</th>
+                    </tr>
+                </thead>
+                <tbody id="visitor-log">
+                    <!-- 데이터 로딩 중 -->
+                </tbody>
+            </table>
+        </div>
+
+        <div id="last-updated">마지막 업데이트: --</div>
+    </div>
+
+    <script>
+        async function fetchStats() {
+            try {
+                const response = await fetch('/api/admin/stats');
+                const data = await response.json();
+
+                document.getElementById('total-views').textContent = data.totalViews.toLocaleString();
+                document.getElementById('unique-visitors').textContent = data.uniqueIpCount.toLocaleString();
+                document.getElementById('last-updated').textContent = `마지막 업데이트: ${new Date(data.lastUpdate).toLocaleString()}`;
+
+                const logBody = document.getElementById('visitor-log');
+                logBody.innerHTML = '';
+
+                // IP별 내역을 최근 방문 순으로 정렬
+                const sortedVisitors = Object.entries(data.visitorDetails)
+                    .sort((a, b) => new Date(b[1].lastVisit) - new Date(a[1].lastVisit));
+
+                sortedVisitors.forEach(([ip, info]) => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td><span class="badge">${ip}</span></td>
+                        <td>${info.count}</td>
+                        <td>${new Date(info.firstVisit).toLocaleString()}</td>
+                        <td>${new Date(info.lastVisit).toLocaleString()}</td>
+                    `;
+                    logBody.appendChild(row);
+                });
+            } catch (error) {
+                console.error('Failed to fetch stats:', error);
+            }
+        }
+
+        // 초기 로드 및 30초마다 갱신
+        fetchStats();
+        setInterval(fetchStats, 30000);
+    </script>
+</body>
+
+</html>
