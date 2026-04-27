@@ -179,8 +179,8 @@ async function runDangerReleaseCheck() {
 /** 스케줄러 시작 */
 function startScheduler() {
     // 1. 매일 20:30 데이터 수집 (평일) - 투자경고 + 투자위험
-    cron.schedule('00 07 * * 1-5', runDailyCollection, { timezone: 'Asia/Seoul' });
-    cron.schedule('00 07 * * 1-5', runDangerDailyCollection, { timezone: 'Asia/Seoul' });
+    cron.schedule('35 08 * * 1-5', runDailyCollection, { timezone: 'Asia/Seoul' });
+    cron.schedule('35 08 * * 1-5', runDangerDailyCollection, { timezone: 'Asia/Seoul' });
 
     // 2. 매일 00:01 해제 여부 확인 (매일) - 투자경고 + 투자위험
     cron.schedule('01 00 * * *', runReleaseCheck, { timezone: 'Asia/Seoul' });
