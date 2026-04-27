@@ -46,28 +46,56 @@ const apiLimiter = rateLimit({
     message: { error: '요청이 너무 많습니다. 잠시 후 다시 시도해주세요.' }
 });
 
-// ── 방문자 추적 미들웨어 ─────────────────────────────────────
+const tracker = require('./src/warning_tracker');
 const statsFilePath = path.join(__dirname, 'data', 'visitor_stats.json');
-let stats = { totalViews: 0, uniqueIps: {}, lastUpdate: '' };
+let stats = { totalViews: 0, uniqueIps: {}, lastUpdate: '', dailyHistory: [], daily: {} };
 
 try {
     if (fs.existsSync(statsFilePath)) {
         stats = JSON.parse(fs.readFileSync(statsFilePath, 'utf8'));
+        if (!stats.dailyHistory) stats.dailyHistory = [];
+        if (!stats.daily) stats.daily = {};
     }
 } catch (e) {
     console.error('Failed to load visitor stats:', e);
 }
 
+// 00:01에 전날 데이터 스냅샷 저장
+const cron = require('node-cron');
+cron.schedule('01 00 * * *', () => {
+    try {
+        const d = new Date(new Date().getTime() + 9 * 60 * 60 * 1000 - 24 * 60 * 60 * 1000);
+        const yesterdayKST = `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}-${String(d.getUTCDate()).padStart(2, '0')}`;
+
+        if (stats.daily && stats.daily[yesterdayKST]) {
+            const exists = stats.dailyHistory.find(h => h.date === yesterdayKST);
+            if (!exists) {
+                stats.dailyHistory.push({
+                    date: yesterdayKST,
+                    views: stats.daily[yesterdayKST].views,
+                    uniqueIps: Object.keys(stats.daily[yesterdayKST].uniqueIps).length
+                });
+                delete stats.daily[yesterdayKST];
+                fs.writeFileSync(statsFilePath, JSON.stringify(stats, null, 2));
+                console.log(`[VisitorTracker] Daily snapshot for ${yesterdayKST} saved.`);
+            }
+        }
+    } catch (e) {
+        console.error('[VisitorTracker] Snapshot failed:', e);
+    }
+}, { timezone: 'Asia/Seoul' });
+
 const trackVisitor = (req, res, next) => {
     // 정적 파일이나 API 요청은 제외하고 페이지 접속만 카운트하고 싶을 수 있지만,
     // 여기서는 모든 요청을 카운트하되 중복 IP는 uniqueIps에서 체크합니다.
-    // 특정 경로만 추적하려면 조건을 걸 수 있습니다.
     const ip = req.ip || req.headers['x-forwarded-for'] || req.socket.remoteAddress;
 
     // 페이지 접속으로 간주되는 요청만 카운트 (HTML 요청 등)
     if (req.method === 'GET' && !req.url.startsWith('/api') && !req.url.includes('.')) {
         stats.totalViews++;
-        const today = new Date().toISOString().split('T')[0];
+
+        const d = new Date(new Date().getTime() + 9 * 60 * 60 * 1000);
+        const todayKST = `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}-${String(d.getUTCDate()).padStart(2, '0')}`;
 
         if (!stats.uniqueIps[ip]) {
             stats.uniqueIps[ip] = {
@@ -79,6 +107,12 @@ const trackVisitor = (req, res, next) => {
         stats.uniqueIps[ip].count++;
         stats.uniqueIps[ip].lastVisit = new Date().toISOString();
         stats.lastUpdate = new Date().toISOString();
+
+        if (!stats.daily[todayKST]) {
+            stats.daily[todayKST] = { views: 0, uniqueIps: {} };
+        }
+        stats.daily[todayKST].views++;
+        stats.daily[todayKST].uniqueIps[ip] = true;
 
         // 주기적으로 저장 (실시간 저장도 가능하지만 성능 고려)
         try {
@@ -422,9 +456,12 @@ app.get('/api/admin/stats', (req, res) => {
         totalViews: stats.totalViews,
         uniqueIpCount: uniqueIpCount,
         visitorDetails: stats.uniqueIps,
-        lastUpdate: stats.lastUpdate
+        lastUpdate: stats.lastUpdate,
+        dailyHistory: stats.dailyHistory || [],
+        daily: stats.daily || {}
     });
 });
+
 
 app.get('/admin', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'admin.html'));

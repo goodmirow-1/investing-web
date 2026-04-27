@@ -1,6 +1,54 @@
 [
   {
     "checkDate": "2026-04-27",
+    "code": "115440",
+    "name": "우리넷",
+    "designatedDate": "2026-04-15",
+    "status": "extended",
+    "msg": "투자경고 연장됨"
+  },
+  {
+    "checkDate": "2026-04-27",
+    "code": "073540",
+    "name": "에프알텍",
+    "designatedDate": "2026-04-15",
+    "status": "extended",
+    "msg": "투자경고 연장됨"
+  },
+  {
+    "checkDate": "2026-04-27",
+    "code": "072950",
+    "name": "빛샘전자",
+    "designatedDate": "2026-04-15",
+    "status": "extended",
+    "msg": "투자경고 연장됨"
+  },
+  {
+    "checkDate": "2026-04-27",
+    "code": "056360",
+    "name": "코위버",
+    "designatedDate": "2026-04-15",
+    "status": "extended",
+    "msg": "투자경고 연장됨"
+  },
+  {
+    "checkDate": "2026-04-27",
+    "code": "027040",
+    "name": "서울전자통신",
+    "designatedDate": "2026-04-15",
+    "status": "extended",
+    "msg": "투자경고 연장됨"
+  },
+  {
+    "checkDate": "2026-04-27",
+    "code": "008350",
+    "name": "남선알미늄",
+    "designatedDate": "2026-04-15",
+    "status": "extended",
+    "msg": "투자경고 연장됨"
+  },
+  {
+    "checkDate": "2026-04-27",
     "code": "304840",
     "name": "피플바이오",
     "designatedDate": "2026-04-14",

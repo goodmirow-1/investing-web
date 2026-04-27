@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - Visitor Stats</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
             --primary: #6366f1;
@@ -147,12 +148,27 @@
 
         <div class="stats-grid">
             <div class="stat-card">
+                <div class="stat-label">오늘 방문수</div>
+                <div id="today-views" class="stat-value">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">오늘 고유 방문자</div>
+                <div id="today-unique" class="stat-value">0</div>
+            </div>
+            <div class="stat-card">
                 <div class="stat-label">총 페이지 조회수</div>
                 <div id="total-views" class="stat-value">0</div>
             </div>
             <div class="stat-card">
-                <div class="stat-label">고유 방문자 (IP)</div>
+                <div class="stat-label">총 고유 방문자</div>
                 <div id="unique-visitors" class="stat-value">0</div>
+            </div>
+        </div>
+
+        <div class="data-section" style="margin-bottom: 2.5rem;">
+            <h2>일별 방문 추이</h2>
+            <div style="position: relative; height: 300px; width: 100%;">
+                <canvas id="dailyChart"></canvas>
             </div>
         </div>
 
@@ -184,6 +200,76 @@
 
                 document.getElementById('total-views').textContent = data.totalViews.toLocaleString();
                 document.getElementById('unique-visitors').textContent = data.uniqueIpCount.toLocaleString();
+                document.getElementById('last-updated').textContent = `마지막 업데이트: ${new Date(data.lastUpdate).toLocaleString()}`;
+
+                // 오늘 통계 (KST 기준)
+                const d = new Date(new Date().getTime() + 9 * 60 * 60 * 1000);
+                const todayKST = `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}-${String(d.getUTCDate()).padStart(2, '0')}`;
+
+                const todayData = (data.daily && data.daily[todayKST]) ? data.daily[todayKST] : { views: 0, uniqueIps: {} };
+                document.getElementById('today-views').textContent = todayData.views.toLocaleString();
+                document.getElementById('today-unique').textContent = Object.keys(todayData.uniqueIps).length.toLocaleString();
+
+                // 차트 렌더링
+                const ctx = document.getElementById('dailyChart').getContext('2d');
+                const history = [...(data.dailyHistory || [])];
+
+                // 오늘 데이터 추가 시각화
+                history.push({
+                    date: todayKST,
+                    views: todayData.views,
+                    uniqueIps: Object.keys(todayData.uniqueIps).length
+                });
+
+                const recentHistory = history.slice(-30); // 최근 30일
+                const labels = recentHistory.map(h => h.date.substring(5)); // MM-DD 포맷
+                const viewsData = recentHistory.map(h => h.views);
+                const uniqueData = recentHistory.map(h => h.uniqueIps);
+
+                if (window.myChart) {
+                    window.myChart.data.labels = labels;
+                    window.myChart.data.datasets[0].data = viewsData;
+                    window.myChart.data.datasets[1].data = uniqueData;
+                    window.myChart.update();
+                } else {
+                    Chart.defaults.color = '#94a3b8';
+                    Chart.defaults.font.family = "'Inter', sans-serif";
+
+                    window.myChart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: labels,
+                            datasets: [
+                                {
+                                    label: '조회수',
+                                    data: viewsData,
+                                    borderColor: '#818cf8',
+                                    backgroundColor: 'rgba(129, 140, 248, 0.2)',
+                                    tension: 0.3,
+                                    fill: true
+                                },
+                                {
+                                    label: '고유 방문자',
+                                    data: uniqueData,
+                                    borderColor: '#c084fc',
+                                    backgroundColor: 'transparent',
+                                    tension: 0.3,
+                                    borderDash: [5, 5]
+                                }
+                            ]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            interaction: { mode: 'index', intersect: false },
+                            scales: {
+                                y: { beginAtZero: true, grid: { color: 'rgba(255, 255, 255, 0.1)' } },
+                                x: { grid: { color: 'rgba(255, 255, 255, 0.05)' } }
+                            },
+                            plugins: { legend: { position: 'top' } }
+                        }
+                    });
+                }
                 document.getElementById('last-updated').textContent = `마지막 업데이트: ${new Date(data.lastUpdate).toLocaleString()}`;
 
                 const logBody = document.getElementById('visitor-log');

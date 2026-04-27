@@ -129,7 +129,10 @@
     "releaseType": "normal",
     "releaseMinPrice": 4500,
     "releaseDetail": "지정가 × 200% (일반형: T-5 60%↑, T-15 100%↑ 동시 불충족 시 해제)",
-    "addedAt": "2026-04-19T09:18:31.506Z"
+    "addedAt": "2026-04-19T09:18:31.506Z",
+    "isExtended": true,
+    "extendedCheckDate": "2026-04-27",
+    "firstExtendedDate": "2026-04-27"
   },
   {
     "code": "027040",
@@ -140,7 +143,10 @@
     "releaseType": "normal",
     "releaseMinPrice": 972,
     "releaseDetail": "지정가 × 200% (일반형: T-5 60%↑, T-15 100%↑ 동시 불충족 시 해제)",
-    "addedAt": "2026-04-19T09:18:31.822Z"
+    "addedAt": "2026-04-19T09:18:31.822Z",
+    "isExtended": true,
+    "extendedCheckDate": "2026-04-27",
+    "firstExtendedDate": "2026-04-27"
   },
   {
     "code": "056360",
@@ -151,7 +157,10 @@
     "releaseType": "normal",
     "releaseMinPrice": 19380,
     "releaseDetail": "지정가 × 200% (일반형: T-5 60%↑, T-15 100%↑ 동시 불충족 시 해제)",
-    "addedAt": "2026-04-19T09:18:32.141Z"
+    "addedAt": "2026-04-19T09:18:32.141Z",
+    "isExtended": true,
+    "extendedCheckDate": "2026-04-27",
+    "firstExtendedDate": "2026-04-27"
   },
   {
     "code": "072950",
@@ -162,7 +171,10 @@
     "releaseType": "normal",
     "releaseMinPrice": 27560,
     "releaseDetail": "지정가 × 200% (일반형: T-5 60%↑, T-15 100%↑ 동시 불충족 시 해제)",
-    "addedAt": "2026-04-19T09:18:32.456Z"
+    "addedAt": "2026-04-19T09:18:32.456Z",
+    "isExtended": true,
+    "extendedCheckDate": "2026-04-27",
+    "firstExtendedDate": "2026-04-27"
   },
   {
     "code": "073540",
@@ -173,7 +185,10 @@
     "releaseType": "normal",
     "releaseMinPrice": 9270,
     "releaseDetail": "지정가 × 200% (일반형: T-5 60%↑, T-15 100%↑ 동시 불충족 시 해제)",
-    "addedAt": "2026-04-19T09:18:32.778Z"
+    "addedAt": "2026-04-19T09:18:32.778Z",
+    "isExtended": true,
+    "extendedCheckDate": "2026-04-27",
+    "firstExtendedDate": "2026-04-27"
   },
   {
     "code": "115440",
@@ -184,7 +199,10 @@
     "releaseType": "normal",
     "releaseMinPrice": 29820,
     "releaseDetail": "지정가 × 200% (일반형: T-5 60%↑, T-15 100%↑ 동시 불충족 시 해제)",
-    "addedAt": "2026-04-19T09:18:33.099Z"
+    "addedAt": "2026-04-19T09:18:33.099Z",
+    "isExtended": true,
+    "extendedCheckDate": "2026-04-27",
+    "firstExtendedDate": "2026-04-27"
   },
   {
     "code": "020400",

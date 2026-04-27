@@ -1,6 +1,22 @@
 [
   {
     "checkDate": "2026-04-27",
+    "code": "215790",
+    "name": "이노인스트루먼트",
+    "designatedDate": "2026-04-15",
+    "status": "extended",
+    "msg": "투자위험 연장됨"
+  },
+  {
+    "checkDate": "2026-04-27",
+    "code": "069540",
+    "name": "빛과전자",
+    "designatedDate": "2026-04-15",
+    "status": "extended",
+    "msg": "투자위험 연장됨"
+  },
+  {
+    "checkDate": "2026-04-27",
     "code": "017900",
     "name": "광전자",
     "designatedDate": "2026-04-14",

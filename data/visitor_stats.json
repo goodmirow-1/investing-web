@@ -1,11 +1,20 @@
 {
-  "totalViews": 17,
+  "totalViews": 18,
   "uniqueIps": {
     "::1": {
-      "count": 17,
+      "count": 18,
       "firstVisit": "2026-04-25T03:18:43.616Z",
-      "lastVisit": "2026-04-27T14:14:31.452Z"
+      "lastVisit": "2026-04-27T20:16:10.488Z"
     }
   },
-  "lastUpdate": "2026-04-27T14:14:31.452Z"
+  "lastUpdate": "2026-04-27T20:16:10.488Z",
+  "dailyHistory": [],
+  "daily": {
+    "2026-04-28": {
+      "views": 1,
+      "uniqueIps": {
+        "::1": true
+      }
+    }
+  }
 }
