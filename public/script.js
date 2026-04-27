@@ -307,28 +307,30 @@ function getToday() {
     const tabAnalyzer = document.getElementById('tab-analyzer');
     const tabWarnings = document.getElementById('tab-warnings');
     const tabStatus = document.getElementById('tab-status-check');
+    const tabDangers = document.getElementById('tab-dangers');
+    const tabDangerCheck = document.getElementById('tab-danger-check');
 
     const panelAnalyzer = document.getElementById('tab-panel-analyzer');
     const panelWarnings = document.getElementById('tab-panel-warnings');
     const panelStatus = document.getElementById('tab-panel-status-check');
+    const panelDangers = document.getElementById('tab-panel-dangers');
+    const panelDangerCheck = document.getElementById('tab-panel-danger-check');
 
     if (!tabAnalyzer || !tabWarnings || !tabStatus) return;
 
     let warningsLoaded = false;
     let statusLoaded = false;
+    let dangersLoaded = false;
+    let dangerCheckLoaded = false;
     let activeTab = 'analyzer';
+
+    const allTabs = [tabAnalyzer, tabWarnings, tabStatus, tabDangers, tabDangerCheck].filter(Boolean);
+    const allPanels = [panelAnalyzer, panelWarnings, panelStatus, panelDangers, panelDangerCheck].filter(Boolean);
 
     function switchTab(active) {
         activeTab = active;
-        // 탭 버튼 상태 업데이트
-        [tabAnalyzer, tabWarnings, tabStatus].forEach(t => {
-            t.classList.remove('active');
-            t.setAttribute('aria-selected', 'false');
-        });
-        // 패널 상태 업데이트 (null 체크)
-        [panelAnalyzer, panelWarnings, panelStatus].forEach(p => {
-            if (p) p.classList.remove('active');
-        });
+        allTabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected', 'false'); });
+        allPanels.forEach(p => { if (p) p.classList.remove('active'); });
 
         if (active === 'analyzer') {
             tabAnalyzer.classList.add('active');
@@ -338,18 +340,20 @@ function getToday() {
             tabWarnings.classList.add('active');
             tabWarnings.setAttribute('aria-selected', 'true');
             if (panelWarnings) panelWarnings.classList.add('active');
-            if (!warningsLoaded) {
-                loadWarningList();
-                warningsLoaded = true;
-            }
+            if (!warningsLoaded) { loadWarningList(); warningsLoaded = true; }
         } else if (active === 'status') {
             tabStatus.classList.add('active');
             tabStatus.setAttribute('aria-selected', 'true');
             if (panelStatus) panelStatus.classList.add('active');
-            if (!statusLoaded) {
-                loadReleasedStocksList();
-                statusLoaded = true;
-            }
+            if (!statusLoaded) { loadReleasedStocksList(); statusLoaded = true; }
+        } else if (active === 'dangers') {
+            if (tabDangers) { tabDangers.classList.add('active'); tabDangers.setAttribute('aria-selected', 'true'); }
+            if (panelDangers) panelDangers.classList.add('active');
+            if (!dangersLoaded) { loadDangerList(); dangersLoaded = true; }
+        } else if (active === 'dangerCheck') {
+            if (tabDangerCheck) { tabDangerCheck.classList.add('active'); tabDangerCheck.setAttribute('aria-selected', 'true'); }
+            if (panelDangerCheck) panelDangerCheck.classList.add('active');
+            if (!dangerCheckLoaded) { loadReleasedDangerList(); dangerCheckLoaded = true; }
         }
         showWarningList(); // 다른 탭으로 갈 때 상세 페이지가 열려있으면 닫기
     }
@@ -357,25 +361,23 @@ function getToday() {
     tabAnalyzer.addEventListener('click', () => switchTab('analyzer'));
     tabWarnings.addEventListener('click', () => switchTab('warnings'));
     tabStatus.addEventListener('click', () => switchTab('status'));
+    if (tabDangers) tabDangers.addEventListener('click', () => switchTab('dangers'));
+    if (tabDangerCheck) tabDangerCheck.addEventListener('click', () => switchTab('dangerCheck'));
 
     const refreshBtn = document.getElementById('refreshWarningsBtn');
-    if (refreshBtn) {
-        refreshBtn.addEventListener('click', () => {
-            loadWarningList();
-        });
-    }
+    if (refreshBtn) refreshBtn.addEventListener('click', () => { loadWarningList(); });
 
     const refreshStatusBtn = document.getElementById('refreshReleasedBtn');
-    if (refreshStatusBtn) {
-        refreshStatusBtn.addEventListener('click', () => {
-            loadReleasedStocksList();
-        });
-    }
+    if (refreshStatusBtn) refreshStatusBtn.addEventListener('click', () => { loadReleasedStocksList(); });
+
+    const refreshDangersBtn = document.getElementById('refreshDangersBtn');
+    if (refreshDangersBtn) refreshDangersBtn.addEventListener('click', () => { loadDangerList(); dangersLoaded = true; });
+
+    const refreshReleasedDangersBtn = document.getElementById('refreshReleasedDangersBtn');
+    if (refreshReleasedDangersBtn) refreshReleasedDangersBtn.addEventListener('click', () => { loadReleasedDangerList(); dangerCheckLoaded = true; });
 
     const backBtn = document.getElementById('detailBackBtn');
-    if (backBtn) {
-        backBtn.addEventListener('click', () => showWarningList());
-    }
+    if (backBtn) backBtn.addEventListener('click', () => showWarningList());
 
     // 전역 헬퍼로 노출 (탭에 따른 목록 제어용)
     window.getCurrentActiveTab = () => activeTab;
@@ -383,21 +385,27 @@ function getToday() {
 
 // 화면 전환 헬퍼
 function showWarningList() {
-    const active = window.getCurrentActiveTab ? window.getCurrentActiveTab() : 'analyzer';
+    const listWrap = document.getElementById('warningsListWrap');
+    const relListWrap = document.getElementById('releasedListWrap');
+    const dangersListWrap = document.getElementById('dangersListWrap');
+    const relDangersListWrap = document.getElementById('releasedDangersListWrap');
 
-    // 분석 탭은 목록 개념이 다르므로 패널만 보임
-    document.getElementById('warningsListWrap').classList.remove('hidden');
-    document.getElementById('releasedListWrap').classList.remove('hidden');
+    if (listWrap) listWrap.classList.remove('hidden');
+    if (relListWrap) relListWrap.classList.remove('hidden');
+    if (dangersListWrap) dangersListWrap.classList.remove('hidden');
+    if (relDangersListWrap) relDangersListWrap.classList.remove('hidden');
 
     document.getElementById('warningDetailPanel').classList.add('hidden');
-
-    // 현재 활성화된 탭의 목록 래퍼를 적절히 표시 (단순화: 탭 전환 시 이미 패널이 바뀌므로 Detail만 닫으면 됨)
 }
 
 function showWarningDetail() {
-    // 모든 목록 영역 숨기기
+    const dangersListWrap = document.getElementById('dangersListWrap');
+    const relDangersListWrap = document.getElementById('releasedDangersListWrap');
+
     document.getElementById('warningsListWrap').classList.add('hidden');
     document.getElementById('releasedListWrap').classList.add('hidden');
+    if (dangersListWrap) dangersListWrap.classList.add('hidden');
+    if (relDangersListWrap) relDangersListWrap.classList.add('hidden');
 
     document.getElementById('warningDetailPanel').classList.remove('hidden');
     document.getElementById('warningDetailPanel').scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -420,21 +428,24 @@ async function loadWarningList() {
         const data = await res.json();
         loadingBar.classList.add('hidden');
 
-        if (!res.ok || !data.items || data.items.length === 0) {
+        // 해제되지 않은 종목만 필터링
+        const activeItems = data.items.filter(item => !item.isReleased);
+
+        if (!res.ok || activeItems.length === 0) {
             emptyMsg.classList.remove('hidden');
             return;
         }
 
         const grouped = {};
-        data.items.forEach(w => {
+        activeItems.forEach(w => {
             if (!grouped[w.designatedDate]) grouped[w.designatedDate] = 0;
             grouped[w.designatedDate]++;
         });
         const dates = Object.keys(grouped).sort().reverse();
-        metaEl.textContent = `총 ${data.count}건 | 최근 지정일: ${dates[0] || '-'} (${grouped[dates[0]] || 0}개 종목)`;
+        metaEl.textContent = `총 ${activeItems.length}건 | 최근 지정일: ${dates[0] || '-'} (${grouped[dates[0]] || 0}개 종목)`;
 
         stockList.innerHTML = '';
-        data.items.forEach((w, idx) => {
+        activeItems.forEach((w, idx) => {
             const market = (w.market || '').toUpperCase();
             const marketClz = market === 'KOSPI' ? 'kospi' : 'kosdaq';
             const tradingDays = w.tradingDaysElapsed ?? 0;
@@ -453,6 +464,7 @@ async function loadWarningList() {
                 </div>
                 <div class="wsi-prices">
                     ${w.isReleased ? `<span class="wt-badge released" style="margin-bottom:4px;">해제됨</span>` : ''}
+                    ${w.isExtended && w.extensionDays > 0 ? `<span class="wt-badge extension" style="margin-bottom:4px; background:var(--warning-color); color:#fff; padding:2px 6px; border-radius:4px; font-size:0.75rem;">${w.extensionDays}일 연장됨</span>` : ''}
                     <span class="wsi-designated">${w.designatedPrice.toLocaleString()}원</span>
                     <span class="wsi-release">해제기준 ${w.releaseMinPrice.toLocaleString()}원</span>
                 </div>
@@ -539,6 +551,289 @@ async function loadReleasedStocksList() {
     }
 }
 
+// ── 투자위험 목록 로딩 & 렌더링 (4번째 탭) ──────────────────────────
+async function loadDangerList() {
+    const loadingBar = document.getElementById('dangersLoadingBar');
+    const emptyMsg = document.getElementById('dangersEmptyMsg');
+    const listWrap = document.getElementById('dangersListWrap');
+    const stockList = document.getElementById('dangersStockList');
+    const metaEl = document.getElementById('dangersMeta');
+
+    loadingBar.classList.remove('hidden');
+    listWrap.classList.add('hidden');
+    emptyMsg.classList.add('hidden');
+
+    try {
+        const res = await fetch('/api/dangers/list');
+        const data = await res.json();
+        loadingBar.classList.add('hidden');
+
+        // 해제되지 않은 종목만 필터링
+        const activeItems = data.items ? data.items.filter(item => !item.isReleased) : [];
+
+        if (!res.ok || activeItems.length === 0) {
+            emptyMsg.classList.remove('hidden');
+            return;
+        }
+
+        const grouped = {};
+        activeItems.forEach(d => {
+            if (!grouped[d.designatedDate]) grouped[d.designatedDate] = 0;
+            grouped[d.designatedDate]++;
+        });
+        const dates = Object.keys(grouped).sort().reverse();
+        metaEl.textContent = `총 ${activeItems.length}건 | 최근 지정일: ${dates[0] || '-'} (${grouped[dates[0]] || 0}개 종목)`;
+
+        stockList.innerHTML = '';
+        activeItems.forEach((d, idx) => {
+            const market = (d.market || '').toUpperCase();
+            const marketClz = market === 'KOSPI' ? 'kospi' : 'kosdaq';
+            const tradingDays = d.tradingDaysElapsed ?? 0;
+
+            const li = document.createElement('li');
+            li.className = 'warnings-stock-item';
+            li.innerHTML = `
+                <span class="wsi-rank">${idx + 1}</span>
+                <div class="wsi-main">
+                    <span class="wsi-name">${escHtml(d.name)}</span>
+                    <div class="wsi-sub">
+                        <span class="wt-code">${escHtml(d.code)}</span>
+                        <span class="wt-market ${marketClz}">${market}</span>
+                        <span>지정일 ${escHtml(d.designatedDate)} · D+${tradingDays}</span>
+                    </div>
+                </div>
+                <div class="wsi-prices">
+                    ${d.isExtended && d.extensionDays > 0 ? `<span class="wt-badge extension" style="margin-bottom:4px; background:var(--warning-color); color:#fff; padding:2px 6px; border-radius:4px; font-size:0.75rem;">${d.extensionDays}일 연장됨</span>` : ''}
+                    <span class="wsi-designated">${d.designatedPrice.toLocaleString()}원</span>
+                    <span class="wsi-release">해제기준 ${d.releaseMinPrice.toLocaleString()}원</span>
+                </div>
+                <i class="fa-solid fa-chevron-right wsi-arrow"></i>
+            `;
+            li.addEventListener('click', () => openDangerDetail(d));
+            stockList.appendChild(li);
+        });
+
+        listWrap.classList.remove('hidden');
+    } catch (err) {
+        loadingBar.classList.add('hidden');
+        emptyMsg.classList.remove('hidden');
+        console.error('[Danger List Error]', err);
+    }
+}
+
+// ── 투자위험 해제 종목 리스트 로딩 (5번째 탭) ──────────────────────────
+async function loadReleasedDangerList() {
+    const loadingBar = document.getElementById('releasedDangersLoadingBar');
+    const emptyMsg = document.getElementById('releasedDangersEmptyMsg');
+    const listWrap = document.getElementById('releasedDangersListWrap');
+    const stockList = document.getElementById('releasedDangersStockList');
+    const metaEl = document.getElementById('releasedDangersMeta');
+
+    loadingBar.classList.remove('hidden');
+    listWrap.classList.add('hidden');
+    emptyMsg.classList.add('hidden');
+
+    try {
+        const res = await fetch('/api/dangers/list');
+        const data = await res.json();
+        loadingBar.classList.add('hidden');
+
+        if (!res.ok || !data.items) {
+            emptyMsg.classList.remove('hidden');
+            return;
+        }
+
+        // 해제된 종목만 필터링
+        const releasedItems = data.items.filter(item => item.isReleased);
+
+        if (releasedItems.length === 0) {
+            emptyMsg.classList.remove('hidden');
+            return;
+        }
+
+        metaEl.textContent = `총 ${releasedItems.length}건 해제됨`;
+
+        stockList.innerHTML = '';
+        releasedItems.forEach((d, idx) => {
+            const market = (d.market || '').toUpperCase();
+            const marketClz = market === 'KOSPI' ? 'kospi' : 'kosdaq';
+
+            const li = document.createElement('li');
+            li.className = 'warnings-stock-item';
+            li.innerHTML = `
+                <span class="wsi-rank">${idx + 1}</span>
+                <div class="wsi-main">
+                    <span class="wsi-name">${escHtml(d.name)}</span>
+                    <div class="wsi-sub">
+                        <span class="wt-code">${escHtml(d.code)}</span>
+                        <span class="wt-market ${marketClz}">${market}</span>
+                        <span>지정일 ${escHtml(d.designatedDate)} · 해제일 ${escHtml(d.releasedCheckDate || '-')}</span>
+                    </div>
+                </div>
+                <div class="wsi-prices">
+                    <span class="wt-badge released" style="margin-bottom:4px;">해제완료</span>
+                    <span class="wsi-designated">${d.designatedPrice.toLocaleString()}원</span>
+                    <span class="wsi-release">해제기준 ${d.releaseMinPrice.toLocaleString()}원</span>
+                </div>
+                <i class="fa-solid fa-chevron-right wsi-arrow"></i>
+            `;
+            li.addEventListener('click', () => openDangerDetail(d));
+            stockList.appendChild(li);
+        });
+
+        listWrap.classList.remove('hidden');
+    } catch (err) {
+        loadingBar.classList.add('hidden');
+        emptyMsg.classList.remove('hidden');
+        console.error('[Released Danger List Error]', err);
+    }
+}
+
+// ── 투자위험 종목 상세 패널 열기 (공통 detail panel 재사용, /api/dangers/:code 호출) ──
+async function openDangerDetail(stockBase) {
+    showWarningDetail();
+
+    document.getElementById('detailStockName').textContent = stockBase.name;
+    document.getElementById('detailStockCode').textContent = stockBase.code;
+
+    try {
+        const res = await fetch(`/api/dangers/${stockBase.code}`);
+        const data = await res.json();
+
+        if (!res.ok) throw new Error(data.error);
+
+        const d = data.items[0];
+        const analysis = data.analysis || {};
+
+        const marketBadge = document.getElementById('detailMarketBadge');
+        const mkt = (d.market || '').toUpperCase();
+        marketBadge.textContent = mkt;
+        marketBadge.className = `wt-market ${mkt === 'KOSPI' ? 'kospi' : 'kosdaq'}`;
+
+        document.getElementById('detailDesignatedDate').textContent = d.designatedDate;
+        document.getElementById('detailDesignatedPrice').textContent = d.designatedPrice.toLocaleString() + '원';
+        document.getElementById('detailReleasePrice').textContent = d.releaseMinPrice.toLocaleString() + '원';
+
+        const tradingDays = data.tradingDaysElapsed ?? 0;
+
+        const extendedNote = document.getElementById('extendedWarningNote');
+        if (analysis.isExtended && analysis.extensionDays > 0) {
+            extendedNote.innerHTML = `
+                <div class="extended-alert">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <div>
+                        <strong>투자위험 지정 연장됨 (${analysis.extensionDays}일째)</strong>
+                        <p>해제 요건일(${analysis.firstExtendedDate})에 요건을 충족하지 못해 지정이 연장되었습니다.</p>
+                    </div>
+                </div>
+            `;
+            extendedNote.classList.remove('hidden');
+        } else {
+            extendedNote.classList.add('hidden');
+        }
+
+        renderReleaseConditions(d);
+
+        const releaseStatCard = document.getElementById('detailDaysElapsed').parentElement;
+        if (d.isReleased) {
+            document.getElementById('detailDaysElapsed').innerHTML = `<span style="color:var(--success-color)">해제됨 (${d.releasedCheckDate})</span>`;
+            releaseStatCard.classList.add('release');
+        } else {
+            document.getElementById('detailDaysElapsed').textContent = `D+${tradingDays}일 (영업일 기준 ${tradingDays}일 경과)`;
+            releaseStatCard.classList.remove('release');
+        }
+
+        // 차트: /api/dangers/:code/chart 사용
+        await loadDangerPriceChart(d);
+
+    } catch (err) {
+        console.error('[Danger Detail Panel Error]', err);
+    }
+}
+
+async function loadDangerPriceChart(d) {
+    const chartLoading = document.getElementById('detailChartLoading');
+    const canvas = document.getElementById('warningPriceChart');
+    chartLoading.classList.remove('hidden');
+    canvas.style.display = 'none';
+
+    if (warningChartInstance) {
+        warningChartInstance.destroy();
+        warningChartInstance = null;
+    }
+
+    try {
+        const res = await fetch(`/api/dangers/${d.code}/chart`);
+        const data = await res.json();
+        chartLoading.classList.add('hidden');
+        canvas.style.display = '';
+
+        if (!data.prices || data.prices.length === 0) {
+            chartLoading.textContent = '차트 데이터 없음';
+            chartLoading.classList.remove('hidden');
+            canvas.style.display = 'none';
+            return;
+        }
+
+        const designatedYMD = d.designatedDate.replace(/-/g, '');
+        const filtered = data.prices.filter(p => p.date >= designatedYMD);
+        const chartData = filtered.length > 0 ? filtered : data.prices.slice(-30);
+
+        const labels = chartData.map(p => `${p.date.slice(0, 4)}-${p.date.slice(4, 6)}-${p.date.slice(6, 8)}`);
+        const closes = chartData.map(p => p.close);
+
+        document.getElementById('detailChartRange').textContent = `${labels[0]} ~ ${labels[labels.length - 1]} (${labels.length}거래일)`;
+
+        warningChartInstance = new Chart(canvas, {
+            type: 'line',
+            data: {
+                labels,
+                datasets: [{
+                    label: '종가',
+                    data: closes,
+                    borderColor: '#f85149',
+                    backgroundColor: 'rgba(248, 81, 73, .1)',
+                    borderWidth: 2,
+                    tension: 0.2,
+                    fill: true,
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false },
+                    annotation: {
+                        annotations: {
+                            designatedLine: {
+                                type: 'line',
+                                yMin: d.designatedPrice,
+                                yMax: d.designatedPrice,
+                                borderColor: 'rgba(210, 153, 34, 0.7)',
+                                borderDash: [5, 5],
+                                label: { display: true, content: '지정가', position: 'end' }
+                            },
+                            releaseLine: {
+                                type: 'line',
+                                yMin: d.releaseMinPrice,
+                                yMax: d.releaseMinPrice,
+                                borderColor: 'rgba(248, 81, 73, 0.7)',
+                                borderDash: [5, 5],
+                                label: { display: true, content: '해제기준', position: 'end' }
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: { ticks: { callback: v => v.toLocaleString() } }
+                }
+            }
+        });
+    } catch (err) {
+        chartLoading.textContent = '차트 로드 실패';
+        console.error(err);
+    }
+}
+
 // ── 종목 상세 패널 열기 ────────────────────────────────────
 let warningChartInstance = null;
 
@@ -571,15 +866,15 @@ async function openWarningDetail(stockBase) {
         const tradingDays = data.tradingDaysElapsed ?? Math.floor((new Date() - new Date(w.designatedDate)) / (1000 * 60 * 60 * 24));
         document.getElementById('detailDaysElapsed').textContent = `D+${tradingDays}일 (영업일 기준 ${tradingDays}일 경과)`;
 
-        // 투자경고 연장 알림 (신규)
+        // 투자경고 연장 알림
         const extendedNote = document.getElementById('extendedWarningNote');
-        if (analysis.isExtended) {
+        if (analysis.isExtended && analysis.extensionDays > 0) {
             extendedNote.innerHTML = `
                 <div class="extended-alert">
                     <i class="fa-solid fa-triangle-exclamation"></i>
                     <div>
-                        <strong>투자경고 지정 연장됨</strong>
-                        <p>해제 요건일(${analysis.extendedCheckDate})에 요건을 충족하지 못해 지정이 연장되었습니다.</p>
+                        <strong>투자경고 지정 연장됨 (${analysis.extensionDays}일째)</strong>
+                        <p>해제 요건일(${analysis.firstExtendedDate})에 요건을 충족하지 못해 지정이 연장되었습니다. (현재 ${analysis.extensionDays}영업일 경과)</p>
                     </div>
                 </div>
             `;

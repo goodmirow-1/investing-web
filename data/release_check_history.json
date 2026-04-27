@@ -1,5 +1,93 @@
 [
   {
+    "checkDate": "2026-04-27",
+    "code": "304840",
+    "name": "피플바이오",
+    "designatedDate": "2026-04-14",
+    "status": "extended",
+    "msg": "투자경고 연장됨"
+  },
+  {
+    "checkDate": "2026-04-27",
+    "code": "288980",
+    "name": "모아데이타",
+    "designatedDate": "2026-04-14",
+    "status": "extended",
+    "msg": "투자경고 연장됨"
+  },
+  {
+    "checkDate": "2026-04-27",
+    "code": "153460",
+    "name": "네이블",
+    "designatedDate": "2026-04-14",
+    "status": "extended",
+    "msg": "투자경고 연장됨"
+  },
+  {
+    "checkDate": "2026-04-27",
+    "code": "100590",
+    "name": "머큐리",
+    "designatedDate": "2026-04-14",
+    "status": "extended",
+    "msg": "투자경고 연장됨"
+  },
+  {
+    "checkDate": "2026-04-27",
+    "code": "065530",
+    "name": "와이어블",
+    "designatedDate": "2026-04-14",
+    "status": "extended",
+    "msg": "투자경고 연장됨"
+  },
+  {
+    "checkDate": "2026-04-27",
+    "code": "035460",
+    "name": "기산텔레콤",
+    "designatedDate": "2026-04-14",
+    "status": "extended",
+    "msg": "투자경고 연장됨"
+  },
+  {
+    "checkDate": "2026-04-27",
+    "code": "020400",
+    "name": "대동금속",
+    "designatedDate": "2026-04-14",
+    "status": "extended",
+    "msg": "투자경고 연장됨"
+  },
+  {
+    "checkDate": "2026-04-27",
+    "code": "092600",
+    "name": "앤씨앤",
+    "designatedDate": "2026-04-13",
+    "status": "extended",
+    "msg": "투자경고 연장됨"
+  },
+  {
+    "checkDate": "2026-04-27",
+    "code": "033790",
+    "name": "피노",
+    "designatedDate": "2026-04-13",
+    "status": "extended",
+    "msg": "투자경고 연장됨"
+  },
+  {
+    "checkDate": "2026-04-27",
+    "code": "010170",
+    "name": "대한광통신",
+    "designatedDate": "2026-04-13",
+    "status": "released",
+    "msg": "투자경고 해제됨"
+  },
+  {
+    "checkDate": "2026-04-27",
+    "code": "009415",
+    "name": "태영건설우",
+    "designatedDate": "2026-04-13",
+    "status": "extended",
+    "msg": "투자경고 연장됨"
+  },
+  {
     "checkDate": "2026-04-25",
     "code": "138080",
     "name": "오이솔루션",

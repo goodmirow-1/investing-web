@@ -82,6 +82,14 @@
                     aria-controls="tab-panel-status-check">
                     <i class="fa-solid fa-clipboard-check"></i> 해제 여부 확인 (D+10)
                 </button>
+                <button id="tab-dangers" class="tab-btn" role="tab" aria-selected="false"
+                    aria-controls="tab-panel-dangers">
+                    <i class="fa-solid fa-skull-crossbones"></i> 투자위험 수집
+                </button>
+                <button id="tab-danger-check" class="tab-btn" role="tab" aria-selected="false"
+                    aria-controls="tab-panel-danger-check">
+                    <i class="fa-solid fa-shield-virus"></i> 투자위험 해제
+                </button>
             </nav>
 
             <!-- ★ 탭 패널 1: 종목 분석 -->
@@ -378,6 +386,64 @@
                     </div>
                 </section>
             </div><!-- /tab-panel-status-check -->
+
+            <!-- ★ 탭 패널 4: 투자위험 수집 -->
+            <div id="tab-panel-dangers" class="tab-panel">
+                <section class="warnings-section">
+                    <div class="warnings-header">
+                        <div>
+                            <h2><i class="fa-solid fa-skull-crossbones"></i> 투자위험 종목 수집</h2>
+                            <p class="warnings-desc">투자위험으로 지정된 종목의 목록입니다. 종목을 클릭하면 지정일부터의 주가 추이와 해제 조건을 확인할 수 있습니다.</p>
+                        </div>
+                        <button id="refreshDangersBtn" class="refresh-btn">
+                            <i class="fa-solid fa-rotate-right"></i> 새로고침
+                        </button>
+                    </div>
+
+                    <div id="dangersLoadingBar" class="loading-bar hidden">
+                        <div class="loading-bar-inner"></div>
+                    </div>
+
+                    <div id="dangersEmptyMsg" class="warnings-empty hidden">
+                        <i class="fa-solid fa-inbox"></i>
+                        <p>아직 수집된 투자위험 종목이 없습니다.<br>평일 오후 8시 30분에 자동으로 수집됩니다.</p>
+                    </div>
+
+                    <div id="dangersListWrap" class="hidden">
+                        <div class="warnings-meta" id="dangersMeta"></div>
+                        <ul id="dangersStockList" class="warnings-stock-list"></ul>
+                    </div>
+                </section>
+            </div><!-- /tab-panel-dangers -->
+
+            <!-- ★ 탭 패널 5: 투자위험 해제 -->
+            <div id="tab-panel-danger-check" class="tab-panel">
+                <section class="warnings-section">
+                    <div class="warnings-header">
+                        <div>
+                            <h2><i class="fa-solid fa-shield-virus"></i> 투자위험 해제 확인</h2>
+                            <p class="warnings-desc">투자위험 지정 이후 해제 요건을 충족하여 해제된 종목들의 명단입니다.</p>
+                        </div>
+                        <button id="refreshReleasedDangersBtn" class="refresh-btn">
+                            <i class="fa-solid fa-rotate-right"></i> 새로고침
+                        </button>
+                    </div>
+
+                    <div id="releasedDangersLoadingBar" class="loading-bar hidden">
+                        <div class="loading-bar-inner"></div>
+                    </div>
+
+                    <div id="releasedDangersEmptyMsg" class="warnings-empty hidden">
+                        <i class="fa-solid fa-inbox"></i>
+                        <p>현재 해제된 투자위험 종목이 없습니다.</p>
+                    </div>
+
+                    <div id="releasedDangersListWrap" class="hidden">
+                        <div class="warnings-meta" id="releasedDangersMeta"></div>
+                        <ul id="releasedDangersStockList" class="warnings-stock-list"></ul>
+                    </div>
+                </section>
+            </div><!-- /tab-panel-danger-check -->
 
             <!-- ★ 상세 패널 (공통 - 클릭 시 표시) -->
             <div id="warningDetailPanel" class="warning-detail-panel hidden">

@@ -105,12 +105,11 @@ function countTradingDays(fromDate, toDate) {
     const start = typeof fromDate === 'string' ? new Date(fromDate + 'T00:00:00') : new Date(fromDate);
     const end = typeof toDate === 'string' ? new Date(toDate + 'T00:00:00') : new Date(toDate);
 
-    // 시작일이 종료일보다 이후면 음수 반환
-    if (start >= end) return 0;
+    // 시작일이 종료일보다 이후면 0 반환
+    if (start > end) return 0;
 
     let count = 0;
     const current = new Date(start);
-    current.setDate(current.getDate() + 1); // 지정일 다음날부터 카운트 시작
 
     while (current <= end) {
         if (!isHoliday(current)) {

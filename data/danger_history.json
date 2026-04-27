@@ -1,0 +1,60 @@
+[
+  {
+    "code": "046970",
+    "name": "우리로",
+    "market": "KOSDAQ",
+    "designatedDate": "2026-04-17",
+    "designatedPrice": 9560,
+    "releaseType": "normal",
+    "releaseMinPrice": 19120,
+    "releaseDetail": "지정가 × 200% (일반형: T-5 60%↑, T-15 100%↑ 동시 불충족 시 해제)",
+    "addedAt": "2026-04-27T14:14:51.301Z"
+  },
+  {
+    "code": "388790",
+    "name": "라이콤",
+    "market": "KOSDAQ",
+    "designatedDate": "2026-04-16",
+    "designatedPrice": 5560,
+    "releaseType": "normal",
+    "releaseMinPrice": 11120,
+    "releaseDetail": "지정가 × 200% (일반형: T-5 60%↑, T-15 100%↑ 동시 불충족 시 해제)",
+    "addedAt": "2026-04-27T14:14:51.301Z"
+  },
+  {
+    "code": "069540",
+    "name": "빛과전자",
+    "market": "KOSDAQ",
+    "designatedDate": "2026-04-15",
+    "designatedPrice": 5580,
+    "releaseType": "normal",
+    "releaseMinPrice": 11160,
+    "releaseDetail": "지정가 × 200% (일반형: T-5 60%↑, T-15 100%↑ 동시 불충족 시 해제)",
+    "addedAt": "2026-04-27T14:14:51.301Z"
+  },
+  {
+    "code": "215790",
+    "name": "이노인스트루먼트",
+    "market": "KOSDAQ",
+    "designatedDate": "2026-04-15",
+    "designatedPrice": 2255,
+    "releaseType": "normal",
+    "releaseMinPrice": 4510,
+    "releaseDetail": "지정가 × 200% (일반형: T-5 60%↑, T-15 100%↑ 동시 불충족 시 해제)",
+    "addedAt": "2026-04-27T14:14:51.301Z"
+  },
+  {
+    "code": "017900",
+    "name": "광전자",
+    "market": "KOSPI",
+    "designatedDate": "2026-04-14",
+    "designatedPrice": 11750,
+    "releaseType": "normal",
+    "releaseMinPrice": 23500,
+    "releaseDetail": "지정가 × 200% (일반형: T-5 60%↑, T-15 100%↑ 동시 불충족 시 해제)",
+    "addedAt": "2026-04-27T14:14:51.301Z",
+    "isExtended": true,
+    "extendedCheckDate": "2026-04-27",
+    "firstExtendedDate": "2026-04-27"
+  }
+]

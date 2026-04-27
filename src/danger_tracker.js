@@ -1,13 +1,14 @@
 /**
- * warning_tracker.js
- * 투자경고 종목 지정/해제 조건 추적 모듈
+ * danger_tracker.js
+ * 투자위험 종목 지정/해제 조건 추적 모듈
+ * (warning_tracker.js 와 동일한 구조, 별도 데이터 파일 사용)
  */
 const fs = require('fs');
 const path = require('path');
 const { countTradingDays } = require('./trading_days');
 
-const DATA_FILE = path.join(__dirname, '..', 'data', 'warning_history.json');
-const STATUS_FILE = path.join(__dirname, '..', 'data', 'release_check_history.json');
+const DATA_FILE = path.join(__dirname, '..', 'data', 'danger_history.json');
+const STATUS_FILE = path.join(__dirname, '..', 'data', 'danger_release_check_history.json');
 
 // 데이터 디렉토리 생성
 function ensureDataDir() {
@@ -17,7 +18,7 @@ function ensureDataDir() {
     }
 }
 
-/** 투자경보 해제 확인 이력 로드 */
+/** 투자위험 해제 확인 이력 로드 */
 function loadStatusHistory() {
     ensureDataDir();
     if (!fs.existsSync(STATUS_FILE)) return [];
@@ -28,14 +29,14 @@ function loadStatusHistory() {
     }
 }
 
-/** 투자경보 해제 확인 이력 저장 */
+/** 투자위험 해제 확인 이력 저장 */
 function saveStatusHistory(data) {
     ensureDataDir();
     fs.writeFileSync(STATUS_FILE, JSON.stringify(data, null, 2), 'utf8');
 }
 
-/** 전체 경고 종목 이력 로드 */
-function loadWarnings() {
+/** 전체 위험 종목 이력 로드 */
+function loadDangers() {
     ensureDataDir();
     if (!fs.existsSync(DATA_FILE)) return [];
     try {
@@ -45,13 +46,13 @@ function loadWarnings() {
     }
 }
 
-/** 전체 경고 종목 이력 저장 */
-function saveWarnings(data) {
+/** 전체 위험 종목 이력 저장 */
+function saveDangers(data) {
     ensureDataDir();
     fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2), 'utf8');
 }
 
-/** 해제 기준가 계산 (alert.md 기반) */
+/** 해제 기준가 계산 (투자위험 – alert.md 기반, 투자경고와 동일 로직 재활용) */
 function computeReleaseInfo(designatedPrice, releaseType) {
     if (releaseType === 'unsound') {
         return {
@@ -67,20 +68,20 @@ function computeReleaseInfo(designatedPrice, releaseType) {
 }
 
 /** 신규 지정 종목 추가 (또는 기존 종목 정보 업데이트) */
-function addTodayWarnings(scrapedStocks, priceMap) {
-    const warnings = loadWarnings();
+function addTodayDangers(scrapedStocks, priceMap) {
+    const dangers = loadDangers();
     let addedCount = 0;
     let updatedCount = 0;
 
     for (const stock of scrapedStocks) {
-        let target = warnings.find(
-            w => w.code === stock.code && !w.isReleased
+        let target = dangers.find(
+            d => d.code === stock.code && !d.isReleased
         );
 
         const priceInfo = priceMap[stock.code];
 
         if (target) {
-            // 해당사이트 데이터로 무조건 업데이트 (날짜/가격)
+            // 해당사이트 데이터로 업데이트
             target.designatedDate = stock.designatedDate;
             if (priceInfo) {
                 target.designatedPrice = priceInfo.price;
@@ -99,7 +100,7 @@ function addTodayWarnings(scrapedStocks, priceMap) {
         const releaseType = stock.releaseType || 'normal';
         const releaseInfo = computeReleaseInfo(priceInfo.price, releaseType);
 
-        warnings.push({
+        dangers.push({
             code: stock.code,
             name: stock.name,
             market: stock.market || 'KOSDAQ',
@@ -113,26 +114,26 @@ function addTodayWarnings(scrapedStocks, priceMap) {
         addedCount++;
     }
 
-    saveWarnings(warnings);
+    saveDangers(dangers);
     return { addedCount, updatedCount };
 }
 
 /**
  * Naver API 등을 통해 확인된 상태 결과들을 받아 이력을 저장합니다. (00:01 실행용)
- * @param {Array} verifiedResults - [{code, name, designatedDate, isStillWarning}]
+ * @param {Array} verifiedResults - [{code, name, designatedDate, isStillDanger}]
  */
-function verifyAndStoreReleaseStatus(verifiedResults) {
-    const warnings = loadWarnings();
+function verifyAndStoreDangerReleaseStatus(verifiedResults) {
+    const dangers = loadDangers();
     const history = loadStatusHistory();
     const today = new Date().toISOString().split('T')[0];
 
     const checkResults = [];
 
     for (const res of verifiedResults) {
-        const target = warnings.find(w => w.code === res.code && w.designatedDate === res.designatedDate);
+        const target = dangers.find(d => d.code === res.code && d.designatedDate === res.designatedDate);
         if (!target) continue;
 
-        const status = res.isStillWarning ? 'extended' : 'released';
+        const status = res.isStillDanger ? 'extended' : 'released';
 
         const result = {
             checkDate: today,
@@ -140,7 +141,7 @@ function verifyAndStoreReleaseStatus(verifiedResults) {
             name: target.name,
             designatedDate: target.designatedDate,
             status: status,
-            msg: res.isStillWarning ? '투자경고 연장됨' : '투자경고 해제됨'
+            msg: res.isStillDanger ? '투자위험 연장됨' : '투자위험 해제됨'
         };
 
         // 중복 체크 (하루에 한 종목당 하나만)
@@ -149,7 +150,7 @@ function verifyAndStoreReleaseStatus(verifiedResults) {
             history.unshift(result);
             checkResults.push(result);
 
-            if (res.isStillWarning) {
+            if (res.isStillDanger) {
                 target.isExtended = true;
                 target.extendedCheckDate = today;
                 if (!target.firstExtendedDate) {
@@ -164,32 +165,32 @@ function verifyAndStoreReleaseStatus(verifiedResults) {
 
     if (checkResults.length > 0) {
         saveStatusHistory(history.slice(0, 500));
-        saveWarnings(warnings);
+        saveDangers(dangers);
     }
 
     return checkResults;
 }
 
-function getAllWarnings() {
-    return loadWarnings().sort((a, b) => b.designatedDate.localeCompare(a.designatedDate));
+function getAllDangers() {
+    return loadDangers().sort((a, b) => b.designatedDate.localeCompare(a.designatedDate));
 }
 
-function getWarningByCode(code) {
-    return loadWarnings().filter(w => w.code === code)
+function getDangerByCode(code) {
+    return loadDangers().filter(d => d.code === code)
         .sort((a, b) => b.designatedDate.localeCompare(a.designatedDate));
 }
 
-function getStatusHistory() {
+function getDangerStatusHistory() {
     return loadStatusHistory();
 }
 
 module.exports = {
-    loadWarnings,
-    saveWarnings,
-    addTodayWarnings,
-    getAllWarnings,
-    getWarningByCode,
+    loadDangers,
+    saveDangers,
+    addTodayDangers,
+    getAllDangers,
+    getDangerByCode,
     computeReleaseInfo,
-    verifyAndStoreReleaseStatus,
-    getStatusHistory
+    verifyAndStoreDangerReleaseStatus,
+    getDangerStatusHistory
 };
