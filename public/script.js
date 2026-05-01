@@ -76,40 +76,51 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderResults(data) {
         // ── 시장경보 예측 (심플 버전) ────────────────────────────────────
         const pred = data.prediction;
-        if (pred) {
-            const dashboard = document.getElementById('predictionDashboard');
-            const statusEl = document.getElementById('predictionStatus');
-            const reasonEl = document.getElementById('predictionReason');
-            const iconEl = document.getElementById('predictionIcon');
-            const msgEl = document.getElementById('predictionMessage');
+        const dashboard = document.getElementById('predictionDashboard');
 
-            if (dashboard && statusEl) {
-                statusEl.textContent = pred.status;
-                reasonEl.textContent = pred.reason;
+        // 투자경고, 투자주의 종목인 경우 예측 리포트 숨김
+        const isAlreadyAlerted = data.marketAlert && (data.marketAlert.includes('경고') || data.marketAlert.includes('주의'));
 
-                // 레벨 클래스 적용
-                dashboard.className = `prediction-dashboard card show level-${pred.level}`;
+        if (pred && dashboard) {
+            if (isAlreadyAlerted) {
+                dashboard.classList.add('hidden');
+                dashboard.classList.remove('show');
+            } else {
+                const statusEl = document.getElementById('predictionStatus');
+                const reasonEl = document.getElementById('predictionReason');
+                const iconEl = document.getElementById('predictionIcon');
+                const msgEl = document.getElementById('predictionMessage');
 
-                // 아이콘 및 메시지 설정
-                let iconMarkup = '<i class="fa-solid fa-shield-check"></i>';
-                let message = '';
+                if (statusEl) {
+                    statusEl.textContent = pred.status;
+                    reasonEl.textContent = pred.reason;
 
-                if (pred.level === 'critical') {
-                    iconMarkup = '<i class="fa-solid fa-circle-exclamation"></i>';
-                    message = "즉각적인 대응이 필요한 단계입니다. 거래소 지정 요건이 현재 충족되었습니다.";
-                } else if (pred.level === 'high') {
-                    iconMarkup = '<i class="fa-solid fa-triangle-exclamation"></i>';
-                    message = "시장경보 발생 가능성이 매우 높습니다. 추가 상승 시 지정될 수 있습니다.";
-                } else if (pred.level === 'medium') {
-                    iconMarkup = '<i class="fa-solid fa-eye"></i>';
-                    message = "임계치에 접근 중입니다. 주가 추이와 거래량 변화를 예의주시하세요.";
-                } else {
-                    iconMarkup = '<i class="fa-solid fa-circle-check"></i>';
-                    message = "현재 데이터 분석 결과, 안정적인 흐름을 유지하고 있습니다.";
+                    // 레벨 클래스 적용
+                    dashboard.className = `prediction-dashboard card show level-${pred.level}`;
+
+                    // 아이콘 및 메시지 설정
+                    let iconMarkup = '<i class="fa-solid fa-shield-check"></i>';
+                    let message = '';
+
+                    if (pred.level === 'critical') {
+                        iconMarkup = '<i class="fa-solid fa-circle-exclamation"></i>';
+                        message = "즉각적인 대응이 필요한 단계입니다. 거래소 지정 요건이 현재 충족되었습니다.";
+                    } else if (pred.level === 'high') {
+                        iconMarkup = '<i class="fa-solid fa-triangle-exclamation"></i>';
+                        message = "시장경보 발생 가능성이 매우 높습니다. 추가 상승 시 지정될 수 있습니다.";
+                    } else if (pred.level === 'medium') {
+                        iconMarkup = '<i class="fa-solid fa-eye"></i>';
+                        message = "임계치에 접근 중입니다. 주가 추이와 거래량 변화를 예의주시하세요.";
+                    } else {
+                        iconMarkup = '<i class="fa-solid fa-circle-check"></i>';
+                        message = "현재 데이터 분석 결과, 안정적인 흐름을 유지하고 있습니다.";
+                    }
+
+                    if (iconEl) iconEl.innerHTML = iconMarkup;
+                    if (msgEl) msgEl.textContent = message;
+
+                    dashboard.classList.remove('hidden');
                 }
-
-                if (iconEl) iconEl.innerHTML = iconMarkup;
-                if (msgEl) msgEl.textContent = message;
             }
         }
 
