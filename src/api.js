@@ -126,8 +126,7 @@ async function fetchStockData(ticker) {
         midLongUnsound: Math.max(price15DaysAgo * 1.75, prevMax15),
         longUnsound: Math.max(price1YearAgo * 3.0, prevMax15),
         cautionPrice3d: price3DaysAgo * 1.15,
-        cautionPrice15d: price15DaysAgo * 1.75,
-        overheating40d: avgClose40 * 1.3
+        cautionPrice15d: price15DaysAgo * 1.75
     };
 
     const result = {
@@ -143,16 +142,6 @@ async function fetchStockData(ticker) {
             ago15: price15DaysAgo,
             avg40: Math.floor(avgClose40)
         },
-        overheat: {
-            priceIncreaseRate: priceIncreaseRate.toFixed(2),
-            turnoverRatio: turnoverRatio.toFixed(2),
-            volatilityRatio: volatilityRatio.toFixed(2),
-            criteriaMet: {
-                price: priceIncreaseRate >= 130,
-                turnover: turnoverRatio >= 600,
-                volatility: volatilityRatio >= 150
-            }
-        },
         stats: {
             risingDays15,
             isClosingSudden,
@@ -164,7 +153,61 @@ async function fetchStockData(ticker) {
         },
         warningTargets,
         marketAlert: currentData.marketAlertType ? currentData.marketAlertType.text : null,
-        cachedAt: new Date().toISOString()
+        cachedAt: new Date().toISOString(),
+        prediction: (() => {
+            const isHigh15 = currentPrice >= prevMax15;
+
+            // 1. 투자위험 (Danger) - 이미 경고인 경우
+            if (currentData.marketAlertType && currentData.marketAlertType.text.includes('경고')) {
+                if ((currentPrice >= pricePrevDay * 2.0 && isHigh15) || (currentPrice >= price5DaysAgo * 1.6 && isHigh15)) {
+                    return {
+                        status: '투자위험 임박',
+                        reason: '투자경고 지정 상태에서 주가 급등 및 15일 신고가 경신',
+                        level: 'critical'
+                    };
+                }
+            }
+
+            // 2. 투자경고 (Warning)
+            if (isHigh15) {
+                if (currentPrice >= pricePrevDay * 2.0) {
+                    return { status: '투자경고 임박', reason: '초단기(3일) 100% 이상 급등 및 15일 신고가', level: 'critical' };
+                }
+                if (currentPrice >= price5DaysAgo * 1.6) {
+                    return { status: '투자경고 임박', reason: '단기(5일) 60% 이상 급등 및 15일 신고가', level: 'critical' };
+                }
+                if (currentPrice >= price15DaysAgo * 2.0) {
+                    return { status: '투자경고 임박', reason: '중장기(15일) 100% 이상 급등 및 15일 신고가', level: 'critical' };
+                }
+            }
+
+
+
+            // 4. 투자주의 (Caution)
+            if (currentPrice >= pricePrevDay * 1.05 && totalVolume >= 30000 && (currentPrice >= pricePrevDay * 1.15 || priceChangePct >= 5)) {
+                if (priceChangePct >= 5 && totalVolume >= 30000) {
+                    return { status: '투자주의 (종가급변)', reason: '전일 대비 5% 이상 변동 및 거래량 요건 충족', level: 'high' };
+                }
+            }
+            if (risingDays15 >= 12) {
+                return { status: '투자주의 (상승지속)', reason: '최근 15거래일 중 12일 이상 상승 발생', level: 'high' };
+            }
+            if (currentPrice >= price15DaysAgo * 1.75) {
+                return { status: '투자주의 (상승과다)', reason: '15일 전 대비 75% 이상 주가 급등', level: 'high' };
+            }
+
+            // 5. 모니터링 (Monitoring) - 임계치 근접 (80% 이상)
+            if (currentPrice >= price5DaysAgo * 1.6 * 0.8) {
+                return { status: '주의 깊은 관찰 필요', reason: '단기 급등(5일 60%) 기준치의 80% 상회', level: 'medium' };
+            }
+
+
+            return {
+                status: '안정',
+                reason: '현재 특이한 시장경보 지정 징후가 발견되지 않았습니다.',
+                level: 'low'
+            };
+        })()
     };
 
     return result;

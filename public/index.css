@@ -801,6 +801,131 @@ header {
     }
 }
 
+/* ─── 시장경보 예측 대시보드 (심플 버전) ─────────────────── */
+.prediction-dashboard {
+    margin-bottom: 24px !important;
+}
+
+.prediction-dashboard .badge.prediction {
+    background: rgba(88, 166, 255, .15);
+    color: var(--info-color);
+    border: 1px solid rgba(88, 166, 255, .3);
+}
+
+.prediction-body.single-status {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.alert-prediction-hero {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.prediction-icon {
+    width: 70px;
+    height: 70px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    color: var(--info-color);
+    box-shadow: 0 0 20px rgba(88, 166, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.prediction-main-info {
+    flex: 1;
+}
+
+.prediction-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    display: block;
+    margin-bottom: 4px;
+}
+
+.prediction-main-info h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    line-height: 1.2;
+}
+
+.prediction-message {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+}
+
+.prediction-detail-box {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 20px;
+}
+
+.detail-row {
+    display: flex;
+    gap: 12px;
+    font-size: 0.92rem;
+}
+
+.detail-row .label {
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+.detail-row .value {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+/* 상태별 색상 테마 */
+.prediction-dashboard.level-critical .prediction-icon {
+    color: var(--warning-color);
+    background: rgba(248, 81, 73, 0.1);
+    box-shadow: 0 0 20px rgba(248, 81, 73, 0.2);
+}
+
+.prediction-dashboard.level-critical #predictionStatus {
+    color: var(--warning-color);
+}
+
+.prediction-dashboard.level-high .prediction-icon {
+    color: var(--overheating-color);
+    background: rgba(240, 136, 62, 0.1);
+    box-shadow: 0 0 20px rgba(240, 136, 62, 0.2);
+}
+
+.prediction-dashboard.level-high #predictionStatus {
+    color: var(--overheating-color);
+}
+
+.prediction-dashboard.level-medium .prediction-icon {
+    color: var(--caution-color);
+    background: rgba(210, 153, 34, 0.1);
+    box-shadow: 0 0 20px rgba(210, 153, 34, 0.2);
+}
+
+.prediction-dashboard.level-medium #predictionStatus {
+    color: var(--caution-color);
+}
+
+.prediction-dashboard.level-low .prediction-icon {
+    color: var(--success-color);
+    background: rgba(63, 185, 80, 0.1);
+    box-shadow: 0 0 20px rgba(63, 185, 80, 0.2);
+}
+
+.prediction-dashboard.level-low #predictionStatus {
+    color: var(--success-color);
+}
+
 /* ─── 정보 가이드 섹션 ───────────────────────────────────── */
 .info-guide-section {
     margin-top: 40px;

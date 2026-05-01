@@ -4,22 +4,28 @@
     "name": "우리로",
     "market": "KOSDAQ",
     "designatedDate": "2026-04-17",
-    "designatedPrice": 9560,
+    "designatedPrice": 8350,
     "releaseType": "normal",
-    "releaseMinPrice": 19120,
+    "releaseMinPrice": 16700,
     "releaseDetail": "지정가 × 200% (일반형: T-5 60%↑, T-15 100%↑ 동시 불충족 시 해제)",
-    "addedAt": "2026-04-27T14:14:51.301Z"
+    "addedAt": "2026-04-27T14:14:51.301Z",
+    "isExtended": true,
+    "extendedCheckDate": "2026-05-01",
+    "firstExtendedDate": "2026-05-01"
   },
   {
     "code": "388790",
     "name": "라이콤",
     "market": "KOSDAQ",
     "designatedDate": "2026-04-16",
-    "designatedPrice": 5560,
+    "designatedPrice": 5210,
     "releaseType": "normal",
-    "releaseMinPrice": 11120,
+    "releaseMinPrice": 10420,
     "releaseDetail": "지정가 × 200% (일반형: T-5 60%↑, T-15 100%↑ 동시 불충족 시 해제)",
-    "addedAt": "2026-04-27T14:14:51.301Z"
+    "addedAt": "2026-04-27T14:14:51.301Z",
+    "isExtended": true,
+    "extendedCheckDate": "2026-05-01",
+    "firstExtendedDate": "2026-05-01"
   },
   {
     "code": "069540",
@@ -33,7 +39,9 @@
     "addedAt": "2026-04-27T14:14:51.301Z",
     "isExtended": true,
     "extendedCheckDate": "2026-04-27",
-    "firstExtendedDate": "2026-04-27"
+    "firstExtendedDate": "2026-04-27",
+    "isReleased": true,
+    "releasedCheckDate": "2026-05-01"
   },
   {
     "code": "215790",
@@ -47,7 +55,9 @@
     "addedAt": "2026-04-27T14:14:51.301Z",
     "isExtended": true,
     "extendedCheckDate": "2026-04-27",
-    "firstExtendedDate": "2026-04-27"
+    "firstExtendedDate": "2026-04-27",
+    "isReleased": true,
+    "releasedCheckDate": "2026-05-01"
   },
   {
     "code": "017900",
@@ -61,6 +71,8 @@
     "addedAt": "2026-04-27T14:14:51.301Z",
     "isExtended": true,
     "extendedCheckDate": "2026-04-27",
-    "firstExtendedDate": "2026-04-27"
+    "firstExtendedDate": "2026-04-27",
+    "isReleased": true,
+    "releasedCheckDate": "2026-05-01"
   }
 ]

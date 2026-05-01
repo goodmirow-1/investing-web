@@ -74,6 +74,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ─── 결과 렌더링 ─────────────────────────────────────────
     function renderResults(data) {
+        // ── 시장경보 예측 (심플 버전) ────────────────────────────────────
+        const pred = data.prediction;
+        if (pred) {
+            const dashboard = document.getElementById('predictionDashboard');
+            const statusEl = document.getElementById('predictionStatus');
+            const reasonEl = document.getElementById('predictionReason');
+            const iconEl = document.getElementById('predictionIcon');
+            const msgEl = document.getElementById('predictionMessage');
+
+            if (dashboard && statusEl) {
+                statusEl.textContent = pred.status;
+                reasonEl.textContent = pred.reason;
+
+                // 레벨 클래스 적용
+                dashboard.className = `prediction-dashboard card show level-${pred.level}`;
+
+                // 아이콘 및 메시지 설정
+                let iconMarkup = '<i class="fa-solid fa-shield-check"></i>';
+                let message = '';
+
+                if (pred.level === 'critical') {
+                    iconMarkup = '<i class="fa-solid fa-circle-exclamation"></i>';
+                    message = "즉각적인 대응이 필요한 단계입니다. 거래소 지정 요건이 현재 충족되었습니다.";
+                } else if (pred.level === 'high') {
+                    iconMarkup = '<i class="fa-solid fa-triangle-exclamation"></i>';
+                    message = "시장경보 발생 가능성이 매우 높습니다. 추가 상승 시 지정될 수 있습니다.";
+                } else if (pred.level === 'medium') {
+                    iconMarkup = '<i class="fa-solid fa-eye"></i>';
+                    message = "임계치에 접근 중입니다. 주가 추이와 거래량 변화를 예의주시하세요.";
+                } else {
+                    iconMarkup = '<i class="fa-solid fa-circle-check"></i>';
+                    message = "현재 데이터 분석 결과, 안정적인 흐름을 유지하고 있습니다.";
+                }
+
+                if (iconEl) iconEl.innerHTML = iconMarkup;
+                if (msgEl) msgEl.textContent = message;
+            }
+        }
+
         // 종목 기본 정보
         document.getElementById('displayTicker').textContent = data.ticker;
         document.getElementById('displayStockName').textContent = data.stockName;
@@ -134,36 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateWarning('targetCaution', null, data.warningTargets.cautionPrice3d);
         updateWarning('targetCaution15d', 'statusCaution15d', data.warningTargets.cautionPrice15d);
 
-        // ── 단기과열 ────────────────────────────────────────
-        document.getElementById('targetOverheating').textContent = Math.floor(data.warningTargets.overheating40d).toLocaleString();
 
-        const setOverheatRow = (valId, statusId, value, isMet) => {
-            const valEl = document.getElementById(valId);
-            const statusEl = document.getElementById(statusId);
-            if (valEl) valEl.textContent = parseFloat(value).toFixed(1);
-            if (statusEl) {
-                statusEl.textContent = isMet ? '충족' : '미달';
-                statusEl.className = 'condition-tag ' + (isMet ? 'met' : 'notmet');
-            }
-        };
-
-        const ovheat = data.overheat;
-        // 주가 상승률 상태
-        const statusOvheatPrice = document.getElementById('statusOverheatPrice');
-        if (statusOvheatPrice) {
-            statusOvheatPrice.textContent = `${ovheat.priceIncreaseRate}% ${ovheat.criteriaMet.price ? '⚠️ 충족' : '✓ 미달'}`;
-            statusOvheatPrice.style.color = ovheat.criteriaMet.price ? 'var(--warning-color)' : 'var(--text-secondary)';
-        }
-        setOverheatRow('valOverheatTurnover', 'statusOverheatTurnover', ovheat.turnoverRatio, ovheat.criteriaMet.turnover);
-        setOverheatRow('valOverheatVolatility', 'statusOverheatVolatility', ovheat.volatilityRatio, ovheat.criteriaMet.volatility);
-
-        // 단기과열 종합
-        const allMet = ovheat.criteriaMet.price && ovheat.criteriaMet.turnover && ovheat.criteriaMet.volatility;
-        const overheatSummary = document.getElementById('overheatSummary');
-        if (overheatSummary) {
-            overheatSummary.textContent = allMet ? '⚠️ 3가지 조건 모두 충족 — 단기과열 예고 위험' : `${Object.values(ovheat.criteriaMet).filter(Boolean).length}/3 조건 충족`;
-            overheatSummary.className = 'condition-tag ' + (allMet ? 'met' : 'notmet');
-        }
 
         // ── 시장감시 ─────────────────────────────────────────
         // 종가 급변
