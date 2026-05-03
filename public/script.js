@@ -78,8 +78,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const pred = data.prediction;
         const dashboard = document.getElementById('predictionDashboard');
 
-        // 투자경고, 투자주의 종목인 경우 예측 리포트 숨김
-        const isAlreadyAlerted = data.marketAlert && (data.marketAlert.includes('경고') || data.marketAlert.includes('주의'));
+        // 투자경고, 투자위험 종목인 경우 예측 리포트 숨김 (투자주의는 보여줌)
+        const isAlreadyAlerted = data.marketAlert && (data.marketAlert.includes('경고') || data.marketAlert.includes('위험'));
 
         if (pred && dashboard) {
             if (isAlreadyAlerted) {
