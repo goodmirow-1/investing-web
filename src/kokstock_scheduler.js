@@ -182,9 +182,10 @@ function startScheduler() {
     cron.schedule('35 08 * * 1-5', runDailyCollection, { timezone: 'Asia/Seoul' });
     cron.schedule('35 08 * * 1-5', runDangerDailyCollection, { timezone: 'Asia/Seoul' });
 
-    // 2. 매일 00:01 해제 여부 확인 (매일) - 투자경고 + 투자위험
-    cron.schedule('01 00 * * *', runReleaseCheck, { timezone: 'Asia/Seoul' });
-    cron.schedule('01 00 * * *', runDangerReleaseCheck, { timezone: 'Asia/Seoul' });
+    // 2. 매일 07:30 해제 여부 확인 (평일) - 투자경고 + 투자위험
+    // ※ 00:01에 체크하면 네이버 API가 아직 미업데이트 상태라 해제 종목을 연장으로 오판할 수 있음
+    cron.schedule('30 07 * * 1-5', runReleaseCheck, { timezone: 'Asia/Seoul' });
+    cron.schedule('30 07 * * 1-5', runDangerReleaseCheck, { timezone: 'Asia/Seoul' });
 
     console.log('[Scheduler] All tasks scheduled (20:30 Collection, 00:01 Release Check) for Warning & Danger');
 

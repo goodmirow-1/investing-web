@@ -51,9 +51,8 @@
     "releaseMinPrice": 26940,
     "releaseDetail": "지정가 × 200% (일반형: T-5 60%↑, T-15 100%↑ 동시 불충족 시 해제)",
     "addedAt": "2026-04-19T09:18:28.956Z",
-    "isExtended": true,
-    "extendedCheckDate": "2026-05-01",
-    "firstExtendedDate": "2026-05-01"
+    "isReleased": true,
+    "releasedCheckDate": "2026-05-05"
   },
   {
     "code": "356860",

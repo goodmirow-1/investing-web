@@ -1,5 +1,13 @@
 [
   {
+    "checkDate": "2026-05-05",
+    "code": "356680",
+    "name": "엑스게이트",
+    "designatedDate": "2026-04-17",
+    "status": "released",
+    "msg": "투자경고 해제됨 (현재: 투자주의)"
+  },
+  {
     "checkDate": "2026-05-01",
     "code": "092600",
     "name": "앤씨앤",
