@@ -1,5 +1,197 @@
 [
   {
+    "checkDate": "2026-05-07",
+    "code": "092600",
+    "name": "앤씨앤",
+    "designatedDate": "2026-04-13",
+    "status": "extended",
+    "msg": "투자경고 연장됨"
+  },
+  {
+    "checkDate": "2026-05-07",
+    "code": "356860",
+    "name": "티엘비",
+    "designatedDate": "2026-04-17",
+    "status": "extended",
+    "msg": "투자경고 연장됨"
+  },
+  {
+    "checkDate": "2026-05-07",
+    "code": "456010",
+    "name": "아이씨티케이",
+    "designatedDate": "2026-04-20",
+    "status": "released",
+    "msg": "투자경고 해제됨"
+  },
+  {
+    "checkDate": "2026-05-07",
+    "code": "319400",
+    "name": "현대무벡스",
+    "designatedDate": "2026-04-20",
+    "status": "released",
+    "msg": "투자경고 해제됨"
+  },
+  {
+    "checkDate": "2026-05-07",
+    "code": "131760",
+    "name": "파인텍",
+    "designatedDate": "2026-04-20",
+    "status": "extended",
+    "msg": "투자경고 연장됨"
+  },
+  {
+    "checkDate": "2026-05-07",
+    "code": "080580",
+    "name": "오킨스전자",
+    "designatedDate": "2026-04-20",
+    "status": "released",
+    "msg": "투자경고 해제됨"
+  },
+  {
+    "checkDate": "2026-05-07",
+    "code": "430690",
+    "name": "한싹",
+    "designatedDate": "2026-04-21",
+    "status": "released",
+    "msg": "투자경고 해제됨"
+  },
+  {
+    "checkDate": "2026-05-07",
+    "code": "184230",
+    "name": "SGA솔루션즈",
+    "designatedDate": "2026-04-21",
+    "status": "extended",
+    "msg": "투자경고 연장됨"
+  },
+  {
+    "checkDate": "2026-05-07",
+    "code": "115500",
+    "name": "케이씨에스",
+    "designatedDate": "2026-04-21",
+    "status": "released",
+    "msg": "투자경고 해제됨"
+  },
+  {
+    "checkDate": "2026-05-07",
+    "code": "094170",
+    "name": "동운아나텍",
+    "designatedDate": "2026-04-21",
+    "status": "released",
+    "msg": "투자경고 해제됨"
+  },
+  {
+    "checkDate": "2026-05-07",
+    "code": "036170",
+    "name": "에이치엠넥스",
+    "designatedDate": "2026-04-21",
+    "status": "released",
+    "msg": "투자경고 해제됨"
+  },
+  {
+    "checkDate": "2026-05-07",
+    "code": "240810",
+    "name": "원익IPS",
+    "designatedDate": "2026-04-22",
+    "status": "extended",
+    "msg": "투자경고 연장됨"
+  },
+  {
+    "checkDate": "2026-05-07",
+    "code": "082920",
+    "name": "비츠로셀",
+    "designatedDate": "2026-04-22",
+    "status": "extended",
+    "msg": "투자경고 연장됨"
+  },
+  {
+    "checkDate": "2026-05-05",
+    "code": "092600",
+    "name": "앤씨앤",
+    "designatedDate": "2026-04-13",
+    "status": "extended",
+    "msg": "투자경고 연장됨"
+  },
+  {
+    "checkDate": "2026-05-05",
+    "code": "033790",
+    "name": "피노",
+    "designatedDate": "2026-04-13",
+    "status": "released",
+    "msg": "투자경고 해제됨"
+  },
+  {
+    "checkDate": "2026-05-05",
+    "code": "009415",
+    "name": "태영건설우",
+    "designatedDate": "2026-04-13",
+    "status": "released",
+    "msg": "투자경고 해제됨"
+  },
+  {
+    "checkDate": "2026-05-05",
+    "code": "356860",
+    "name": "티엘비",
+    "designatedDate": "2026-04-17",
+    "status": "extended",
+    "msg": "투자경고 연장됨"
+  },
+  {
+    "checkDate": "2026-05-05",
+    "code": "319660",
+    "name": "피에스케이",
+    "designatedDate": "2026-04-17",
+    "status": "released",
+    "msg": "투자경고 해제됨"
+  },
+  {
+    "checkDate": "2026-05-05",
+    "code": "203650",
+    "name": "드림시큐리티",
+    "designatedDate": "2026-04-17",
+    "status": "released",
+    "msg": "투자경고 해제됨"
+  },
+  {
+    "checkDate": "2026-05-05",
+    "code": "038060",
+    "name": "루멘스",
+    "designatedDate": "2026-04-17",
+    "status": "released",
+    "msg": "투자경고 해제됨"
+  },
+  {
+    "checkDate": "2026-05-05",
+    "code": "456010",
+    "name": "아이씨티케이",
+    "designatedDate": "2026-04-20",
+    "status": "extended",
+    "msg": "투자경고 연장됨"
+  },
+  {
+    "checkDate": "2026-05-05",
+    "code": "319400",
+    "name": "현대무벡스",
+    "designatedDate": "2026-04-20",
+    "status": "extended",
+    "msg": "투자경고 연장됨"
+  },
+  {
+    "checkDate": "2026-05-05",
+    "code": "131760",
+    "name": "파인텍",
+    "designatedDate": "2026-04-20",
+    "status": "extended",
+    "msg": "투자경고 연장됨"
+  },
+  {
+    "checkDate": "2026-05-05",
+    "code": "080580",
+    "name": "오킨스전자",
+    "designatedDate": "2026-04-20",
+    "status": "extended",
+    "msg": "투자경고 연장됨"
+  },
+  {
     "checkDate": "2026-05-05",
     "code": "356680",
     "name": "엑스게이트",

@@ -298,18 +298,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    const initPathParts = window.location.pathname.split('/');
-    if (initPathParts.length === 3 && initPathParts[1] === 'stock') {
-        const initTicker = initPathParts[2];
-        if (/^\d{6}$/.test(initTicker)) {
-            input.value = initTicker;
-            if (searchCount > 1000) {
-                showAdGate(() => performSearch(initTicker));
-            } else {
-                performSearch(initTicker);
-                searchCount++;
-                sessionStorage.setItem('searchCount', searchCount);
-            }
+    // ─── URL 초기 라우팅 및 자동 검색 ──────────────────────────
+    const urlParams = new URLSearchParams(window.location.search);
+    const queryTicker = urlParams.get('code') || urlParams.get('ticker');
+    const pathParts = window.location.pathname.split('/');
+    const pathTicker = (pathParts.length === 3 && pathParts[1] === 'stock') ? pathParts[2] : null;
+    const initialTicker = queryTicker || pathTicker;
+
+    if (initialTicker && /^\d{6}$/.test(initialTicker)) {
+        input.value = initialTicker;
+        if (searchCount > 1000) {
+            showAdGate(() => performSearch(initialTicker));
+        } else {
+            performSearch(initialTicker);
+            searchCount++;
+            sessionStorage.setItem('searchCount', searchCount);
         }
     }
 });

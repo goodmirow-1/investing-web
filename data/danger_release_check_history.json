@@ -1,5 +1,21 @@
 [
   {
+    "checkDate": "2026-05-05",
+    "code": "388790",
+    "name": "라이콤",
+    "designatedDate": "2026-04-16",
+    "status": "released",
+    "msg": "투자위험 해제됨"
+  },
+  {
+    "checkDate": "2026-05-05",
+    "code": "046970",
+    "name": "우리로",
+    "designatedDate": "2026-04-17",
+    "status": "released",
+    "msg": "투자위험 해제됨"
+  },
+  {
     "checkDate": "2026-05-01",
     "code": "017900",
     "name": "광전자",

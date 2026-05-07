@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>투자 칼럼 (Blog) - KRX 시장경보 분석기</title>
+    <meta name="description" content="시장을 이끄는 핫한 주식 종목들의 주가 분석 및 투자주의, 투자경고 리스크를 심층적으로 다루는 주식 칼럼입니다.">
+    <link rel="stylesheet" href="/index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        .subpage-container {
+            max-width: 900px;
+            margin: 60px auto;
+            padding: 0 16px;
+        }
+
+        .back-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 24px;
+            font-weight: 500;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .blog-header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .blog-header h1 {
+            font-size: 2.2rem;
+            color: var(--info-color);
+            margin-bottom: 12px;
+        }
+
+        .blog-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .post-list {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .post-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            display: block;
+        }
+
+        .post-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .post-card .post-meta {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .post-card h2 {
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .post-card p.excerpt {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .post-card .read-more {
+            color: var(--info-color);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="background-aurora"></div>
+
+    <div class="subpage-container">
+        <a href="/" class="back-home"><i class="fa-solid fa-arrow-left"></i> 실시간 분석 홈으로</a>
+
+        <div class="blog-header">
+            <h1>투자 칼럼 (Blog)</h1>
+            <p>데이터 너머의 실질적 투자 인사이트 및 시장경보 집중 분석</p>
+        </div>
+
+        <div class="post-list">
+            <!-- 대우건설 -->
+            <a href="/posts/dw-047040.html" class="post-card">
+                <div class="post-meta">
+                    <span class="badge warning" style="margin-right:8px;"><i
+                            class="fa-solid fa-triangle-exclamation"></i> 투자경고 심층분석</span>
+                    <span>2026-05-08</span>
+                </div>
+                <h2>대우건설(047040), 건설주라고 무시했다간 큰코다칩니다 - 원전 수주와 AI 에너지 테마</h2>
+                <p class="excerpt">단순한 아파트 건설사를 넘어 '에너지 인프라 강자'로 거듭나고 있는 대우건설. 체코 원전 수주 잭팟과 AI 전력 수요 폭발이 만들어낸 이번 랠리의 배경,
+                    그리고 투자경고 상황까지 상세히 정리했습니다.</p>
+                <div class="read-more">칼럼 읽기 <i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+            <!-- 대한광통신 -->
+            <a href="/posts/dkc-010170.html" class="post-card">
+                <div class="post-meta">
+                    <span class="badge warning" style="margin-right:8px;"><i
+                            class="fa-solid fa-triangle-exclamation"></i> 투자경고 심층분석</span>
+                    <span>2026-05-07</span>
+                </div>
+                <h2>대한광통신(010170), AI 데이터센터 수혜주가 맞긴 한데 - 급등 배경과 투자경고까지</h2>
+                <p class="excerpt">광섬유 모재부터 케이블까지 국내 유일 수직계열화 기업 대한광통신. 인캡아메리카 인수로 북미 진출까지 선언한 이 회사가 왜 투자경고를 반복해서 맞고
+                    있는지, 그리고 지금 어떻게 접근해야 하는지 정리했습니다.</p>
+                <div class="read-more">칼럼 읽기 <i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <!-- 엑스게이트 -->
+            <a href="/posts/xgate-356680.html" class="post-card">
+                <div class="post-meta">
+                    <span class="badge warning" style="margin-right:8px;"><i
+                            class="fa-solid fa-triangle-exclamation"></i> 투자경고 심층분석</span>
+                    <span>2026-05-07</span>
+                </div>
+                <h2>엑스게이트(356680), 갑자기 왜 이렇게 오른 거야? - 양자암호 테마와 투자경고 분석</h2>
+                <p class="excerpt">4월 말부터 갑자기 튀기 시작한 엑스게이트. 양자암호 보안 대장주로 불리는 이유, 실제 납품 이력, KRX 투자경고 기준가 흐름까지 개인적인 시각으로
+                    분석했습니다.</p>
+                <div class="read-more">칼럼 읽기 <i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+        </div>
+    </div>
+
+    <footer class="site-footer">
+        <p>© 2026 KRX 시장경보 분석기. 본 칼럼은 참고용일 뿐입니다.</p>
+    </footer>
+</body>
+
+</html>

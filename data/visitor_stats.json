@@ -1,14 +1,20 @@
 {
-  "totalViews": 36,
+  "totalViews": 41,
   "uniqueIps": {
     "::1": {
-      "count": 36,
+      "count": 41,
       "firstVisit": "2026-04-25T03:18:43.616Z",
-      "lastVisit": "2026-05-03T07:40:46.156Z"
+      "lastVisit": "2026-05-07T15:13:54.667Z"
     }
   },
-  "lastUpdate": "2026-05-03T07:40:46.156Z",
-  "dailyHistory": [],
+  "lastUpdate": "2026-05-07T15:13:54.667Z",
+  "dailyHistory": [
+    {
+      "date": "2026-05-07",
+      "views": 3,
+      "uniqueIps": 1
+    }
+  ],
   "daily": {
     "2026-04-28": {
       "views": 4,
@@ -23,6 +29,18 @@
       }
     },
     "2026-05-03": {
+      "views": 1,
+      "uniqueIps": {
+        "::1": true
+      }
+    },
+    "2026-05-05": {
+      "views": 1,
+      "uniqueIps": {
+        "::1": true
+      }
+    },
+    "2026-05-08": {
       "views": 1,
       "uniqueIps": {
         "::1": true
