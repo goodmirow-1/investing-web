@@ -4,10 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>대우건설(047040) 건설주라고 무시하면 안되는 이유 - 원전 수주와 AI 에너지 테마</title>
-    <meta name="description"
-        content="지루한 건설주? 대우건설(047040)은 이제 원전으로 움직입니다. 체코 원전 수주 기대감과 '빅배스' 이후의 실적 반등, 그리고 KRX 투자경고 지정 상황까지 상세히 짚어봤습니다.">
-    <link rel="canonical" href="https://krx-alert.com/posts/dw-047040.html">
+    <title>주성엔지니어링(036930), ALD 모노폴리와 가치 재평가의 시발점</title>
+    <meta name="description" content="주성엔지니어링(036930)이 왜 HBM/DDR5 시대의 핵심인지, 인적분할이 가져온 가치 재평가와 투자경고 지정 상황까지 심층 분석했습니다.">
+    <link rel="canonical" href="https://krx-alert.com/posts/jusung-036930.html">
     <link rel="stylesheet" href="/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
@@ -51,6 +50,7 @@
             }
         }
 
+        /* 주성엔지니어링 전용 테마 컬러 적용 (Purple) */
         .post-category {
             display: inline-flex;
             align-items: center;
@@ -58,9 +58,9 @@
             font-size: 0.78rem;
             font-weight: 700;
             letter-spacing: 0.8px;
-            color: var(--caution-color);
-            background: rgba(210, 153, 34, 0.1);
-            border: 1px solid rgba(210, 153, 34, 0.25);
+            color: #a371f7;
+            background: rgba(163, 113, 247, 0.1);
+            border: 1px solid rgba(163, 113, 247, 0.25);
             border-radius: 20px;
             padding: 4px 12px;
             margin-bottom: 18px;
@@ -105,14 +105,7 @@
             margin-top: 48px;
             margin-bottom: 16px;
             padding-left: 14px;
-            border-left: 3px solid var(--caution-color);
-        }
-
-        .post-article h3 {
-            font-size: 1.05rem;
-            color: var(--caution-color);
-            margin-top: 28px;
-            margin-bottom: 12px;
+            border-left: 3px solid #a371f7;
         }
 
         .post-article p {
@@ -149,7 +142,7 @@
             content: '▸';
             position: absolute;
             left: 0;
-            color: var(--caution-color);
+            color: #a371f7;
             font-size: 0.85rem;
         }
 
@@ -179,18 +172,15 @@
             font-size: 1.35rem;
             font-weight: 700;
             color: var(--text-primary);
+            transition: all 0.3s;
         }
 
         .stat-value.up {
-            color: var(--warning-color);
+            color: #a371f7;
         }
 
         .stat-value.yellow {
             color: var(--caution-color);
-        }
-
-        .stat-value.blue {
-            color: var(--info-color);
         }
 
         .stat-sub {
@@ -229,8 +219,8 @@
 
         /* 정보 박스 */
         .info-box {
-            background: rgba(210, 153, 34, 0.07);
-            border: 1px solid rgba(210, 153, 34, 0.25);
+            background: rgba(163, 113, 247, 0.07);
+            border: 1px solid rgba(163, 113, 247, 0.25);
             border-radius: 10px;
             padding: 18px 22px;
             margin: 28px 0;
@@ -239,7 +229,7 @@
         .info-box-title {
             font-size: 0.88rem;
             font-weight: 700;
-            color: var(--caution-color);
+            color: #a371f7;
             margin-bottom: 8px;
             display: flex;
             align-items: center;
@@ -253,45 +243,10 @@
             line-height: 1.7;
         }
 
-        /* 조건 테이블 */
-        .condition-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0 28px;
-            font-size: 0.9rem;
-        }
-
-        .condition-table th {
-            background: rgba(210, 153, 34, 0.08);
-            color: var(--caution-color);
-            padding: 10px 14px;
-            text-align: left;
-            border-bottom: 1px solid var(--border);
-            font-size: 0.82rem;
-            font-weight: 600;
-        }
-
-        .condition-table td {
-            padding: 12px 14px;
-            border-bottom: 1px solid rgba(48, 54, 61, 0.5);
-            color: var(--text-secondary);
-            line-height: 1.5;
-        }
-
-        .condition-table tr:last-child td {
-            border-bottom: none;
-        }
-
-        .condition-table td:first-child {
-            color: var(--text-primary);
-            font-weight: 600;
-            white-space: nowrap;
-        }
-
         /* CTA */
         .cta-box {
-            background: linear-gradient(135deg, rgba(210, 153, 34, 0.08) 0%, rgba(210, 153, 34, 0.03) 100%);
-            border: 1px solid rgba(210, 153, 34, 0.3);
+            background: linear-gradient(135deg, rgba(163, 113, 247, 0.08) 0%, rgba(163, 113, 247, 0.03) 100%);
+            border: 1px solid rgba(163, 113, 247, 0.3);
             border-radius: 14px;
             padding: 28px;
             text-align: center;
@@ -308,8 +263,8 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: var(--caution-color);
-            color: #0d1117;
+            background: #a371f7;
+            color: #ffffff;
             padding: 13px 28px;
             border-radius: 10px;
             text-decoration: none;
@@ -319,7 +274,7 @@
         }
 
         .cta-button:hover {
-            background: #e2ab39;
+            background: #8957e5;
             opacity: 1;
             transform: translateY(-1px);
         }
@@ -345,134 +300,108 @@
 
         <article class="post-article">
 
-            <div class="post-category"><i class="fa-solid fa-atom"></i> 원전·에너지 테마</div>
+            <div class="post-category"><i class="fa-solid fa-microchip"></i> 반도체 장비 대장주</div>
 
-            <h1>대우건설(047040), 건설주라고 무시했다간 큰코다칩니다</h1>
+            <h1>주성엔지니어링(036930), HBM 시대의 숨은 지배자 - ALD 장비와 인적분할</h1>
 
             <div class="post-meta">
-                <span><i class="fa-regular fa-calendar"></i> 2026년 5월 8일</span>
+                <span><i class="fa-regular fa-calendar"></i> 2026년 5월 10일</span>
                 <span><i class="fa-solid fa-pen-nib"></i> KRX 분석기 에디터</span>
                 <span><i class="fa-regular fa-clock"></i> 약 6분 읽기</span>
             </div>
 
-            <!-- 1. 도입부 -->
-            <h2>"건설주가 뜬다고?" 네, 이야기가 좀 다릅니다</h2>
+            <!-- 1. 기업 소개 -->
+            <h2>주성엔지니어링, 왜 지금 뜨거울까?</h2>
 
-            <p>보통 주식판에서 건설주라고 하면 "지루하다", "미분양 리스크 때문에 겁난다"는 반응이 먼저 나오죠. 사실 대우건설도 작년까지는 그런 시선에서 자유롭지 못했습니다. 부동산 경기 침체에
-                공사비 상승까지 겹치면서 힘든 시기를 보냈거든요.</p>
+            <p>반도체 좀 안다는 투자자들 사이에서 주성엔지니어링은 '애증의 종목'이자 '기술력 하나만큼은 탑티어'인 기업으로 꼽힙니다. 최근 이 종목이 다시 한번 시장의 중심에 섰습니다. 그 중심에는
+                반도체 미세공정의 핵심인 **ALD(원자층증착장비)**와 최근 단행된 **인적분할**이 자리하고 있습니다.</p>
 
-            <p>그런데 최근의 흐름은 건설이 아니라 <strong>에너지와 전력 인프라</strong>라는 관점에서 봐야 합니다. 특히 AI 데이터센터 열풍이 불면서 전력 부족 문제가 심각해졌고, 그
-                해답으로 <strong>원자력 발전(Nuclear Power)</strong>이 다시 주목받기 시작했거든요. 대우건설은 단순 아파트 브랜드 '푸르지오'만 있는 회사가 아닙니다. 국내외
-                원전 시공에서 독보적인 기술력을 가진 '에너지 인프라 강자'죠.</p>
+            <p>HBM(고대역폭메모리)과 DDR5 등 고성능 메모리가 각광받으면서, 웨이퍼에 원자 단위로 얇고 균일하게 막을 입히는 ALD 장비의 수요가 폭증했습니다. 주성엔지니어링은 특히 차세대 메모리
+                공정에 필수적인 High-K ALD 분야에서 세계적인 경쟁력을 보유하고 있습니다. 이 기술적 해자가 지금의 실적, 그리고 주가를 폭발시키는 원동력이죠.</p>
 
-            <!-- 주요 지표 카드 -->
+            <!-- 주요 지표 카드 (데이터는 스크립트에서 자동 채워짐) -->
             <div class="stat-grid">
                 <div class="stat-card">
-                    <div class="stat-label">2026년 5월 고점</div>
-                    <div class="stat-value up">47,300원</div>
-                    <div class="stat-sub">장중 최고가 기준</div>
+                    <div class="stat-label">최근 60일 고점</div>
+                    <div class="stat-value up" id="stat-peak">-원</div>
+                    <div class="stat-sub">단기 초접전 과열</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-label">연초 대비 수익률</div>
-                    <div class="stat-value up">+215%</div>
-                    <div class="stat-sub">2026.01 -> 05</div>
+                    <div class="stat-label">상승폭 (60일 기준)</div>
+                    <div class="stat-value up" id="stat-return">-%</div>
+                    <div class="stat-sub">추세 상승 지속</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-label">신규 수주 목표</div>
-                    <div class="stat-value blue">18조원</div>
-                    <div class="stat-sub">창사 이래 최대</div>
+                    <div class="stat-label">시장 테마</div>
+                    <div class="stat-value" style="color: #a371f7;">반도체/인적분할</div>
+                    <div class="stat-sub">지배구조 개편</div>
                 </div>
                 <div class="stat-card">
                     <div class="stat-label">현재 상태</div>
                     <div class="stat-value yellow">투자경고</div>
-                    <div class="stat-sub">KRX 시장과열</div>
+                    <div class="stat-sub">KRX 주의 종목</div>
                 </div>
             </div>
 
-            <!-- 2. 급등 배경 -->
-            <h2>왜 갑자기 튀었나? 결정적 한방 '체코 원전'</h2>
+            <!-- 2. 인적분할 이슈 -->
+            <h2>가치 재평가의 서막, '인적분할'의 마법</h2>
 
-            <p>이번 랠리의 가장 큰 트리거는 역시 <strong>체코 원전 수주</strong>였습니다. 한국수력원자력을 중심으로 한 '팀 코리아'가 체코 신규 원전 사업의 우선협상대상자로 선정됐는데,
-                여기서 대우건설은 주력 시공사로 참여하고 있습니다. 수조 원 단위의 프로젝트가 실제 수주로 가시화되면서 시장이 열광한 거죠.</p>
+            <p>보통 반도체 장비 회사들은 사이클을 타기 마련입니다. 그런데 주성엔지니어링은 주력인 반도체 외에도 디스플레이와 태양광 사업을 품고 있었죠. 시장에서는 이런 혼합 구조 때문에 반도체
+                장비사로서의 '순수한 밸류에이션(멀티플)'을 제대로 받지 못한다는 지적이 많았습니다.</p>
 
-            <p>또 하나 흥미로운 점은 2026년 초에 단행한 <strong>'빅배스(Big Bath)'</strong>입니다. 작년 영업손실을 한꺼번에 반영하며 재무적 불확실성을 털어버렸거든요. 시장은
-                도리어 이걸 "나쁜 건 다 지나갔다"는 신호로 해석했고, 이후 발표된 역대급 수주 목표가 더해지며 주가가 폭발했습니다.</p>
+            <p>결국 회사는 칼을 빼들었습니다. 반도체, 태양광, 디스플레이를 분리하여 지배구조를 개편하는 **인적/물적 분할**을 단행한 것입니다. 이를 통해 반도체 사업 부문은 오롯이 반도체
+                피어(Peer) 그룹과 평가받을 수 있게 되었고, 시장은 이를 강력한 '가치 재평가(Re-rating)'의 신호로 받아들였습니다.</p>
 
             <div class="info-box">
-                <div class="info-box-title"><i class="fa-solid fa-bolt"></i> AI와 원전의 관계</div>
-                <p>챗GPT 같은 생성형 AI를 돌리는 데이터센터는 일반 서버보다 전기를 훨씬 많이 먹습니다. 신재생 에너지만으로는 이 막대한 전력을 감당하기 어렵다는 결론이 나오면서, 탄소 배출이
-                    적으면서 대량 전력 생산이 가능한 '원전'이 AI 인프라의 핵심으로 급부상했습니다. 대우건설이 AI 수혜주로 분류되는 이유입니다.</p>
+                <div class="info-box-title"><i class="fa-solid fa-money-bill-trend-up"></i> 분할 후 기업가치 합산의 법칙</div>
+                <p>일반적으로 알짜 사업이 독립하게 되면, 시장 밸류에이션이 상향 조정됩니다. 주력 사업(반도체)에 프리미엄이 붙으면서 쪼개지기 전 합산 시총보다 분할 후 각 기업의 시총 합이 더
+                    커지는 마법이 일어나는 것이죠. 현재의 주가 급등은 이러한 기대감이 선반영되는 과정입니다.</p>
             </div>
 
-            <!-- 주가 추이 차트 -->
+            <!-- 3. 주가 추이 (동적) -->
+            <h2>계단식 폭등과 투자경고의 그림자</h2>
+
+            <p>기술력과 지배구조 개편 호재가 겹치다 보니 주가는 말 그대로 날개를 달았습니다. 하지만 오르는 속도가 너무 가팔랐죠. 거래소는 주성엔지니어링을 '투자주의'를 넘어 **'투자경고'**
+                종목으로 지정했습니다. 이 단계에서는 신용 및 미수 거래가 막히기 때문에 순수한 현금 수급만 움직이게 됩니다.</p>
+
             <div class="chart-section">
-                <div class="chart-title">대우건설(047040) 주가 추이</div>
-                <div class="chart-subtitle">2026년 1월 ~ 5월 기준 (주봉 기준 추정 데이터)</div>
+                <div class="chart-title">주성엔지니어링(036930) 최근 60영업일 주가 추이</div>
+                <div class="chart-subtitle">실시간 API 연동 (종가 기준)</div>
                 <div class="chart-wrap">
                     <canvas id="priceChart"></canvas>
                 </div>
             </div>
 
-            <!-- 3. 투자경고 분석 -->
-            <h2>투자경고, 어떤 조건에서 걸렸나</h2>
-
-            <p>주가가 너무 가파르게 오르다 보니 한국거래소가 제동을 걸었습니다. 4월 말에 투자경고 종목으로 지정됐는데, 이건 그만큼 시장의 투기적 수급이 강하게 몰렸다는 뜻이기도 합니다.</p>
-
-            <table class="condition-table">
-                <thead>
-                    <tr>
-                        <th>구분</th>
-                        <th>지정 요건</th>
-                        <th>실제 상황</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>5일 상승</td>
-                        <td>5영업일 전 대비 <strong>60%↑</strong></td>
-                        <td>체코 본계약 기대감으로 단기 충족</td>
-                    </tr>
-                    <tr>
-                        <td>15일 지속</td>
-                        <td>15일 중 상승 일수가 압도적</td>
-                        <td>계단식 우상향으로 인해 경고 직행</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <p>특히 15일간의 지속적인 상승은 기관과 외국인의 매집세가 꾸준했다는 증거이기도 하지만, 반대로 이제는 **차익 실현 매물**이 쏟아져도 이상하지 않은 구간이라는 뜻입니다. 실제로 경고 지정
-                이후 고점에서 일부 조정을 받는 모습이 나타나고 있어요.</p>
-
             <!-- 기준가 차트 -->
             <div class="chart-section">
                 <div class="chart-title">지정 기준가 vs 실제 가격 분석</div>
-                <div class="chart-subtitle">투자경고 해제 및 재지정 여부를 결정하는 주요 가격 라인 (추정)</div>
+                <div class="chart-subtitle">경고 해제 여부를 결정하는 가상의 방어선 (+60% 기준)</div>
                 <div class="chart-wrap">
                     <canvas id="targetChart"></canvas>
                 </div>
             </div>
 
             <!-- 4. 향후 전망 -->
-            <h2>앞으로 어떻게 될까?</h2>
+            <h2>지금부터는 실적 증명이 필요한 시점</h2>
 
-            <p>단기적으로는 투자경고가 붙어있어서 변동성이 큽니다. 신용 매수가 막히고 미수금 동결 등이 걸리기 때문에 수급이 예전처럼 강하긴 힘들어요. 하지만 <strong>중장기
-                    스토리</strong>는 여전히 매력적입니다.</p>
+            <p>주성엔지니어링의 장기 전망은 여전히 밝습니다. 글로벌 반도체 제조사들이 선단 공정으로 진입할수록 ALD 장비의 중요성은 더 커지기 때문입니다. 하지만 단기적으로는 이미 분할 기대감과 HBM
+                호재가 주가에 상당히 반영되어 있다는 점을 조심해야 합니다.</p>
 
             <ul>
-                <li><strong>체코 다음은 폴란드?</strong> 추가 원전 수주 가능성이 열려 있습니다.</li>
-                <li><strong>SMR(소형모듈원자로) 신사업</strong> 대우건설이 미래 성장 동력으로 공들이는 분야입니다.</li>
-                <li><strong>배당 확대 기대감</strong> 실적 턴어라운드 이후 주주 환원 정책이 강화될 가능성이 큽니다.</li>
+                <li><strong>고점 매물대 확인</strong>: 투자경고가 발동된 상황에서는 작은 악재에도 차익 실현 물량이 크게 쏟아질 수 있습니다.</li>
+                <li><strong>분할 후 이벤트</strong>: 재상장 이후 실질적인 수급의 이동과 외국인 매수세를 반드시 체크해야 합니다.</li>
+                <li><strong>고객사 다변화</strong>: 국내 비중을 넘어 중화권 및 북미 지역으로 ALD 장비 납품을 얼마나 성공적으로 확장하는지가 다음 레벨업의 관건입니다.</li>
             </ul>
 
-            <p>결론적으로 지금은 <strong>"무작정 쫓아가는"</strong> 단계는 지났습니다. 투자경고가 해제되는 시점의 가격 흐름과, 실제 원전 본계약 공시 내용을 확인하며 호흡을 길게 가져가는
-                전략이 필요해 보입니다.</p>
+            <p>결론적으로 주성엔지니어링은 대한민국 대표 소부장(소재·부품·장비) 기업이라는 이름값을 톡톡히 하고 있습니다. 지금은 무리한 추격 매수보다는 <strong>투자경고 지정 기준가를 모니터링하며
+                    해제 시점의 눌림목을 노리는 전략</strong>이 현명해 보입니다.</p>
 
             <!-- CTA -->
             <div class="cta-box">
-                <p>지금 <strong>대우건설(047040)</strong>의 오늘 투자경고 해제/지정 기준가를 확인해보세요</p>
-                <a href="/stock/047040" id="cta-main-link" class="cta-button">
-                    <i class="fa-solid fa-magnifying-glass-chart"></i>
-                    대우건설(047040) 실시간 분석 결과 보기
+                <p>지금 <strong>주성엔지니어링(036930)</strong>의 오늘 투자경고 기준가, 직접 확인해보세요</p>
+                <a href="/stock/036930" id="cta-main-link" class="cta-button">
+                    <i class="fa-solid fa-microchip"></i>
+                    주성엔지니어링(036930) 실시간 분석 결과 보기
                 </a>
             </div>
 
@@ -499,9 +428,9 @@
         Chart.defaults.font.family = "'Pretendard', -apple-system, sans-serif";
 
         // ── 주가 및 기준가 동적 차트 ───────────────────────────────────
-        const stockCode = '047040';
-        const colorHex = '#d29922';
-        const colorRgb = '210, 153, 34';
+        const stockCode = '036930';
+        const colorHex = '#a371f7';
+        const colorRgb = '163, 113, 247';
         const targetHex = '#f85149';
 
         async function loadCharts() {
@@ -512,22 +441,19 @@
                 const pricesData = data.prices || [];
                 if (pricesData.length === 0) return;
 
-                // 최근 60일치 데이터로 시각화 (너무 많으면 차트가 복잡해짐)
                 const viewCount = 60;
                 const startIndex = Math.max(0, pricesData.length - viewCount);
                 const displayData = pricesData.slice(startIndex);
-                
-                // 라벨 포맷: MM/DD
+
                 const labels = displayData.map(d => {
-                    const month = parseInt(d.date.substring(4,6), 10);
-                    const day = parseInt(d.date.substring(6,8), 10);
+                    const month = parseInt(d.date.substring(4, 6), 10);
+                    const day = parseInt(d.date.substring(6, 8), 10);
                     return `${month}/${day}`;
                 });
-                
+
                 const closePrices = displayData.map(d => d.close);
                 const allClosePrices = pricesData.map(d => d.close);
 
-                // 공통 툴팁 옵션
                 const tooltipOptions = {
                     backgroundColor: '#161b22',
                     borderColor: '#30363d',
@@ -575,7 +501,7 @@
                             plugins: { legend: { display: false }, tooltip: tooltipOptions },
                             scales: {
                                 x: { grid: { color: 'rgba(48,54,61,0.5)' }, ticks: { maxRotation: 0, font: { size: 11 } } },
-                                y: { 
+                                y: {
                                     grid: { color: 'rgba(48,54,61,0.5)' },
                                     ticks: { font: { size: 11 }, callback: v => v >= 10000 ? (v / 10000).toFixed(1) + '만' : parseInt(v).toLocaleString() }
                                 }
@@ -587,8 +513,7 @@
                 // --- 2. 기준가 비교 차트 ---
                 const canvas2 = document.getElementById('targetChart');
                 if (canvas2) {
-                    // 5거래일 전 대비 60% 급등 기준 (단순화: array[-5].close * 1.6)
-                    const targetPricesArray = pricesData.map((d, i) => i < 5 ? null : pricesData[i-5].close * 1.6);
+                    const targetPricesArray = pricesData.map((d, i) => i < 5 ? null : pricesData[i - 5].close * 1.6);
                     const displayTargetPrices = targetPricesArray.slice(startIndex);
 
                     const ctx2 = canvas2.getContext('2d');
@@ -634,7 +559,7 @@
                             },
                             scales: {
                                 x: { grid: { color: 'rgba(48,54,61,0.5)' }, ticks: { font: { size: 11 } } },
-                                y: { 
+                                y: {
                                     grid: { color: 'rgba(48,54,61,0.5)' },
                                     ticks: { font: { size: 11 }, callback: v => v >= 10000 ? (v / 10000).toFixed(1) + '만' : parseInt(v).toLocaleString() }
                                 }
@@ -643,26 +568,19 @@
                     });
                 }
 
-                // 고점, 수익률 등 통계 수치 업데이트
-                const maxData = Math.max(...allClosePrices);
-                const currentPrice = allClosePrices[allClosePrices.length - 1];
-                const statCards = document.querySelectorAll('.stat-grid .stat-card');
-                
-                statCards.forEach(card => {
-                    const label = card.querySelector('.stat-label');
-                    const value = card.querySelector('.stat-value');
-                    if (label && value) {
-                        const lblText = label.innerText;
-                        if (lblText.includes('고점')) {
-                            value.innerText = maxData.toLocaleString() + '원';
-                        }
-                        if (lblText.includes('연초 대비') || lblText.includes('상승폭')) {
-                            const startPrice = allClosePrices[0];
-                            const returnRate = Math.round(((currentPrice - startPrice) / startPrice) * 100);
-                            value.innerText = (returnRate >= 0 ? '+' : '') + returnRate + '%';
-                        }
-                    }
-                });
+                // 통계 업데이트
+                if (displayData.length > 0) {
+                    const currentPrice = closePrices[closePrices.length - 1];
+                    const maxData = Math.max(...closePrices);
+                    const startPrice = closePrices[0];
+                    const returnRate = Math.round(((currentPrice - startPrice) / startPrice) * 100);
+
+                    const peakElem = document.getElementById('stat-peak');
+                    if (peakElem) peakElem.innerText = maxData.toLocaleString() + '원';
+
+                    const returnElem = document.getElementById('stat-return');
+                    if (returnElem) returnElem.innerText = (returnRate >= 0 ? '+' : '') + returnRate + '%';
+                }
 
             } catch (err) {
                 console.error('Failed to load charts', err);
@@ -670,3 +588,6 @@
         }
         loadCharts();
     </script>
+</body>
+
+</html>

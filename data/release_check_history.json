@@ -1,5 +1,93 @@
 [
   {
+    "checkDate": "2026-05-10",
+    "code": "092600",
+    "name": "앤씨앤",
+    "designatedDate": "2026-04-13",
+    "status": "extended",
+    "msg": "투자경고 연장됨"
+  },
+  {
+    "checkDate": "2026-05-10",
+    "code": "356860",
+    "name": "티엘비",
+    "designatedDate": "2026-04-17",
+    "status": "released",
+    "msg": "투자경고 해제됨"
+  },
+  {
+    "checkDate": "2026-05-10",
+    "code": "131760",
+    "name": "파인텍",
+    "designatedDate": "2026-04-20",
+    "status": "extended",
+    "msg": "투자경고 연장됨"
+  },
+  {
+    "checkDate": "2026-05-10",
+    "code": "184230",
+    "name": "SGA솔루션즈",
+    "designatedDate": "2026-04-21",
+    "status": "extended",
+    "msg": "투자경고 연장됨"
+  },
+  {
+    "checkDate": "2026-05-10",
+    "code": "240810",
+    "name": "원익IPS",
+    "designatedDate": "2026-04-22",
+    "status": "extended",
+    "msg": "투자경고 연장됨"
+  },
+  {
+    "checkDate": "2026-05-10",
+    "code": "082920",
+    "name": "비츠로셀",
+    "designatedDate": "2026-04-22",
+    "status": "extended",
+    "msg": "투자경고 연장됨"
+  },
+  {
+    "checkDate": "2026-05-10",
+    "code": "417840",
+    "name": "저스템",
+    "designatedDate": "2026-04-23",
+    "status": "extended",
+    "msg": "투자경고 연장됨"
+  },
+  {
+    "checkDate": "2026-05-10",
+    "code": "095610",
+    "name": "테스",
+    "designatedDate": "2026-04-23",
+    "status": "extended",
+    "msg": "투자경고 연장됨"
+  },
+  {
+    "checkDate": "2026-05-10",
+    "code": "036930",
+    "name": "주성엔지니어링",
+    "designatedDate": "2026-04-23",
+    "status": "extended",
+    "msg": "투자경고 연장됨"
+  },
+  {
+    "checkDate": "2026-05-10",
+    "code": "010820",
+    "name": "퍼스텍",
+    "designatedDate": "2026-04-23",
+    "status": "extended",
+    "msg": "투자경고 연장됨"
+  },
+  {
+    "checkDate": "2026-05-10",
+    "code": "006110",
+    "name": "삼아알미늄",
+    "designatedDate": "2026-04-23",
+    "status": "extended",
+    "msg": "투자경고 연장됨"
+  },
+  {
     "checkDate": "2026-05-07",
     "code": "092600",
     "name": "앤씨앤",
